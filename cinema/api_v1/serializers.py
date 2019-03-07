@@ -2,32 +2,84 @@ from webapp.models import Movie, Category, Hall, Seat, Show
 from rest_framework import serializers
 
 
-class MovieSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Movie
-        fields = ('id', 'name', 'description', 'poster', 'release_date', 'finish_date', 'category')
-
-
 class CategorySerializer(serializers.ModelSerializer):
+    # добавляем URL для отображения подробной информации о категории
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:category-detail')
+
     class Meta:
         model = Category
-        fields = ('id', 'name', 'description')
+        fields = ('url', 'id', 'name', 'description')
 
 
-class HallSerializer(serializers.ModelSerializer):
+# Сериализатор для модели категорий, предназначенный для включения в сериализатор фильмов
+# Не выводит ненужные в данном случае поля: description и url
+class InlineCategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Hall
+        model = Category
         fields = ('id', 'name')
 
 
-class SeatSerializer(serializers.ModelSerializer):
+class MovieSerializer(serializers.ModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:movie-detail')
+
+    # поле - вложенный сериализатор - для вывода категорий в виде списка объектов.
+    # такие поля обычно предназначены только для чтения, если не требуется одновременное
+    # создание или обновление основного и связанного объекта (связанных объектов).
+    categories = InlineCategorySerializer(many=True, read_only=True)
+
+    # второе поле только для записи (write_only=True)
+    category_ids = serializers.PrimaryKeyRelatedField(
+        many=True,
+        write_only=True,
+        queryset=Category.objects.all(),
+        source='categories'
+    )
+
+    class Meta:
+        model = Movie
+        fields = ('url', 'id', 'name', 'description', 'poster', 'release_date', 'finish_date',
+                  'categories', 'category_ids')
+
+
+class InlineSeatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Seat
-        fields = ('id', 'hall', 'row', 'place')
+        fields = ('id', 'row', 'seat')
+
+
+class HallSerializer(serializers.ModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:hall-detail')
+
+    # поле, представляющее обратную связь от зала к местам в зале.
+    # название поля должно совпадать с related_name внешнего ключа от мест к залу (Seat.hall)
+    seats = InlineSeatSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Hall
+        fields = ('url', 'id', 'name', 'description', 'seats')
+
+
+class SeatSerializer(serializers.ModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:seat-detail')
+
+    # добавляем ссылку на внешнее поле - Hall, только для чтения, источник - поле hall в модели Seat
+    hall_url = serializers.HyperlinkedRelatedField(view_name='api_v1:hall-detail', read_only=True, source='hall')
+
+    class Meta:
+        model = Seat
+        fields = ('url', 'id', 'hall', 'row', 'seat', 'hall_url')
 
 
 class ShowSerializer(serializers.ModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:show-detail')
+    movie_url = serializers.HyperlinkedRelatedField(view_name='api_v1:movie-detail', read_only=True, source='movie')
+    hall_url = serializers.HyperlinkedRelatedField(view_name='api_v1:hall-detail', read_only=True, source='hall')
+
     class Meta:
         model = Show
-        fields = ('id', 'movie', 'hall', 'start_time', 'end_time', 'price')
+        fields = ('url', 'id', 'movie', 'movie_url', 'hall', 'hall_url', 'start_time', 'end_time', 'price')
 
