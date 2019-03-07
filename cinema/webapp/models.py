@@ -1,5 +1,9 @@
 from django.db import models
 from django.urls import reverse
+import random
+import string
+from django.conf import settings
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class SoftDeleteManager(models.Manager):
@@ -90,7 +94,80 @@ class Show(models.Model):
                                      self.end_time.strftime('%d.%m.%Y %H:%M'))
 
 
+# генерируем уникальный текстовый код из необходимого количества символов
+# количество символов - BOOKING_CODE_LENGTH прописываем в настройках (settings.py)
+def generate_code():
+    code = ""
+    for i in range(0, settings.BOOKING_CODE_LENGTH):
+        code += random.choice(string.digits)
+    return code
 
+
+BOOKING_STATUS_CHOICES = [
+    ('created', 'Created'),
+    ('sold', 'Sold'),
+    ('canceled', 'Canceled'),
+]
+
+
+class Book(models.Model):
+    # значение по умолчанию - метод generate_code, который генерирует случайный код из 6 цифр
+    # свойство unique_for_date делает это поле уникальным в пределах даты, указанной в поле created_at
+    # editable=False означает, что код нельзя сгенерировать заново в той же брони
+
+    # code = models.CharField(max_length=10, unique_for_date='created_at', default=generate_code,
+    #                         editable=False, verbose_name='Код брони')
+
+    show = models.ForeignKey(Show, on_delete=models.PROTECT, related_name='booking', verbose_name='Сеанс')
+    seats = models.ManyToManyField(Seat, related_name='booking', verbose_name='Место')
+    status = models.CharField(max_length=20, choices=BOOKING_STATUS_CHOICES, default='created', verbose_name='Статус')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата изменения')
+    is_deleted = models.BooleanField(default=False)
+
+    objects = SoftDeleteManager()
+
+    def __str__(self):
+        return "%s, %s" % (self.show, self.code)
+
+    # выводим забронированные места (ряд + место)
+    def get_seats_display(self):
+        seats = ""
+        for seat in self.seats.all():
+            seats += "R%sS%s " % (seat.row, seat.seat)
+        return seats.rstrip()
+
+
+class Discount(models.Model):
+
+    name = models.CharField(max_length=225, verbose_name='Название')
+    discount = models.DecimalField(max_digits=5, decimal_places=2, validators=[
+        MaxValueValidator(100),
+        MinValueValidator(0)
+    ], verbose_name='Скидка')
+    start_date = models.DateField(null=True, blank=True, verbose_name='Дата начала')
+    end_date = models.DateField(null=True, blank=True, verbose_name='Дата окончания')
+    is_deleted = models.BooleanField(default=False)
+
+    objects = SoftDeleteManager()
+
+    def __str__(self):
+        return "%s %s %%" % (self.name, self.discount)
+
+
+class Ticket(models.Model):
+
+    show = models.ForeignKey(Show, on_delete=models.PROTECT, related_name="tickets", verbose_name="Сеанс")
+    seat = models.ForeignKey(Seat, on_delete=models.PROTECT, related_name="tickets", verbose_name="Место")
+    discount = models.ForeignKey(Discount, null=True, blank=True, on_delete=models.PROTECT,
+                                 related_name="tickets", verbose_name="Скидка")
+    exchange = models.BooleanField(verbose_name="Возврат")
+    is_deleted = models.BooleanField(default=False)
+
+    objects = SoftDeleteManager()
+
+    def __str__(self):
+        return "%s, %s" % (self.show, self.seat)
 
 
 

@@ -130,3 +130,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 3
 }
+
+# Настройка, которая отвечает за длину генерируемого кода брони
+# (в settings.py можно добавлять и собственные настройки, используемые в коде проекта).
+BOOKING_CODE_LENGTH = 6

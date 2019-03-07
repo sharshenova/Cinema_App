@@ -2,11 +2,12 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
-from webapp.models import Movie, Category, Hall, Seat, Show
+from webapp.models import Movie, Category, Hall, Seat, Show, Book, Discount, Ticket
 from rest_framework import viewsets
 from api_v1.serializers import MovieCreateSerializer, MovieDisplaySerializer, \
     CategorySerializer, HallSerializer, SeatCreateSerializer, SeatDisplaySerializer,\
-    ShowCreateSerializer, ShowDisplaySerializer
+    ShowCreateSerializer, ShowDisplaySerializer, BookCreateSerializer, BookDisplaySerializer,\
+    DiscountSerializer, TicketCreateSerializer, TicketDisplaySerializer
 
 # Отключаем авторизацию в ViewSet-ах API
 class NoAuthModelViewSet(viewsets.ModelViewSet):
@@ -78,6 +79,43 @@ class ShowViewSet(NoAuthModelViewSet):
             return ShowDisplaySerializer
         else:
             return ShowCreateSerializer
+
+    def perform_destroy(self, instance):
+        instance.is_deleted = True
+        instance.save()
+
+
+class BookViewSet(NoAuthModelViewSet):
+    queryset = Book.objects.active().order_by('-status')
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return BookDisplaySerializer
+        else:
+            return BookCreateSerializer
+
+    def perform_destroy(self, instance):
+        instance.is_deleted = True
+        instance.save()
+
+
+class DiscountViewSet(NoAuthModelViewSet):
+    queryset = Discount.objects.active().order_by('-name')
+    serializer_class = DiscountSerializer
+
+    def perform_destroy(self, instance):
+        instance.is_deleted = True
+        instance.save()
+
+
+class TicketViewSet(NoAuthModelViewSet):
+    queryset = Ticket.objects.active().order_by('-discount')
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return TicketDisplaySerializer
+        else:
+            return TicketCreateSerializer
 
     def perform_destroy(self, instance):
         instance.is_deleted = True

@@ -1,4 +1,4 @@
-from webapp.models import Movie, Category, Hall, Seat, Show
+from webapp.models import Movie, Category, Hall, Seat, Show, Book, Discount, Ticket
 from rest_framework import serializers
 
 # Сериализатор для модели категорий, предназначенный для включения в сериализатор фильмов
@@ -23,6 +23,15 @@ class InlineMovieSerializer(serializers.ModelSerializer):
         model = Movie
         fields = ('id', 'name')
 
+class InlineShowSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Show
+        fields = ('id', 'movie', 'hall', 'start_time', 'end_time', 'price')
+
+class InlineDiscountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Discount
+        fields = ("id", "name")
 
 
 
@@ -103,3 +112,50 @@ class ShowCreateSerializer(serializers.ModelSerializer):
 class ShowDisplaySerializer(ShowCreateSerializer):
     movie = InlineMovieSerializer(read_only=True)
     hall = InlineHallSerializer(read_only=True)
+
+
+
+
+
+
+class BookCreateSerializer(serializers.ModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:book-detail')
+
+    class Meta:
+        model = Book
+        fields = ('url', 'id', 'show', 'seats', 'status', 'created_at', 'updated_at')
+
+
+class BookDisplaySerializer(BookCreateSerializer):
+    show = InlineShowSerializer(read_only=True)
+    seats = InlineSeatSerializer(read_only=True, many=True)
+
+
+
+
+class DiscountSerializer(serializers.ModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:discount-detail')
+
+    class Meta:
+        model = Discount
+        fields = ('url', 'id', 'name', 'discount', 'start_date', 'end_date')
+
+
+
+class TicketCreateSerializer(serializers.ModelSerializer):
+
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:ticket-detail')
+
+    class Meta:
+        model = Ticket
+        fields = ('url', 'id', 'show', 'seat', 'discount', 'exchange')
+
+
+class TicketDisplaySerializer(TicketCreateSerializer):
+    seat = InlineSeatSerializer(read_only=True)
+    show = InlineShowSerializer(read_only=True)
+    discount = InlineDiscountSerializer(read_only=True)
+
+
