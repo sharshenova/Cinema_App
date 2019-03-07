@@ -131,6 +131,11 @@ class BookDisplaySerializer(BookCreateSerializer):
     show = InlineShowSerializer(read_only=True)
     seats = InlineSeatSerializer(read_only=True, many=True)
 
+    class Meta:
+        model = Book
+        fields = ('url', 'id', 'show', 'code', 'seats', 'status', 'created_at', 'updated_at')
+
+
 
 
 

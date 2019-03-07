@@ -115,9 +115,8 @@ class Book(models.Model):
     # свойство unique_for_date делает это поле уникальным в пределах даты, указанной в поле created_at
     # editable=False означает, что код нельзя сгенерировать заново в той же брони
 
-    # code = models.CharField(max_length=10, unique_for_date='created_at', default=generate_code,
-    #                         editable=False, verbose_name='Код брони')
-
+    code = models.CharField(max_length=10, unique_for_date='created_at', default=generate_code(),
+                            editable=False, verbose_name='Код брони')
     show = models.ForeignKey(Show, on_delete=models.PROTECT, related_name='booking', verbose_name='Сеанс')
     seats = models.ManyToManyField(Seat, related_name='booking', verbose_name='Место')
     status = models.CharField(max_length=20, choices=BOOKING_STATUS_CHOICES, default='created', verbose_name='Статус')
