@@ -5,7 +5,8 @@ from django.views.decorators.csrf import csrf_exempt
 from webapp.models import Movie, Category, Hall, Seat, Show
 from rest_framework import viewsets
 from api_v1.serializers import MovieCreateSerializer, MovieDisplaySerializer, \
-    CategorySerializer, HallSerializer, SeatSerializer, ShowSerializer
+    CategorySerializer, HallSerializer, SeatCreateSerializer, SeatDisplaySerializer,\
+    ShowCreateSerializer, ShowDisplaySerializer
 
 
 
@@ -47,9 +48,19 @@ class HallViewSet(viewsets.ModelViewSet):
 
 class SeatViewSet(viewsets.ModelViewSet):
     queryset = Seat.objects.all().order_by('-seat')
-    serializer_class = SeatSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return SeatDisplaySerializer
+        else:
+            return SeatCreateSerializer
 
 
 class ShowViewSet(viewsets.ModelViewSet):
     queryset = Show.objects.all().order_by('-start_time')
-    serializer_class = ShowSerializer
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return ShowDisplaySerializer
+        else:
+            return ShowCreateSerializer

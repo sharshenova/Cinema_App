@@ -1,6 +1,30 @@
 from webapp.models import Movie, Category, Hall, Seat, Show
 from rest_framework import serializers
 
+# Сериализатор для модели категорий, предназначенный для включения в сериализатор фильмов
+# Не выводит ненужные в данном случае поля: description и url
+class InlineCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('id', 'name')
+
+class InlineSeatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Seat
+        fields = ('id', 'row', 'seat')
+
+class InlineHallSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Hall
+        fields = ('id', 'name')
+
+class InlineMovieSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Movie
+        fields = ('id', 'name')
+
+
+
 
 class CategorySerializer(serializers.ModelSerializer):
     # добавляем URL для отображения подробной информации о категории
@@ -10,13 +34,6 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ('url', 'id', 'name', 'description')
 
-
-# Сериализатор для модели категорий, предназначенный для включения в сериализатор фильмов
-# Не выводит ненужные в данном случае поля: description и url
-class InlineCategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ('id', 'name')
 
 
 # Сериализатор фильмов для создания/обновления
@@ -41,12 +58,6 @@ class MovieDisplaySerializer(MovieCreateSerializer):
 
 
 
-class InlineSeatSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Seat
-        fields = ('id', 'row', 'seat')
-
-
 class HallSerializer(serializers.ModelSerializer):
 
     url = serializers.HyperlinkedIdentityField(view_name='api_v1:hall-detail')
@@ -60,7 +71,8 @@ class HallSerializer(serializers.ModelSerializer):
         fields = ('url', 'id', 'name', 'description', 'seats')
 
 
-class SeatSerializer(serializers.ModelSerializer):
+
+class SeatCreateSerializer(serializers.ModelSerializer):
 
     url = serializers.HyperlinkedIdentityField(view_name='api_v1:seat-detail')
 
@@ -69,10 +81,15 @@ class SeatSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Seat
-        fields = ('url', 'id', 'hall', 'row', 'seat', 'hall_url')
+        fields = ('url', 'id', 'hall', 'hall_url', 'row', 'seat')
 
 
-class ShowSerializer(serializers.ModelSerializer):
+class SeatDisplaySerializer(SeatCreateSerializer):
+    hall = InlineHallSerializer(read_only=True)
+
+
+
+class ShowCreateSerializer(serializers.ModelSerializer):
 
     url = serializers.HyperlinkedIdentityField(view_name='api_v1:show-detail')
     movie_url = serializers.HyperlinkedRelatedField(view_name='api_v1:movie-detail', read_only=True, source='movie')
@@ -82,3 +99,7 @@ class ShowSerializer(serializers.ModelSerializer):
         model = Show
         fields = ('url', 'id', 'movie', 'movie_url', 'hall', 'hall_url', 'start_time', 'end_time', 'price')
 
+
+class ShowDisplaySerializer(ShowCreateSerializer):
+    movie = InlineMovieSerializer(read_only=True)
+    hall = InlineHallSerializer(read_only=True)

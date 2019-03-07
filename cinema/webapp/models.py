@@ -68,8 +68,8 @@ class Show(models.Model):
                               on_delete=models.PROTECT)
     hall = models.ForeignKey(Hall, null=True, blank=True, related_name='shows', verbose_name='Зал',
                               on_delete=models.PROTECT)
-    start_time = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='Время начала')
-    end_time = models.DateTimeField(auto_now=False, auto_now_add=False, verbose_name='Время окончания')
+    start_time = models.DateTimeField(verbose_name='Время начала')
+    end_time = models.DateTimeField(verbose_name='Время окончания')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Цена за билет')
 
     def __str__(self):
