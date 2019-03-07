@@ -19,27 +19,26 @@ class InlineCategorySerializer(serializers.ModelSerializer):
         fields = ('id', 'name')
 
 
-class MovieSerializer(serializers.ModelSerializer):
+# Сериализатор фильмов для создания/обновления
+# выводит категории по умолчанию - в виде списка id категорий
+class MovieCreateSerializer(serializers.ModelSerializer):
 
     url = serializers.HyperlinkedIdentityField(view_name='api_v1:movie-detail')
-
-    # поле - вложенный сериализатор - для вывода категорий в виде списка объектов.
-    # такие поля обычно предназначены только для чтения, если не требуется одновременное
-    # создание или обновление основного и связанного объекта (связанных объектов).
-    categories = InlineCategorySerializer(many=True, read_only=True)
-
-    # второе поле только для записи (write_only=True)
-    category_ids = serializers.PrimaryKeyRelatedField(
-        many=True,
-        write_only=True,
-        queryset=Category.objects.all(),
-        source='categories'
-    )
 
     class Meta:
         model = Movie
         fields = ('url', 'id', 'name', 'description', 'poster', 'release_date', 'finish_date',
-                  'categories', 'category_ids')
+                  'categories')
+
+
+# Сериализатор для просмотра фильмов
+# выводит категории в виде списка вложенных объектов, представленных сериализатором InlineCategorySerializer.
+class MovieDisplaySerializer(MovieCreateSerializer):
+    categories = InlineCategorySerializer(many=True, read_only=True)
+
+# чтобы MovieCreateSerializer и MovieDisplaySerializer работали корректно,
+# во views.py прописывается метод "def get_serializer_class"
+
 
 
 class InlineSeatSerializer(serializers.ModelSerializer):
