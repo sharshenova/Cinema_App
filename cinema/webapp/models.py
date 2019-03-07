@@ -36,6 +36,9 @@ class Movie(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
     description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Описание')
+    is_deleted = models.BooleanField(default=False)
+
+    objects = SoftDeleteManager()
 
     def __str__(self):
         return self.name
@@ -48,6 +51,9 @@ class Category(models.Model):
 class Hall(models.Model):
     name = models.CharField(max_length=255, verbose_name='Название')
     description = models.TextField(max_length=2000, null=True, blank=True, verbose_name='Описание')
+    is_deleted = models.BooleanField(default=False)
+
+    objects = SoftDeleteManager()
 
     def __str__(self):
         return self.name
@@ -58,6 +64,9 @@ class Seat(models.Model):
                              verbose_name='Кинозал')
     row = models.CharField(max_length=10, verbose_name='Ряд')
     seat = models.CharField(max_length=5, verbose_name='Место')
+    is_deleted = models.BooleanField(default=False)
+
+    objects = SoftDeleteManager()
 
     def __str__(self):
         return "Row %s Seat %s" % (self.row, self.seat)
@@ -71,11 +80,15 @@ class Show(models.Model):
     start_time = models.DateTimeField(verbose_name='Время начала')
     end_time = models.DateTimeField(verbose_name='Время окончания')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='Цена за билет')
+    is_deleted = models.BooleanField(default=False)
+
+    objects = SoftDeleteManager()
 
     def __str__(self):
         return "%s, %s (%s - %s)" % (self.movie, self.hall,
                                      self.start_time.strftime('%d.%m.%Y %H:%M'),
                                      self.end_time.strftime('%d.%m.%Y %H:%M'))
+
 
 
 

@@ -10,7 +10,6 @@ from api_v1.serializers import MovieCreateSerializer, MovieDisplaySerializer, \
 
 
 
-
 class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.active().order_by('-release_date')
 
@@ -37,17 +36,25 @@ class MovieViewSet(viewsets.ModelViewSet):
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all().order_by('-name')
+    queryset = Category.objects.active().order_by('-name')
     serializer_class = CategorySerializer
+
+    def perform_destroy(self, instance):
+        instance.is_deleted = True
+        instance.save()
 
 
 class HallViewSet(viewsets.ModelViewSet):
-    queryset = Hall.objects.all().order_by('-name')
+    queryset = Hall.objects.active().order_by('-name')
     serializer_class = HallSerializer
+
+    def perform_destroy(self, instance):
+        instance.is_deleted = True
+        instance.save()
 
 
 class SeatViewSet(viewsets.ModelViewSet):
-    queryset = Seat.objects.all().order_by('-seat')
+    queryset = Seat.objects.active().order_by('-seat')
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
@@ -55,12 +62,20 @@ class SeatViewSet(viewsets.ModelViewSet):
         else:
             return SeatCreateSerializer
 
+    def perform_destroy(self, instance):
+        instance.is_deleted = True
+        instance.save()
+
 
 class ShowViewSet(viewsets.ModelViewSet):
-    queryset = Show.objects.all().order_by('-start_time')
+    queryset = Show.objects.active().order_by('-start_time')
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
             return ShowDisplaySerializer
         else:
             return ShowCreateSerializer
+
+    def perform_destroy(self, instance):
+        instance.is_deleted = True
+        instance.save()
