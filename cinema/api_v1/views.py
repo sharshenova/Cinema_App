@@ -8,9 +8,12 @@ from api_v1.serializers import MovieCreateSerializer, MovieDisplaySerializer, \
     CategorySerializer, HallSerializer, SeatCreateSerializer, SeatDisplaySerializer,\
     ShowCreateSerializer, ShowDisplaySerializer
 
+# Отключаем авторизацию в ViewSet-ах API
+class NoAuthModelViewSet(viewsets.ModelViewSet):
+    authentication_classes = []
 
 
-class MovieViewSet(viewsets.ModelViewSet):
+class MovieViewSet(NoAuthModelViewSet):
     queryset = Movie.objects.active().order_by('-release_date')
 
     # Метод, который отвечает за то,
@@ -35,7 +38,7 @@ class MovieViewSet(viewsets.ModelViewSet):
 
 
 
-class CategoryViewSet(viewsets.ModelViewSet):
+class CategoryViewSet(NoAuthModelViewSet):
     queryset = Category.objects.active().order_by('-name')
     serializer_class = CategorySerializer
 
@@ -44,7 +47,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
         instance.save()
 
 
-class HallViewSet(viewsets.ModelViewSet):
+class HallViewSet(NoAuthModelViewSet):
     queryset = Hall.objects.active().order_by('-name')
     serializer_class = HallSerializer
 
@@ -53,7 +56,7 @@ class HallViewSet(viewsets.ModelViewSet):
         instance.save()
 
 
-class SeatViewSet(viewsets.ModelViewSet):
+class SeatViewSet(NoAuthModelViewSet):
     queryset = Seat.objects.active().order_by('-seat')
 
     def get_serializer_class(self):
@@ -67,7 +70,7 @@ class SeatViewSet(viewsets.ModelViewSet):
         instance.save()
 
 
-class ShowViewSet(viewsets.ModelViewSet):
+class ShowViewSet(NoAuthModelViewSet):
     queryset = Show.objects.active().order_by('-start_time')
 
     def get_serializer_class(self):
