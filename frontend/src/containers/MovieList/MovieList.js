@@ -24,7 +24,7 @@ class MovieList extends Component {
             <p><NavLink to='/movies/add'>Добавить фильм</NavLink></p>
             <div className='row'>
                 {this.state.movies.map(movie => {
-                    return <div className='col-xs-12 col-sm-6 col-lg-4 mt-3'  key={movie.id}>
+                    return <div className='col-xs-12 col-sm-6 col-lg-4 mt-3' key={movie.id}>
                         <MovieCard movie={movie}/>
                     </div>
                 })}

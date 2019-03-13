@@ -121,11 +121,15 @@ class ShowDisplaySerializer(ShowCreateSerializer):
 class BookCreateSerializer(serializers.ModelSerializer):
 
     url = serializers.HyperlinkedIdentityField(view_name='api_v1:book-detail')
+    # code = serializers.CharField(read_only=True)
 
     class Meta:
         model = Book
         fields = ('url', 'id', 'show', 'seats', 'status', 'created_at', 'updated_at')
+        # read_only_fields = ('code',)
 
+# Model fields which have editable=False set, and AutoField fields will be set to read-only by default,
+# and do not need to be added to the read_only_fields option.
 
 class BookDisplaySerializer(BookCreateSerializer):
     show = InlineShowSerializer(read_only=True)
@@ -133,7 +137,7 @@ class BookDisplaySerializer(BookCreateSerializer):
 
     class Meta:
         model = Book
-        fields = ('url', 'id', 'show', 'code', 'seats', 'status', 'created_at', 'updated_at')
+        fields = ('url', 'id', 'show', 'seats', 'status', 'created_at', 'updated_at', 'code')
 
 
 
