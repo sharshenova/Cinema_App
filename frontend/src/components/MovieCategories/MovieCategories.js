@@ -6,7 +6,7 @@ import './MovieCategories.css';
 const MovieCategories = (props) => {
     const {categories} = props;
     return <p>{categories.map(
-        category => <span key={category.id} className="badge badge-warning category-badge">
+        category => <span key={category.id} className="badge badge-success category-badge">
             {category.name}
         </span>
     )}</p>;
