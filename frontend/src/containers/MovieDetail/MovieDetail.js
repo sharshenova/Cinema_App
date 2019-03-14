@@ -56,7 +56,7 @@ class MovieDetail extends Component {
             <div className='col col-xs-12 col-sm-12 col-md-6'>
                 {/* постер, если есть */}
                 {poster ? <div className='text-center mt-3'>
-                    <img className="img-fluid img-thumbnail rounded" src={poster}/>
+                    <img className="img-fluid img-thumbnail rounded" src={poster} alt='movie_poster'/>
                 </div> : null}
             </div>
 
