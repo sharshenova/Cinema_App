@@ -27,19 +27,22 @@ class MovieDetail extends Component {
             .catch(error => console.log(error));
     }
 
-    // movieDeleted = (movieId) => {
-    //     axios.delete(MOVIES_URL + movieId + '/').then(response => {
-    //         console.log(response.data);
-    //         this.setState(prevState => {
-    //             let newState = {...prevState};
-    //             newState.movie = null;
-    //             return newState;
-    //         })
-    //     }).catch(error => {
-    //         console.log(error);
-    //         console.log(error.response);
-    //     })
-    // };
+    movieDeleted = () => {
+        axios.delete(MOVIES_URL + this.props.match.params.id)
+            .then(response => {
+                console.log(response.data);
+                this.setState(prevState => {
+                    let newState = {...prevState};
+                    newState.movie = null;
+                    return newState;
+                });
+                this.props.history.replace('/movies/');
+            })
+            .catch(error => {
+                console.log(error);
+                console.log(error.response);
+            })
+    };
 
     render() {
         // если movie в state нет, ничего не рисуем.
@@ -74,7 +77,7 @@ class MovieDetail extends Component {
                     {/* редактировать фильм */}
                     <NavLink to={'/movies/' + id + '/edit'} className="btn btn-primary mr-2">Edit</NavLink>
 
-                    {/*<button type="button" className="btn btn-danger py-0 px-2 mr-2" onClick={() => this.movieDeleted(this.state.movie.id)>Delete</button>*/}
+                    <button type="button" className="btn btn-danger mr-2" onClick={() => this.movieDeleted()}>Delete</button>
 
                     {/* назад */}
                     <NavLink to='' className="btn btn-primary">Movies</NavLink>
