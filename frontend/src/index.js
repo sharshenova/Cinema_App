@@ -4,8 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-// стили для дэйтпикера (без них он не выводится).
-//import "react-datepicker/dist/react-datepicker.css";
+// стили для дэйтпикера (без них он не выводится)
+// нужно установить react-datepicker через консоль, в папке frontend:
+// npm install --save react-datepicker
+import "react-datepicker/dist/react-datepicker.css";
+// там же нужно установить react-select:
+// npm install --save react-select
+
 
 import axios from 'axios';
 import {BASE_URL} from "./api-urls";

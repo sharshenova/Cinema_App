@@ -15,9 +15,12 @@ const Card = props => {
             {props.text ? <p className="card-text">{props.text}</p> : null}
             {/* ссылка NavLink (из роутера) для навигации между "страницами" */}
             {/* принимает два параметра в одном "флаконе": link = {url, text}.  */}
-            {props.link ? <NavLink to={props.link.url} className="btn btn-primary">
+            {props.link ? <NavLink to={props.link.url} className="btn btn-primary mr-2">
                 {props.link.text}
             </NavLink> : null}
+            {props.del ? <a onClick={props.del.onDelete} className="btn btn-danger">
+                {props.del.text}
+            </a> : null}
         </div> : null}
     </div>
 };

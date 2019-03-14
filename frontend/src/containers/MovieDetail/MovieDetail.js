@@ -27,10 +27,24 @@ class MovieDetail extends Component {
             .catch(error => console.log(error));
     }
 
+    // movieDeleted = (movieId) => {
+    //     axios.delete(MOVIES_URL + movieId + '/').then(response => {
+    //         console.log(response.data);
+    //         this.setState(prevState => {
+    //             let newState = {...prevState};
+    //             newState.movie = null;
+    //             return newState;
+    //         })
+    //     }).catch(error => {
+    //         console.log(error);
+    //         console.log(error.response);
+    //     })
+    // };
+
     render() {
         // если movie в state нет, ничего не рисуем.
         if (!this.state.movie) return null;
-        console.log('выполняется Render первый раз')
+        console.log('выполняется Render первый раз');
 
         // достаём данные из movie
         const {name, poster, description, release_date, finish_date, categories, id} = this.state.movie;
@@ -59,6 +73,8 @@ class MovieDetail extends Component {
                 <div className='mb-3'>
                     {/* редактировать фильм */}
                     <NavLink to={'/movies/' + id + '/edit'} className="btn btn-primary mr-2">Edit</NavLink>
+
+                    {/*<button type="button" className="btn btn-danger py-0 px-2 mr-2" onClick={() => this.movieDeleted(this.state.movie.id)>Delete</button>*/}
 
                     {/* назад */}
                     <NavLink to='' className="btn btn-primary">Movies</NavLink>
