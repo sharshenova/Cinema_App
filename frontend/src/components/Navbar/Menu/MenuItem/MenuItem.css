@@ -1,0 +1,8 @@
+.menuItem {
+    font-weight: bold;
+    color: white;
+}
+
+.menuItem:hover {
+    color: gold;
+}
