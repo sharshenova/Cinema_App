@@ -15,7 +15,7 @@ class NoAuthModelViewSet(viewsets.ModelViewSet):
     authentication_classes = []
 
 
-class MovieViewSet(NoAuthModelViewSet, filters.Filterset):
+class MovieViewSet(NoAuthModelViewSet):
     queryset = Movie.objects.active().order_by('-release_date')
     filterset_fields = ('id',)
 

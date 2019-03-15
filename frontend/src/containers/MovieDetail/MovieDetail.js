@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
 import {MOVIES_URL} from "../../api-urls";
+import {SHOWS_URL} from "../../api-urls";
 import {NavLink} from "react-router-dom";
 import MovieCategories from "../../components/MovieCategories/MovieCategories";
 import axios from 'axios';
+import Shows from "../../components/Shows/Shows";
 
 
 
@@ -12,19 +14,26 @@ import axios from 'axios';
 // и при переключении страниц исчезает с экрана, а потом снова маунтится.
 class MovieDetail extends Component {
     state = {
-        movie: null
+        movie: null,
+        shows: []
     };
 
     componentDidMount() {
         // match - атрибут, передаваемый роутером, содержащий путь к этому компоненту
         const match = this.props.match;
 
-        // match.params - переменные из пути (:id)
-        // match.params.id - значение переменной, обозначенной :id в свойстве path Route-а.
-        axios.get(MOVIES_URL + match.params.id)
-            .then(response => {console.log(response.data); return response.data;})
-            .then(movie => this.setState({movie}))
-            .catch(error => console.log(error));
+        const that = this;
+
+        axios.all([
+            axios.get(MOVIES_URL + match.params.id + '/'),
+            axios.get(SHOWS_URL)
+        ])
+        .then(axios.spread((movieRequest, showsRequest) => {
+            that.setState({
+                movie: movieRequest.data,
+                shows: showsRequest.data
+            })
+        }));
     }
 
     movieDeleted = () => {
@@ -82,6 +91,10 @@ class MovieDetail extends Component {
                     {/* назад */}
                     <NavLink to='' className="btn btn-primary">Movies</NavLink>
                 </div>
+            </div>
+
+            <div>
+                <Shows shows={this.state.shows}/>
             </div>
         </div>;
     }
