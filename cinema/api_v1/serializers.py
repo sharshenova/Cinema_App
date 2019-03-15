@@ -1,5 +1,7 @@
 from webapp.models import Movie, Category, Hall, Seat, Show, Book, Discount, Ticket
 from rest_framework import serializers
+import django_filters
+
 
 # Сериализатор для модели категорий, предназначенный для включения в сериализатор фильмов
 # Не выводит ненужные в данном случае поля: description и url

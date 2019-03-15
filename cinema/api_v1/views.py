@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from webapp.models import Movie, Category, Hall, Seat, Show, Book, Discount, Ticket
 from rest_framework import viewsets
+from django_filters import rest_framework as filters
 from api_v1.serializers import MovieCreateSerializer, MovieDisplaySerializer, \
     CategorySerializer, HallSerializer, SeatCreateSerializer, SeatDisplaySerializer,\
     ShowCreateSerializer, ShowDisplaySerializer, BookCreateSerializer, BookDisplaySerializer,\
@@ -14,8 +15,9 @@ class NoAuthModelViewSet(viewsets.ModelViewSet):
     authentication_classes = []
 
 
-class MovieViewSet(NoAuthModelViewSet):
+class MovieViewSet(NoAuthModelViewSet, filters.Filterset):
     queryset = Movie.objects.active().order_by('-release_date')
+    filterset_fields = ('id',)
 
     # Метод, который отвечает за то,
     # какой класс сериализатора будет использоваться при обработке запроса.
