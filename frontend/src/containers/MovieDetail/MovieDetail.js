@@ -20,19 +20,34 @@ class MovieDetail extends Component {
 
     componentDidMount() {
         // match - атрибут, передаваемый роутером, содержащий путь к этому компоненту
-        const match = this.props.match;
+        const match_params_id = this.props.match.params.id;
+        console.log(match_params_id, 'match_params');
 
-        const that = this;
+        // текущая дата
+        let current_date = new Date();
+        // текущая дата в ISO-формате без времени (YYYY-mm-dd) для передачи в queryString в запросе
+        current_date = current_date.toISOString().slice(0, 10);
+        console.log(current_date, 'current_date');
+
+        // следующая дата
+        let next_date = new Date();
+        // следующая дата (+ 3 дня)
+        next_date.setDate(next_date.getDate() + 3);
+        // следующая дата в ISO-формате без времени.
+        next_date = next_date.toISOString().slice(0, 10);
+        console.log(next_date, 'next_date');
+
 
         axios.all([
-            axios.get(MOVIES_URL + match.params.id + '/'),
-            axios.get(SHOWS_URL)
+            axios.get(MOVIES_URL + match_params_id + '/'),
+            axios.get(SHOWS_URL + '?movie_id=' + match_params_id + '&min_start_date=' + current_date + '&max_start_date=' + next_date)
         ])
         .then(axios.spread((movieRequest, showsRequest) => {
-            that.setState({
+            this.setState({
                 movie: movieRequest.data,
                 shows: showsRequest.data
-            })
+            });
+            console.log(this.state)
         }));
     }
 

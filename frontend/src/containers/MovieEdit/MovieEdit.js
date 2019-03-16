@@ -89,6 +89,7 @@ class MovieEdit extends Component {
 
     render() {
         const {alert, movie} = this.state;
+        console.log(this.state, 'movie_edit render')
         return <Fragment>
             {alert ? <div className={"mb-2 alert alert-" + alert.type}>{alert.message}</div> : null}
             {movie ? <MovieForm onSubmit={this.formSubmitted} movie={movie}/> : null}

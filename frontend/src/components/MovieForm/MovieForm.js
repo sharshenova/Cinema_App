@@ -72,6 +72,7 @@ class MovieForm extends Component {
                 console.log(error);
                 console.log(error.response)
             });
+        console.log(this.state, 'did mount')
     }
 
     // блокировка отправки формы на время выполнения запроса
@@ -144,6 +145,7 @@ class MovieForm extends Component {
 
     // обработчик выбора файла
     fileChanged = (event) => {
+        console.log(event, "file_change");
         const fileName = event.target.value;
         const fieldName = event.target.name;
         const fileObject = event.target.files.length > 0 ? event.target.files[0] : null;
@@ -167,6 +169,7 @@ class MovieForm extends Component {
     };
 
     render() {
+        console.log(this.state, 'render')
         if (this.state.movie) {
             // распаковка данных фильма, чтобы было удобнее к ним обращаться
             const {name, description, release_date, finish_date} = this.state.movie;
