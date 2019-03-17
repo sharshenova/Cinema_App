@@ -19,7 +19,7 @@ const Show = (props) => {
         {movie ? <div className="card-body">
                 {movie ? <h5 className="card-title">{movie.name}</h5> : null}
                  <div className="card-text">
-                    {hall ? <p>Зал: {hall.name}</p> : null}
+                    {hall ? <p>{hall.name}</p> : null}
                     {start_time ? <p>Начало: {date} в {time}</p> : null}
                     {end_time ? <p>Конец: {date} в {time}</p> : null}
                     {price ? <p>Цена билета: {price} сом</p> : null}
