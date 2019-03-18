@@ -71,7 +71,7 @@ class MovieDetail extends Component {
     render() {
         // если movie в state нет, ничего не рисуем.
         if (!this.state.movie) return null;
-        console.log('выполняется Render первый раз');
+        console.log('выполняется Render');
 
         // достаём данные из movie
         const {name, poster, description, release_date, finish_date, categories, id} = this.state.movie;

@@ -60,7 +60,16 @@ class CategoryViewSet(NoAuthModelViewSet):
 class HallViewSet(NoAuthModelViewSet):
     queryset = Hall.objects.active().order_by('-name')
     serializer_class = HallSerializer
-    filterset_fields = ('id',)
+    # filterset_fields = ('id',)
+
+    def get_queryset(self):
+        queryset = self.queryset;
+        hall_id = self.request.query_params.get('id', None)
+        # задаем минимальную дату начала проката (чтобы затем вывести даты позже этой)
+        # если минимальная дата поступила из запроса, то выводим показы, у которых дата больше (start_time__gte)
+        if hall_id is not None:
+            queryset = queryset.filter(hall_id=id).active().order_by('start_time')
+        return queryset
 
     def perform_destroy(self, instance):
         instance.is_deleted = True

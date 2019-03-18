@@ -16,7 +16,7 @@ class Shows extends Component {
             ['after_tomorrow', 'Послезавтра']
         ]
     };
-    
+
     componentDidMount() {
         // принимаем данные о сеансах из props (stateShows)
         const propsShows = this.props.shows;
@@ -77,6 +77,8 @@ class Shows extends Component {
             }
         });
 
+        console.log(this.state.shows.today, 'this.state.shows.today');
+
         this.setState({shows: stateShows});
     };
 
@@ -111,22 +113,23 @@ class Shows extends Component {
 
     render() {
         return <Fragment>
-            <div className='row mt-3'>
-                {this.state.days.map(day => {
-                    console.log(day[0], 'render_day_0');
-                    console.log(day[1], 'render_day_1');
-                    return <div className="col col-4" key={day[0]}>
-                        <h2 className="text-center">{day[1]}</h2>
-                        <div className="row">
-                            {this.state.shows[day[0]].map(show => {
-                                return <div className="col col-12" key={show.id}>
-                                    <Show show={show}/>
-                                </div>
-                            })}
+            {this.state.shows.today !== [] || this.state.shows.tomorrow !== [] || this.state.shows.after_tomorrow !== [] ?
+                <div className='row mt-3'>
+                    {this.state.days.map(day => {
+                        console.log(day[0], 'render_day_0');
+                        console.log(day[1], 'render_day_1');
+                        return <div className="col col-4" key={day[0]}>
+                            <h2 className="text-center">{day[1]}</h2>
+                            <div className="row">
+                                {this.state.shows[day[0]].map(show => {
+                                    return <div className="col col-12" key={show.id}>
+                                        <Show show={show}/>
+                                    </div>
+                                })}
+                            </div>
                         </div>
-                    </div>
-                })}
-            </div>
+                    })}
+                </div> : null }
         </Fragment>
     }
 }
