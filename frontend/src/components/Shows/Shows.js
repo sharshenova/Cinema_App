@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import Show from './Show/Show';
-import {NavLink} from "react-router-dom";
+
 
 
 class Shows extends Component {
@@ -10,30 +10,40 @@ class Shows extends Component {
             tomorrow: [],
             after_tomorrow: []
         },
-        keys : ['today', 'tomorrow', 'after_tomorrow'],
+        days : [
+            ['today', 'Сегодня'],
+            ['tomorrow', 'Завтра'],
+            ['after_tomorrow', 'Послезавтра']
+        ]
     };
-
-
+    
     componentDidMount() {
-        // принимаем данные о сеансах из props (shows)
-        const showsData = this.props.shows;
+        // принимаем данные о сеансах из props (stateShows)
+        const propsShows = this.props.shows;
+        console.log(propsShows, 'propsShows');
 
-        // // объявляем пустой объект shows
-        let shows = {};
+        // объявляем пустой объект stateShows
+        let stateShows = {};
 
         // // добавляем в него пустые объекты для каждого дня (сегодня, завтра, послезавтра)
-        this.state.keys.forEach(key => shows[key] = []);
+        let days = this.state.days;
 
-        console.log(showsData, 'showsData');
+        // заполняем stateShows, берем название дня из days
+        days.forEach(day => stateShows[day[0]] = []);
+        console.log(stateShows, 'stateShows');
 
-        // проходим по всем сеансам, полученным из state, и добавляем эти сеансы в объект shows,
+
+        // проходим по всем сеансам, полученным из props, и добавляем эти сеансы в объект stateShows,
         // в соответствующий список сеансов (на сегодня, на завтра или послезавтра)
-        showsData.forEach(show => {
+        propsShows.forEach(show => {
 
-            let start_time = show.start_time;
-            console.log(start_time, 'start_time');
-            let start_day = start_time.split('T')[0];
-            console.log(start_time, 'start_day');
+            let startTime = show.start_time;
+            console.log(startTime, 'startTime');
+            let startDay = startTime.split('T')[0];
+            console.log(startDay, 'startDay');
+
+
+            // this.actualDatesCount();
 
             // сегодня
             let today = new Date().toISOString().slice(0, 10);
@@ -48,30 +58,67 @@ class Shows extends Component {
             after_tomorrow.setDate(after_tomorrow.getDate() + 2);
             after_tomorrow = after_tomorrow.toISOString().slice(0, 10);
 
-            if (start_day === today) {
-                shows.today.push(show);
-                console.log(start_day);
-                console.log(today);
-            } else if (start_day === tomorrow) {
-                shows.tomorrow.push(show);
-            } else if (start_day === after_tomorrow) {
-                shows.after_tomorrow.push(show);
+            let actualDates = {
+                today: today,
+                tomorrow: tomorrow,
+                after_tomorrow: after_tomorrow
             };
 
+            console.log(actualDates);
+
+            if (startDay === actualDates.today) {
+                stateShows.today.push(show);
+                console.log(startDay);
+                console.log(today);
+            } else if (startDay === actualDates.tomorrow) {
+                stateShows.tomorrow.push(show);
+            } else if (startDay === actualDates.after_tomorrow) {
+                stateShows.after_tomorrow.push(show);
+            }
         });
-        this.setState({shows});
-    }
+
+        this.setState({shows: stateShows});
+    };
+
+
+
+    // actualDatesCount = () => {
+    //     // сегодня
+    //     let today = new Date().toISOString().slice(0, 10);
+    //
+    //     // завтра
+    //     let tomorrow = new Date();
+    //     tomorrow.setDate(tomorrow.getDate() + 1);
+    //     tomorrow = tomorrow.toISOString().slice(0, 10);
+    //
+    //     // послезавтра
+    //     let after_tomorrow = new Date();
+    //     after_tomorrow.setDate(after_tomorrow.getDate() + 2);
+    //     after_tomorrow = after_tomorrow.toISOString().slice(0, 10);
+    //
+    //     let actualDates = {};
+    //
+    //     actualDates = {
+    //         today: today,
+    //         tomorrow: tomorrow,
+    //         after_tomorrow: after_tomorrow
+    //     };
+    //
+    //     return actualDates;
+    // };
+
 
 
     render() {
         return <Fragment>
-            <div><NavLink to={'/tasks/add'} className="btn btn-success my-2 py-0 px-2">Add</NavLink></div>
-            <div className='row'>
-                {this.state.keys.map(key => {
-                    return <div className="col col-4" key={key}>
-                        <h2 className="text-center">{key}</h2>
+            <div className='row mt-3'>
+                {this.state.days.map(day => {
+                    console.log(day[0], 'render_day_0');
+                    console.log(day[1], 'render_day_1');
+                    return <div className="col col-4" key={day[0]}>
+                        <h2 className="text-center">{day[1]}</h2>
                         <div className="row">
-                            {this.state.shows[key].map(show => {
+                            {this.state.shows[day[0]].map(show => {
                                 return <div className="col col-12" key={show.id}>
                                     <Show show={show}/>
                                 </div>
@@ -86,22 +133,3 @@ class Shows extends Component {
 
 export default Shows;
 
-
-
-
-
-
-
-
-
-
-// Компонент, который выводит сеансы в зале
-// const Shows = (props) => {
-//     const {shows} = props;
-//
-//     return <div className='row'>{shows.map(show =>
-//         <Show key={show.id} show={show}/>
-//     )}</div>;
-// };
-//
-// export default Shows;
