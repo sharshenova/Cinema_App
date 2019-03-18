@@ -4,6 +4,9 @@ from django.urls import include, path
 from rest_framework import routers
 from django.contrib import admin
 from api_v1 import views
+from rest_framework.authtoken.views import obtain_auth_token
+
+
 
 # создаём объект router, который привязывает ViewSet к путям на сайте
 router = routers.DefaultRouter()
@@ -22,5 +25,6 @@ app_name = 'api_v1'
 urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('admin/', admin.site.urls)
+    path('admin/', admin.site.urls),
+    path('login/', obtain_auth_token, name='api_token_auth')
 ]
