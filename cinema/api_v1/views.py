@@ -9,14 +9,16 @@ from api_v1.serializers import MovieCreateSerializer, MovieDisplaySerializer, \
     CategorySerializer, HallSerializer, SeatCreateSerializer, SeatDisplaySerializer,\
     ShowCreateSerializer, ShowDisplaySerializer, BookCreateSerializer, BookDisplaySerializer,\
     DiscountSerializer, TicketCreateSerializer, TicketDisplaySerializer
+from rest_framework.authentication import TokenAuthentication
 
 # Отключаем авторизацию в ViewSet-ах API
-class NoAuthModelViewSet(viewsets.ModelViewSet):
-    authentication_classes = []
+class BaseViewSet(viewsets.ModelViewSet):
+    authentication_classes = [TokenAuthentication]
 
 
-class MovieViewSet(NoAuthModelViewSet):
-    queryset = Movie.objects.active().order_by('-release_date')
+
+class MovieViewSet(BaseViewSet):
+    queryset = Movie.objects.active()
 
     # Метод, который отвечает за то,
     # какой класс сериализатора будет использоваться при обработке запроса.
@@ -30,12 +32,12 @@ class MovieViewSet(NoAuthModelViewSet):
             return MovieCreateSerializer
 
     def get_queryset(self):
-        queryset = self.queryset
-        movie_id = self.request.query_params.get('id', None)
+        queryset = Movie.objects.active()
+        # movie_id = self.request.query_params.get('id', None)
         # принимает параметры запроса (query_params), возвращает None если их нет
         min_release_date = self.request.query_params.get('release_date', None)
-        if movie_id is not None or min_release_date is not None:
-            queryset = queryset.filter(id=movie_id, release_date__gte=min_release_date).active().order_by('-release_date')
+        if min_release_date is not None:
+            queryset = queryset.filter(release_date__gte=min_release_date).order_by('-release_date')
         return queryset
 
     # метод, который выполняет удаление объекта instance.
@@ -48,7 +50,7 @@ class MovieViewSet(NoAuthModelViewSet):
 
 
 
-class CategoryViewSet(NoAuthModelViewSet):
+class CategoryViewSet(BaseViewSet):
     queryset = Category.objects.active().order_by('-name')
     serializer_class = CategorySerializer
 
@@ -57,12 +59,12 @@ class CategoryViewSet(NoAuthModelViewSet):
         instance.save()
 
 
-class HallViewSet(NoAuthModelViewSet):
+class HallViewSet(BaseViewSet):
     queryset = Hall.objects.active().order_by('-name')
     serializer_class = HallSerializer
 
     def get_queryset(self):
-        queryset = self.queryset
+        queryset = Hall.objects.active()
         hall_id = self.request.query_params.get('id', None)
         # задаем минимальную дату начала проката (чтобы затем вывести даты позже этой)
         # если минимальная дата поступила из запроса, то выводим показы, у которых дата больше (start_time__gte)
@@ -76,7 +78,7 @@ class HallViewSet(NoAuthModelViewSet):
         instance.save()
 
 
-class SeatViewSet(NoAuthModelViewSet):
+class SeatViewSet(BaseViewSet):
     queryset = Seat.objects.active().order_by('-seat')
 
     def get_serializer_class(self):
@@ -98,7 +100,7 @@ class SeatViewSet(NoAuthModelViewSet):
         return queryset
 
 
-class ShowViewSet(NoAuthModelViewSet):
+class ShowViewSet(BaseViewSet):
     # сортируем запросы по возрастанию order_by('start_time')
     queryset = Show.objects.active().order_by('start_time')
 
@@ -114,7 +116,7 @@ class ShowViewSet(NoAuthModelViewSet):
 
     # фильтрация через переопределение набора данных
     def get_queryset(self):
-        queryset = self.queryset
+        queryset = Show.objects.active()
         movie_id = self.request.query_params.get('movie_id', None)
         # задаем минимальную дату начала проката (чтобы затем вывести даты позже этой)
         min_start_date = self.request.query_params.get('min_start_date', None)
@@ -127,7 +129,7 @@ class ShowViewSet(NoAuthModelViewSet):
 
 
 
-class BookViewSet(NoAuthModelViewSet):
+class BookViewSet(BaseViewSet):
     queryset = Book.objects.active().order_by('-status')
 
     def get_serializer_class(self):
@@ -141,7 +143,7 @@ class BookViewSet(NoAuthModelViewSet):
         instance.save()
 
 
-class DiscountViewSet(NoAuthModelViewSet):
+class DiscountViewSet(BaseViewSet):
     queryset = Discount.objects.active().order_by('-name')
     serializer_class = DiscountSerializer
 
@@ -150,7 +152,7 @@ class DiscountViewSet(NoAuthModelViewSet):
         instance.save()
 
 
-class TicketViewSet(NoAuthModelViewSet):
+class TicketViewSet(BaseViewSet):
     queryset = Ticket.objects.active().order_by('-discount')
 
     def get_serializer_class(self):
