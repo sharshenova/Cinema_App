@@ -16,8 +16,7 @@ class NoAuthModelViewSet(viewsets.ModelViewSet):
 
 
 class MovieViewSet(NoAuthModelViewSet):
-    queryset = Movie.objects.active()
-    # filterset_fields = ('id',)
+    queryset = Movie.objects.active().order_by('-release_date')
 
     # Метод, который отвечает за то,
     # какой класс сериализатора будет использоваться при обработке запроса.
@@ -32,10 +31,11 @@ class MovieViewSet(NoAuthModelViewSet):
 
     def get_queryset(self):
         queryset = self.queryset
+        movie_id = self.request.query_params.get('id', None)
         # принимает параметры запроса (query_params), возвращает None если их нет
         min_release_date = self.request.query_params.get('release_date', None)
-        if min_release_date is not None:
-            queryset = queryset.active().filter(release_date__gte=min_release_date).order_by('-release_date')
+        if movie_id is not None or min_release_date is not None:
+            queryset = queryset.filter(id=movie_id, release_date__gte=min_release_date).active().order_by('-release_date')
         return queryset
 
     # метод, который выполняет удаление объекта instance.
@@ -60,16 +60,16 @@ class CategoryViewSet(NoAuthModelViewSet):
 class HallViewSet(NoAuthModelViewSet):
     queryset = Hall.objects.active().order_by('-name')
     serializer_class = HallSerializer
-    # filterset_fields = ('id',)
 
     def get_queryset(self):
-        queryset = self.queryset;
+        queryset = self.queryset
         hall_id = self.request.query_params.get('id', None)
         # задаем минимальную дату начала проката (чтобы затем вывести даты позже этой)
         # если минимальная дата поступила из запроса, то выводим показы, у которых дата больше (start_time__gte)
         if hall_id is not None:
-            queryset = queryset.filter(hall_id=id).active().order_by('start_time')
+            queryset = queryset.filter(hall_id=id).active().order_by('-id')
         return queryset
+
 
     def perform_destroy(self, instance):
         instance.is_deleted = True

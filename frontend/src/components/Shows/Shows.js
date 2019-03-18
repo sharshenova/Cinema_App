@@ -32,6 +32,26 @@ class Shows extends Component {
         days.forEach(day => stateShows[day[0]] = []);
         console.log(stateShows, 'stateShows');
 
+        // сегодня
+        let today = new Date().toISOString().slice(0, 10);
+
+        // завтра
+        let tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        tomorrow = tomorrow.toISOString().slice(0, 10);
+
+        // послезавтра
+        let after_tomorrow = new Date();
+        after_tomorrow.setDate(after_tomorrow.getDate() + 2);
+        after_tomorrow = after_tomorrow.toISOString().slice(0, 10);
+
+        let actualDates = {
+            today: today,
+            tomorrow: tomorrow,
+            after_tomorrow: after_tomorrow
+        };
+        console.log(actualDates);
+
 
         // проходим по всем сеансам, полученным из props, и добавляем эти сеансы в объект stateShows,
         // в соответствующий список сеансов (на сегодня, на завтра или послезавтра)
@@ -41,30 +61,6 @@ class Shows extends Component {
             console.log(startTime, 'startTime');
             let startDay = startTime.split('T')[0];
             console.log(startDay, 'startDay');
-
-
-            // this.actualDatesCount();
-
-            // сегодня
-            let today = new Date().toISOString().slice(0, 10);
-
-            // завтра
-            let tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            tomorrow = tomorrow.toISOString().slice(0, 10);
-
-            // послезавтра
-            let after_tomorrow = new Date();
-            after_tomorrow.setDate(after_tomorrow.getDate() + 2);
-            after_tomorrow = after_tomorrow.toISOString().slice(0, 10);
-
-            let actualDates = {
-                today: today,
-                tomorrow: tomorrow,
-                after_tomorrow: after_tomorrow
-            };
-
-            console.log(actualDates);
 
             if (startDay === actualDates.today) {
                 stateShows.today.push(show);
@@ -82,54 +78,24 @@ class Shows extends Component {
         this.setState({shows: stateShows});
     };
 
-
-
-    // actualDatesCount = () => {
-    //     // сегодня
-    //     let today = new Date().toISOString().slice(0, 10);
-    //
-    //     // завтра
-    //     let tomorrow = new Date();
-    //     tomorrow.setDate(tomorrow.getDate() + 1);
-    //     tomorrow = tomorrow.toISOString().slice(0, 10);
-    //
-    //     // послезавтра
-    //     let after_tomorrow = new Date();
-    //     after_tomorrow.setDate(after_tomorrow.getDate() + 2);
-    //     after_tomorrow = after_tomorrow.toISOString().slice(0, 10);
-    //
-    //     let actualDates = {};
-    //
-    //     actualDates = {
-    //         today: today,
-    //         tomorrow: tomorrow,
-    //         after_tomorrow: after_tomorrow
-    //     };
-    //
-    //     return actualDates;
-    // };
-
-
-
     render() {
         return <Fragment>
-            {this.state.shows.today !== [] || this.state.shows.tomorrow !== [] || this.state.shows.after_tomorrow !== [] ?
-                <div className='row mt-3'>
-                    {this.state.days.map(day => {
-                        console.log(day[0], 'render_day_0');
-                        console.log(day[1], 'render_day_1');
-                        return <div className="col col-4" key={day[0]}>
-                            <h2 className="text-center">{day[1]}</h2>
-                            <div className="row">
-                                {this.state.shows[day[0]].map(show => {
-                                    return <div className="col col-12" key={show.id}>
-                                        <Show show={show}/>
-                                    </div>
-                                })}
-                            </div>
+            <div className='row mt-3'>
+                {this.state.days.map(day => {
+                    console.log(day[0], 'render_day_0');
+                    console.log(day[1], 'render_day_1');
+                    return <div className="col col-4" key={day[0]}>
+                        <h2 className="text-center">{day[1]}</h2>
+                        <div className="row">
+                            {this.state.shows[day[0]].map(show => {
+                                return <div className="col col-12" key={show.id}>
+                                    <Show show={show}/>
+                                </div>
+                            })}
                         </div>
-                    })}
-                </div> : null }
+                    </div>
+                })}
+            </div>
         </Fragment>
     }
 }

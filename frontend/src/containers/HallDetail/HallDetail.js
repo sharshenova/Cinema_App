@@ -74,23 +74,21 @@ class HallDetail extends Component {
         // достаём данные из hall
         const {name, description, id} = this.state.hall;
 
-        return <div className='row'>
-            <div className='col col-6'>
-                {/* название зала */}
-                <h1 className='mt-3'>{name}</h1>
+        return <div>
+            {/* название зала */}
+            <h1 className='mt-3'>{name}</h1>
 
-                {/* описание */}
-                {description ? <p>{description}</p> : null}
+            {/* описание */}
+            {description ? <p>{description}</p> : null}
 
-                <div className='mb-3'>
-                    {/* редактировать */}
-                    <NavLink to={'/halls/' + id + '/edit'} className="btn btn-primary mr-2">Edit</NavLink>
+            <div className='mb-3'>
+                {/* редактировать */}
+                <NavLink to={'/halls/' + id + '/edit'} className="btn btn-primary mr-2">Edit</NavLink>
 
-                    <button type="button" className="btn btn-danger mr-2" onClick={() => this.hallDeleted()}>Delete</button>
+                <button type="button" className="btn btn-danger mr-2" onClick={() => this.hallDeleted()}>Delete</button>
 
-                    {/* назад */}
-                    <NavLink to='/halls/' className="btn btn-primary">Halls</NavLink>
-                </div>
+                {/* назад */}
+                <NavLink to='/halls/' className="btn btn-primary">Halls</NavLink>
             </div>
             <div>
                 <Shows shows={this.state.shows}/>
