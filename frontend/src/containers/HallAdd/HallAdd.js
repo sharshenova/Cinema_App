@@ -10,7 +10,6 @@ class HallAdd extends Component {
         errors: {}
     };
 
-
     // сборка данных для запроса
     gatherFormData = (hall) => {
         let formData = new FormData();

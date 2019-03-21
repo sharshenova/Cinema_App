@@ -9,7 +9,7 @@ import axios from 'axios';
 class HallList extends Component {
     state = {
         halls: [],
-
+        alert: null
     };
 
     componentDidMount() {
@@ -26,6 +26,7 @@ class HallList extends Component {
         }
         axios.delete(HALLS_URL + hallId + '/', {
             headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Token ' + localStorage.getItem('auth-token')
             }
         })
@@ -40,13 +41,22 @@ class HallList extends Component {
                 return newState;
             })
         }).catch(error => {
-            console.log(error);
-            console.log(error.response);
+        console.log(error);
+        let alert = {type: 'danger', message: `Delete error!`};
+        this.setState({alert: alert});
+        console.log(this.state.alert);
         })
     };
 
     render() {
+
+        let alert = null;
+        if (this.state.alert) {
+            alert = <div className={"alert alert-" + this.state.alert.type}>{this.state.alert.message}</div>
+        }
+
         return <Fragment>
+            {alert}
             <p className='mt-3'><NavLink to='/halls/add'>Добавить зал</NavLink></p>
             <div className='row'>
                 {this.state.halls.map(hall => {

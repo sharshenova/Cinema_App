@@ -47,19 +47,15 @@ class HallDetail extends Component {
             });
             console.log(this.state)
         }));
-
     }
 
     hallDeleted = () => {
         if (!localStorage.getItem('auth-token')) {
             this.props.history.push("/login");
         }
-        if (!localStorage.getItem('auth-token')) {
-            this.props.history.push("/login");
-        }
         axios.delete(HALLS_URL + this.props.match.params.id, {
             headers: {
-                'Content-Type': 'multipart/form-data',
+                'Content-Type': 'application/x-www-form-urlencoded',
                 'Authorization': 'Token ' + localStorage.getItem('auth-token')
             }
         })

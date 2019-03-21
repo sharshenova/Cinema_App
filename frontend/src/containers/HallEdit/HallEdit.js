@@ -65,7 +65,7 @@ class HallEdit extends Component {
         // сборка данных для запроса
         const formData = this.gatherFormData(hall);
 
-        // отправка запроса
+        // отправка запроса с токеном
         return axios.put(HALLS_URL + this.props.match.params.id + '/', formData, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',

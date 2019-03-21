@@ -10,7 +10,7 @@ import axios from 'axios';
 class MovieList extends Component {
     state = {
         movies: [],
-        errors: {}
+        alert: null
     };
 
     componentDidMount() {
@@ -38,6 +38,9 @@ class MovieList extends Component {
     };
 
     movieDeleted = (movieId) => {
+        if (!localStorage.getItem('auth-token')) {
+            this.props.history.push("/login");
+        }
         axios.delete(MOVIES_URL + movieId + '/', {
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -56,19 +59,23 @@ class MovieList extends Component {
             })
         })
         .catch(error => {
-            console.log(error, 'error');
-            console.log(error.response, 'error.response');
-            this.setState({
-                ...this.state,
-                errors: error.response.data
-            })
+        console.log(error);
+        let alert = {type: 'danger', message: `Delete error!`};
+        this.setState({alert: alert});
+        console.log(this.state.alert);
         })
     };
 
     render() {
+
+        let alert = null;
+        if (this.state.alert) {
+            alert = <div className={"alert alert-" + this.state.alert.type}>{this.state.alert.message}</div>
+        }
+
         return <Fragment>
+            {alert}
             <p className='mt-3'><NavLink to='/movies/add'>Добавить фильм</NavLink></p>
-            {this.showErrors('non_field_errors')}
             <div className='row'>
                 {this.state.movies.map(movie => {
                     return <div className='col-xs-12 col-sm-6 col-lg-4' key={movie.id}>

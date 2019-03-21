@@ -3,6 +3,8 @@ from rest_framework import serializers
 
 
 
+
+
 # Сериализатор для модели категорий, предназначенный для включения в сериализатор фильмов
 # Не выводит ненужные в данном случае поля: description и url
 class InlineCategorySerializer(serializers.ModelSerializer):

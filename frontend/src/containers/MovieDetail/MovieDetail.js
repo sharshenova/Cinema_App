@@ -59,20 +59,20 @@ class MovieDetail extends Component {
                 'Authorization': 'Token ' + localStorage.getItem('auth-token')
             }
         })
-            .then(response => {
-                console.log(response.data);
-                this.setState(prevState => {
-                    let newState = {...prevState};
-                    newState.movie = null;
-                    return newState;
-                });
-                this.props.history.replace('/movies/');
-            })
-            .catch(error => {
-            console.log(error);
-            let alert = {type: 'danger', message: `Delete error!`};
-            this.setState({alert: alert});
-            })
+        .then(response => {
+            console.log(response.data);
+            this.setState(prevState => {
+                let newState = {...prevState};
+                newState.movie = null;
+                return newState;
+            });
+            this.props.history.replace('/');
+        })
+        .catch(error => {
+        console.log(error);
+        let alert = {type: 'danger', message: `Delete error!`};
+        this.setState({alert: alert});
+        })
     };
 
     render() {
