@@ -1,0 +1,1548 @@
+[
+{
+  "model": "webapp.movie",
+  "pk": 1,
+  "fields": {
+    "name": "Matrix",
+    "description": "\u0416\u0438\u0437\u043d\u044c \u0422\u043e\u043c\u0430\u0441\u0430 \u0410\u043d\u0434\u0435\u0440\u0441\u043e\u043d\u0430 \u0440\u0430\u0437\u0434\u0435\u043b\u0435\u043d\u0430 \u043d\u0430 \u0434\u0432\u0435 \u0447\u0430\u0441\u0442\u0438: \u0434\u043d\u0451\u043c \u043e\u043d \u2014 \u0441\u0430\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u044b\u0439 \u043e\u0444\u0438\u0441\u043d\u044b\u0439 \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a, \u043f\u043e\u043b\u0443\u0447\u0430\u044e\u0449\u0438\u0439 \u043d\u0430\u0433\u043e\u043d\u044f\u0438 \u043e\u0442 \u043d\u0430\u0447\u0430\u043b\u044c\u0441\u0442\u0432\u0430, \u0430 \u043d\u043e\u0447\u044c\u044e \u043f\u0440\u0435\u0432\u0440\u0430\u0449\u0430\u0435\u0442\u0441\u044f \u0432 \u0445\u0430\u043a\u0435\u0440\u0430 \u043f\u043e \u0438\u043c\u0435\u043d\u0438 \u041d\u0435\u043e, \u0438 \u043d\u0435\u0442 \u043c\u0435\u0441\u0442\u0430 \u0432 \u0441\u0435\u0442\u0438, \u043a\u0443\u0434\u0430 \u043e\u043d \u043d\u0435 \u0441\u043c\u043e\u0433 \u0431\u044b \u0434\u043e\u0442\u044f\u043d\u0443\u0442\u044c\u0441\u044f. \u041d\u043e \u043e\u0434\u043d\u0430\u0436\u0434\u044b \u0432\u0441\u0451 \u043c\u0435\u043d\u044f\u0435\u0442\u0441\u044f \u2014 \u0433\u0435\u0440\u043e\u0439, \u0441\u0430\u043c \u0442\u043e\u0433\u043e \u043d\u0435 \u0436\u0435\u043b\u0430\u044f, \u0443\u0437\u043d\u0430\u0451\u0442 \u0441\u0442\u0440\u0430\u0448\u043d\u0443\u044e \u043f\u0440\u0430\u0432\u0434\u0443: \u0432\u0441\u0451, \u0447\u0442\u043e \u0435\u0433\u043e \u043e\u043a\u0440\u0443\u0436\u0430\u0435\u0442 \u2014 \u043d\u0435 \u0431\u043e\u043b\u0435\u0435, \u0447\u0435\u043c \u0438\u043b\u043b\u044e\u0437\u0438\u044f, \u041c\u0430\u0442\u0440\u0438\u0446\u0430, \u0430 \u043b\u044e\u0434\u0438 \u2014 \u0432\u0441\u0435\u0433\u043e \u043b\u0438\u0448\u044c \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a \u043f\u0438\u0442\u0430\u043d\u0438\u044f \u0434\u043b\u044f \u0438\u0441\u043a\u0443\u0441\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0433\u043e \u0438\u043d\u0442\u0435\u043b\u043b\u0435\u043a\u0442\u0430, \u043f\u043e\u0440\u0430\u0431\u043e\u0442\u0438\u0432\u0448\u0435\u0433\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u043e. \u0418 \u0442\u043e\u043b\u044c\u043a\u043e \u041d\u0435\u043e \u043f\u043e\u0434 \u0441\u0438\u043b\u0443 \u0438\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0440\u0430\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0443 \u0441\u0438\u043b \u0432 \u044d\u0442\u043e\u043c \u0447\u0443\u0436\u043e\u043c \u0438 \u0441\u0442\u0440\u0430\u0448\u043d\u043e\u043c \u043c\u0438\u0440\u0435.",
+    "poster": "posters/matrix_gU8AGXM.jpg",
+    "release_date": "2019-02-28",
+    "finish_date": "2019-02-28",
+    "is_deleted": false,
+    "categories": [
+      2,
+      5
+    ]
+  }
+},
+{
+  "model": "webapp.movie",
+  "pk": 2,
+  "fields": {
+    "name": "\u041e\u0441\u0442\u0440\u043e\u0432 \u043f\u0440\u043e\u043a\u043b\u044f\u0442\u044b\u0445",
+    "description": "\u0410\u043c\u0435\u0440\u0438\u043a\u0430\u043d\u0441\u043a\u0438\u0439 \u0434\u0435\u0442\u0435\u043a\u0442\u0438\u0432\u043d\u044b\u0439 \u0442\u0440\u0438\u043b\u043b\u0435\u0440 \u0440\u0435\u0436\u0438\u0441\u0441\u0451\u0440\u0430 \u041c\u0430\u0440\u0442\u0438\u043d\u0430 \u0421\u043a\u043e\u0440\u0441\u0435\u0437\u0435 \u043f\u043e \u043e\u0434\u043d\u043e\u0438\u043c\u0451\u043d\u043d\u043e\u043c\u0443 \u0440\u043e\u043c\u0430\u043d\u0443 \u0414\u0435\u043d\u043d\u0438\u0441\u0430 \u041b\u0438\u0445\u044d\u0439\u043d\u0430, \u0432\u044b\u0448\u0435\u0434\u0448\u0438\u0439 19 \u0444\u0435\u0432\u0440\u0430\u043b\u044f 2010 \u0433\u043e\u0434\u0430 \u0432 \u0421\u0428\u0410.",
+    "poster": "posters/shutter-island_Hf5N4VW.jpg",
+    "release_date": "2019-03-02",
+    "finish_date": "2019-03-30",
+    "is_deleted": false,
+    "categories": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.movie",
+  "pk": 3,
+  "fields": {
+    "name": "\u0417\u0435\u043b\u0435\u043d\u0430\u044f \u043a\u043d\u0438\u0433\u0430",
+    "description": "1960-\u0435 \u0433\u043e\u0434\u044b. \u041f\u043e\u0441\u043b\u0435 \u0437\u0430\u043a\u0440\u044b\u0442\u0438\u044f \u043d\u044c\u044e-\u0439\u043e\u0440\u043a\u0441\u043a\u043e\u0433\u043e \u043d\u043e\u0447\u043d\u043e\u0433\u043e \u043a\u043b\u0443\u0431\u0430 \u043d\u0430 \u0440\u0435\u043c\u043e\u043d\u0442 \u0432\u044b\u0448\u0438\u0431\u0430\u043b\u0430 \u0422\u043e\u043d\u0438 \u043f\u043e \u043f\u0440\u043e\u0437\u0432\u0438\u0449\u0443 \u0411\u043e\u043b\u0442\u0443\u043d \u0438\u0449\u0435\u0442 \u043f\u043e\u0434\u0440\u0430\u0431\u043e\u0442\u043a\u0443 \u043d\u0430 \u043f\u0430\u0440\u0443 \u043c\u0435\u0441\u044f\u0446\u0435\u0432. \u041a\u0430\u043a \u0440\u0430\u0437 \u0432 \u044d\u0442\u043e \u0432\u0440\u0435\u043c\u044f \u0414\u043e\u043d \u0428\u0438\u0440\u043b\u0438, \u0443\u0442\u043e\u043d\u0447\u0435\u043d\u043d\u044b\u0439 \u0441\u0432\u0435\u0442\u0441\u043a\u0438\u0439 \u043b\u0435\u0432, \u0431\u043e\u0433\u0430\u0442\u044b\u0439 \u0438 \u0442\u0430\u043b\u0430\u043d\u0442\u043b\u0438\u0432\u044b\u0439 \u0447\u0435\u0440\u043d\u043e\u043a\u043e\u0436\u0438\u0439 \u043c\u0443\u0437\u044b\u043a\u0430\u043d\u0442, \u0438\u0441\u043f\u043e\u043b\u043d\u044f\u044e\u0449\u0438\u0439 \u043a\u043b\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043a\u0443\u044e \u043c\u0443\u0437\u044b\u043a\u0443, \u0441\u043e\u0431\u0438\u0440\u0430\u0435\u0442\u0441\u044f \u0432 \u0442\u0443\u0440\u043d\u0435 \u043f\u043e \u044e\u0436\u043d\u044b\u043c \u0448\u0442\u0430\u0442\u0430\u043c, \u0433\u0434\u0435 \u0435\u0449\u0451 \u0441\u0438\u043b\u044c\u043d\u044b \u0440\u0430\u0441\u0438\u0441\u0442\u0441\u043a\u0438\u0435 \u0443\u0431\u0435\u0436\u0434\u0435\u043d\u0438\u044f \u0438 \u0446\u0430\u0440\u0438\u0442 \u0441\u0435\u0433\u0440\u0435\u0433\u0430\u0446\u0438\u044f. \u041e\u043d \u043d\u0430\u043d\u0438\u043c\u0430\u0435\u0442 \u0422\u043e\u043d\u0438 \u0432 \u043a\u0430\u0447\u0435\u0441\u0442\u0432\u0435 \u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044f, \u0442\u0435\u043b\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u0435\u043b\u044f \u0438 \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u0430, \u0441\u043f\u043e\u0441\u043e\u0431\u043d\u043e\u0433\u043e \u0440\u0435\u0448\u0430\u0442\u044c \u0442\u0435\u043a\u0443\u0449\u0438\u0435 \u043f\u0440\u043e\u0431\u043b\u0435\u043c\u044b. \u0423 \u044d\u0442\u0438\u0445 \u0434\u0432\u043e\u0438\u0445 \u0442\u0430\u043a \u043c\u0430\u043b\u043e \u043e\u0431\u0449\u0435\u0433\u043e, \u0438 \u044d\u0442\u0430 \u043f\u043e\u0435\u0437\u0434\u043a\u0430 \u043d\u0430\u0432\u0441\u0435\u0433\u0434\u0430 \u0438\u0437\u043c\u0435\u043d\u0438\u0442 \u0436\u0438\u0437\u043d\u044c \u043e\u0431\u043e\u0438\u0445.",
+    "poster": "posters/green-book_tbcYdNE.jpg",
+    "release_date": "2019-01-21",
+    "finish_date": "2019-02-25",
+    "is_deleted": false,
+    "categories": [
+      1,
+      6
+    ]
+  }
+},
+{
+  "model": "webapp.movie",
+  "pk": 4,
+  "fields": {
+    "name": "\u042e\u043c\u043e\u0440\u0438\u0441\u0442",
+    "description": "\u0423 \u044d\u0441\u0442\u0440\u0430\u0434\u043d\u043e\u0433\u043e \u044e\u043c\u043e\u0440\u0438\u0441\u0442\u0430 \u0411\u043e\u0440\u0438\u0441\u0430 \u0410\u0440\u043a\u0430\u0434\u044c\u0435\u0432\u0430 \u0432 \u0436\u0438\u0437\u043d\u0438 \u0432\u0441\u0435 \u0445\u043e\u0440\u043e\u0448\u043e: \u0441\u0447\u0430\u0441\u0442\u043b\u0438\u0432\u0430\u044f \u0441\u0435\u043c\u044c\u044f, \u043e\u0431\u043e\u0436\u0430\u043d\u0438\u0435 \u043c\u0438\u043b\u043b\u0438\u043e\u043d\u043e\u0432, \u043e\u0447\u0435\u0440\u0435\u0434\u044c \u043f\u043e\u043a\u043b\u043e\u043d\u043d\u0438\u0446 \u0438 \u0431\u043b\u0430\u0433\u043e\u0441\u043a\u043b\u043e\u043d\u043d\u043e\u0441\u0442\u044c \u0432\u043b\u0430\u0441\u0442\u0435\u0439. \u041d\u043e \u043a\u043e\u043c\u0438\u043a\u0443 \u043d\u0435 \u0434\u0430\u0435\u0442 \u043f\u043e\u043a\u043e\u044f \u043d\u0435\u0441\u0432\u043e\u0431\u043e\u0434\u0430 \u0438 \u0432\u043d\u0435\u0448\u043d\u044f\u044f, \u0438 \u0432\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u044f\u044f: \u0447\u0435\u043c \u0433\u0440\u043e\u043c\u0447\u0435 \u0435\u0433\u043e \u0443\u0441\u043f\u0435\u0445 \u043d\u0430 \u0441\u0446\u0435\u043d\u0435, \u0442\u0435\u043c \u0441\u0438\u043b\u044c\u043d\u0435\u0435 \u0432 \u043d\u0435\u043c \u043d\u0430\u0437\u0440\u0435\u0432\u0430\u0435\u0442 \u043f\u0440\u043e\u0442\u0435\u0441\u0442. \u0418 \u0432\u043e\u0442 \u0443\u0436\u0435 \u0441\u0430\u043c\u044b\u0439 \u0441\u043c\u0435\u0448\u043d\u043e\u0439 \u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u0441\u044f \u0441\u043b\u0438\u0448\u043a\u043e\u043c \u043e\u043f\u0430\u0441\u043d\u044b\u043c.",
+    "poster": "posters/humorist_nTgFZK2.jpg",
+    "release_date": "2019-03-02",
+    "finish_date": "2019-04-25",
+    "is_deleted": false,
+    "categories": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.movie",
+  "pk": 5,
+  "fields": {
+    "name": "\u0417\u0432\u0435\u0437\u0434\u0430 \u0440\u043e\u0434\u0438\u043b\u0430\u0441\u044c",
+    "description": "\u041a\u0430\u043d\u0442\u0440\u0438-\u043c\u0443\u0437\u044b\u043a\u0430\u043d\u0442 \u0414\u0436\u0435\u043a\u0441\u043e\u043d \u041c\u0435\u0439\u043d, \u0447\u044c\u044f \u043a\u0430\u0440\u044c\u0435\u0440\u0430 \u0431\u044b\u0441\u0442\u0440\u043e \u043a\u0430\u0442\u0438\u0442\u0441\u044f \u043f\u043e\u0434 \u043e\u0442\u043a\u043e\u0441, \u043e\u0434\u043d\u0430\u0436\u0434\u044b \u0437\u043d\u0430\u043a\u043e\u043c\u0438\u0442\u0441\u044f \u0441 \u043d\u0438\u043a\u043e\u043c\u0443 \u043d\u0435 \u0438\u0437\u0432\u0435\u0441\u0442\u043d\u043e\u0439 \u0442\u0430\u043b\u0430\u043d\u0442\u043b\u0438\u0432\u043e\u0439 \u043f\u0435\u0432\u0438\u0446\u0435\u0439 \u042d\u043b\u043b\u0438. \u041c\u0435\u0436\u0434\u0443 \u0433\u0435\u0440\u043e\u044f\u043c\u0438 \u0432\u0441\u043f\u044b\u0445\u0438\u0432\u0430\u0435\u0442 \u0441\u0442\u0440\u0430\u0441\u0442\u043d\u044b\u0439 \u0440\u043e\u043c\u0430\u043d. \u0414\u0436\u0435\u043a \u043f\u043e\u043c\u043e\u0433\u0430\u0435\u0442 \u042d\u043b\u043b\u0438 \u0434\u043e\u0431\u0438\u0442\u044c\u0441\u044f \u0443\u0441\u043f\u0435\u0445\u0430. \u041d\u043e \u0447\u0435\u043c \u0441\u0442\u0440\u0435\u043c\u0438\u0442\u0435\u043b\u044c\u043d\u0435\u0435 \u043d\u0430\u0431\u0438\u0440\u0430\u0435\u0442 \u043e\u0431\u043e\u0440\u043e\u0442\u044b \u043c\u0443\u0437\u044b\u043a\u0430\u043b\u044c\u043d\u0430\u044f \u043a\u0430\u0440\u044c\u0435\u0440\u0430 \u042d\u043b\u043b\u0438, \u0442\u0435\u043c \u0441\u043b\u043e\u0436\u043d\u0435\u0435 \u0435\u043c\u0443 \u043c\u0438\u0440\u0438\u0442\u044c\u0441\u044f \u0441\u043e \u0441\u0432\u043e\u0435\u0439 \u0443\u0432\u044f\u0434\u0430\u044e\u0449\u0435\u0439 \u0441\u043b\u0430\u0432\u043e\u0439.",
+    "poster": "posters/star_is_born_PB9l8MN.jpg",
+    "release_date": "2019-01-23",
+    "finish_date": "2019-02-27",
+    "is_deleted": false,
+    "categories": [
+      1,
+      7
+    ]
+  }
+},
+{
+  "model": "webapp.movie",
+  "pk": 6,
+  "fields": {
+    "name": "\u0410\u043b\u0438\u0442\u0430: \u0411\u043e\u0435\u0432\u043e\u0439 \u0430\u043d\u0433\u0435\u043b",
+    "description": "\u0414\u0435\u0439\u0441\u0442\u0432\u0438\u0435 \u0444\u0438\u043b\u044c\u043c\u0430 \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u0438\u0442 \u0447\u0435\u0440\u0435\u0437 300 \u043b\u0435\u0442 \u043f\u043e\u0441\u043b\u0435 \u0412\u0435\u043b\u0438\u043a\u043e\u0439 \u0432\u043e\u0439\u043d\u044b \u0432 XXVI \u0432\u0435\u043a\u0435. \u0414\u043e\u043a\u0442\u043e\u0440 \u0418\u0434\u043e \u043d\u0430\u0445\u043e\u0434\u0438\u0442 \u043e\u0441\u0442\u0430\u043d\u043a\u0438 \u0436\u0435\u043d\u0449\u0438\u043d\u044b-\u043a\u0438\u0431\u043e\u0440\u0433\u0430. \u041f\u043e\u0441\u043b\u0435 \u043f\u043e\u0447\u0438\u043d\u043a\u0438 \u043a\u0438\u0431\u043e\u0440\u0433 \u043d\u0438\u0447\u0435\u0433\u043e \u043d\u0435 \u043f\u043e\u043c\u043d\u0438\u0442, \u043d\u043e \u043e\u0431\u043d\u0430\u0440\u0443\u0436\u0438\u0432\u0430\u0435\u0442, \u0447\u0442\u043e \u0432 \u0441\u043e\u0441\u0442\u043e\u044f\u043d\u0438\u0438 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c\u0441\u044f \u0431\u043e\u0435\u0432\u044b\u043c\u0438 \u043f\u0440\u0438\u0435\u043c\u0430\u043c\u0438 \u043a\u0438\u0431\u043e\u0440\u0433\u043e\u0432. \u041d\u0430\u0447\u0438\u043d\u0430\u044e\u0442\u0441\u044f \u043f\u043e\u0438\u0441\u043a\u0438 \u0443\u0442\u0435\u0440\u044f\u043d\u043d\u044b\u0445 \u0432\u043e\u0441\u043f\u043e\u043c\u0438\u043d\u0430\u043d\u0438\u0439.",
+    "poster": "posters/alita_tLEOryw.jpg",
+    "release_date": "2019-02-10",
+    "finish_date": "2019-03-20",
+    "is_deleted": true,
+    "categories": [
+      1,
+      5,
+      6
+    ]
+  }
+},
+{
+  "model": "webapp.movie",
+  "pk": 7,
+  "fields": {
+    "name": "500 days of summer",
+    "description": "\u0424\u0438\u043b\u044c\u043c \u043e \u0442\u043e\u043c, \u043a\u0430\u043a \u043c\u044b \u0432\u0438\u0434\u0438\u043c \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u0430, \u043a\u043e\u0433\u0434\u0430 \u0432\u043b\u044e\u0431\u043b\u0435\u043d\u044b",
+    "poster": "posters/500days_of_summer_EJ3Yv0N.jpg",
+    "release_date": "2019-03-10",
+    "finish_date": "2019-04-20",
+    "is_deleted": false,
+    "categories": [
+      1,
+      7
+    ]
+  }
+},
+{
+  "model": "webapp.movie",
+  "pk": 8,
+  "fields": {
+    "name": "\u0410\u0434\u0432\u043e\u043a\u0430\u0442 \u0434\u044c\u044f\u0432\u043e\u043b\u0430",
+    "description": "",
+    "poster": "",
+    "release_date": "2019-01-11",
+    "finish_date": "2019-02-13",
+    "is_deleted": true,
+    "categories": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.movie",
+  "pk": 9,
+  "fields": {
+    "name": "\u0413\u0430\u0440\u0440\u0438 \u041f\u043e\u0442\u0442\u0435\u0440 \u0438 \u0444\u0438\u043b\u043e\u0441\u043e\u0444\u0441\u043a\u0438\u0439 \u043a\u0430\u043c\u0435\u043d\u044c",
+    "description": "\u0416\u0438\u0437\u043d\u044c \u0434\u0435\u0441\u044f\u0442\u0438\u043b\u0435\u0442\u043d\u0435\u0433\u043e \u0413\u0430\u0440\u0440\u0438 \u041f\u043e\u0442\u0442\u0435\u0440\u0430 \u043d\u0435\u043b\u044c\u0437\u044f \u043d\u0430\u0437\u0432\u0430\u0442\u044c \u0441\u043b\u0430\u0434\u043a\u043e\u0439: \u0435\u0433\u043e \u0440\u043e\u0434\u0438\u0442\u0435\u043b\u0438 \u0443\u043c\u0435\u0440\u043b\u0438, \u0435\u0434\u0432\u0430 \u0435\u043c\u0443 \u0438\u0441\u043f\u043e\u043b\u043d\u0438\u043b\u0441\u044f \u0433\u043e\u0434, \u0430 \u043e\u0442 \u0434\u044f\u0434\u0438 \u0438 \u0442\u0451\u0442\u043a\u0438, \u0432\u0437\u044f\u0432\u0448\u0438\u0445 \u0441\u0438\u0440\u043e\u0442\u0443 \u043d\u0430 \u0432\u043e\u0441\u043f\u0438\u0442\u0430\u043d\u0438\u0435, \u0434\u043e\u0441\u0442\u0430\u044e\u0442\u0441\u044f \u043b\u0438\u0448\u044c \u0442\u044b\u0447\u043a\u0438 \u0434\u0430 \u043f\u043e\u0434\u0437\u0430\u0442\u044b\u043b\u044c\u043d\u0438\u043a\u0438. \u041d\u043e \u0432 \u043e\u0434\u0438\u043d\u043d\u0430\u0434\u0446\u0430\u0442\u044b\u0439 \u0434\u0435\u043d\u044c \u0440\u043e\u0436\u0434\u0435\u043d\u0438\u044f \u0413\u0430\u0440\u0440\u0438 \u0432\u0441\u0451 \u043c\u0435\u043d\u044f\u0435\u0442\u0441\u044f. \u0421\u0442\u0440\u0430\u043d\u043d\u044b\u0439 \u0433\u043e\u0441\u0442\u044c, \u043d\u0435\u043e\u0436\u0438\u0434\u0430\u043d\u043d\u043e \u043f\u043e\u044f\u0432\u0438\u0432\u0448\u0438\u0439\u0441\u044f \u043d\u0430 \u043f\u043e\u0440\u043e\u0433\u0435, \u043f\u0440\u0438\u043d\u043e\u0441\u0438\u0442 \u043f\u0438\u0441\u044c\u043c\u043e, \u0438\u0437 \u043a\u043e\u0442\u043e\u0440\u043e\u0433\u043e \u043c\u0430\u043b\u044c\u0447\u0438\u043a \u0443\u0437\u043d\u0430\u0451\u0442, \u0447\u0442\u043e \u043d\u0430 \u0441\u0430\u043c\u043e\u043c \u0434\u0435\u043b\u0435 \u043e\u043d \u0432\u043e\u043b\u0448\u0435\u0431\u043d\u0438\u043a \u0438 \u043f\u0440\u0438\u043d\u044f\u0442 \u0432 \u0425\u043e\u0433\u0432\u0430\u0440\u0442\u0441 \u2014 \u0448\u043a\u043e\u043b\u0443 \u043c\u0430\u0433\u0438\u0438. \u0410 \u0443\u0436\u0435 \u0447\u0435\u0440\u0435\u0437 \u043f\u0430\u0440\u0443 \u043d\u0435\u0434\u0435\u043b\u044c \u0413\u0430\u0440\u0440\u0438 \u0431\u0443\u0434\u0435\u0442 \u043c\u0447\u0430\u0442\u044c\u0441\u044f \u0432 \u043f\u043e\u0435\u0437\u0434\u0435 \u0425\u043e\u0433\u0432\u0430\u0440\u0442\u0441-\u044d\u043a\u0441\u043f\u0440\u0435\u0441\u0441 \u043d\u0430\u0432\u0441\u0442\u0440\u0435\u0447\u0443 \u043d\u043e\u0432\u043e\u0439 \u0436\u0438\u0437\u043d\u0438, \u0433\u0434\u0435 \u0435\u0433\u043e \u0436\u0434\u0443\u0442 \u043d\u0435\u0432\u0435\u0440\u043e\u044f\u0442\u043d\u044b\u0435 \u043f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f, \u0432\u0435\u0440\u043d\u044b\u0435 \u0434\u0440\u0443\u0437\u044c\u044f \u0438 \u0441\u0430\u043c\u043e\u0435 \u0433\u043b\u0430\u0432\u043d\u043e\u0435 \u2014 \u043a\u043b\u044e\u0447 \u043a \u0440\u0430\u0437\u0433\u0430\u0434\u043a\u0435 \u0442\u0430\u0439\u043d\u044b \u0441\u043c\u0435\u0440\u0442\u0438 \u0435\u0433\u043e \u0440\u043e\u0434\u0438\u0442\u0435\u043b\u0435\u0439.",
+    "poster": "posters/hp1_4RzqURZ.jpg",
+    "release_date": "2019-03-12",
+    "finish_date": "2019-04-11",
+    "is_deleted": false,
+    "categories": [
+      1,
+      5,
+      6
+    ]
+  }
+},
+{
+  "model": "webapp.movie",
+  "pk": 10,
+  "fields": {
+    "name": "\u041d\u043e\u0432\u044b\u0439 \u0444\u0438\u043b\u044c\u043c",
+    "description": "\u0422\u0430\u043a\u043e\u0439 \u0441\u0435\u0431\u0435",
+    "poster": "posters/star_is_born_KW3mZYc.jpg",
+    "release_date": "2019-03-19",
+    "finish_date": "2019-03-27",
+    "is_deleted": true,
+    "categories": [
+      1,
+      2,
+      3,
+      6
+    ]
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 1,
+  "fields": {
+    "name": "\u0414\u0440\u0430\u043c\u0430",
+    "description": "\u041f\u0440\u043e\u0438\u0437\u0432\u0435\u0434\u0435\u043d\u0438\u0435 \u0432 \u0434\u0438\u0430\u043b\u043e\u0433\u0438\u0447\u0435\u0441\u043a\u043e\u0439 \u0444\u043e\u0440\u043c\u0435 \u0441 \u0441\u0435\u0440\u044c\u0451\u0437\u043d\u044b\u043c \u0441\u044e\u0436\u0435\u0442\u043e\u043c (\u0432 \u043e\u0442\u043b\u0438\u0447\u0438\u0435 \u043e\u0442 \u043a\u043e\u043c\u0435\u0434\u0438\u0438).",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 2,
+  "fields": {
+    "name": "\u0411\u043e\u0435\u0432\u0438\u043a",
+    "description": "\u041e\u0441\u0442\u0440\u043e\u0441\u044e\u0436\u0435\u0442\u043d\u044b\u0439 \u043f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0447\u0435\u0441\u043a\u0438\u0439 \u043a\u0438\u043d\u043e\u0444\u0438\u043b\u044c\u043c",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 3,
+  "fields": {
+    "name": "\u041a\u043e\u043c\u0435\u0434\u0438\u044f",
+    "description": "\u041f\u0440\u043e\u0438\u0437\u0432\u0435\u0434\u0435\u043d\u0438\u0435 \u0441 \u0432\u0435\u0441\u0451\u043b\u044b\u043c, \u0441\u043c\u0435\u0448\u043d\u044b\u043c \u0441\u044e\u0436\u0435\u0442\u043e\u043c, \u043e\u0431\u044b\u0447\u043d\u043e \u043e\u0441\u043c\u0435\u0438\u0432\u0430\u044e\u0449\u0435\u0435 \u043e\u0431\u0449\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u044b\u0435 \u0438\u043b\u0438 \u0431\u044b\u0442\u043e\u0432\u044b\u0435 \u043f\u043e\u0440\u043e\u043a\u0438",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 4,
+  "fields": {
+    "name": "\u0422\u0440\u0438\u043b\u043b\u0435\u0440",
+    "description": "\u041e\u0441\u0442\u0440\u043e\u0441\u044e\u0436\u0435\u0442\u043d\u043e\u0435 \u0437\u0430\u0445\u0432\u0430\u0442\u044b\u0432\u0430\u044e\u0449\u0435\u0435 \u0445\u0443\u0434\u043e\u0436\u0435\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0435 \u043f\u0440\u043e\u0438\u0437\u0432\u0435\u0434\u0435\u043d\u0438\u0435 (\u0440\u043e\u043c\u0430\u043d, \u0444\u0438\u043b\u044c\u043c, \u0434\u0440\u0430\u043c\u0430 \u0438 \u0442. \u043f.).",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 5,
+  "fields": {
+    "name": "\u0424\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u043a\u0430",
+    "description": "\u0416\u0430\u043d\u0440, \u0445\u0430\u0440\u0430\u043a\u0442\u0435\u0440\u0438\u0437\u0443\u0435\u043c\u044b\u0439 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435\u043c \u0444\u0430\u043d\u0442\u0430\u0441\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0433\u043e \u0434\u043e\u043f\u0443\u0449\u0435\u043d\u0438\u044f, \u00ab\u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430 \u043d\u0435\u043e\u0431\u044b\u0447\u0430\u0439\u043d\u043e\u0433\u043e\u00bb, \u043d\u0430\u0440\u0443\u0448\u0435\u043d\u0438\u0435\u043c \u0433\u0440\u0430\u043d\u0438\u0446 \u0440\u0435\u0430\u043b\u044c\u043d\u043e\u0441\u0442\u0438, \u043f\u0440\u0438\u043d\u044f\u0442\u044b\u0445 \u0443\u0441\u043b\u043e\u0432\u043d\u043e\u0441\u0442\u0435\u0439",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 6,
+  "fields": {
+    "name": "\u041f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0438\u044f",
+    "description": "\u041e\u0441\u0442\u0440\u043e\u0441\u044e\u0436\u0435\u0442\u043d\u044b\u0439 \u0432\u0438\u0434 \u0438\u0433\u0440\u043e\u0432\u043e\u0433\u043e \u0444\u0438\u043b\u044c\u043c\u0430, \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0439 \u043f\u0440\u0438\u043a\u043b\u044e\u0447\u0435\u043d\u0447\u0435\u0441\u043a\u043e\u043c\u0443 \u0440\u043e\u043c\u0430\u043d\u0443 \u0432 \u043b\u0438\u0442\u0435\u0440\u0430\u0442\u0443\u0440\u0435.",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.category",
+  "pk": 7,
+  "fields": {
+    "name": "\u041c\u0435\u043b\u043e\u0434\u0440\u0430\u043c\u0430",
+    "description": "\u0414\u0440\u0430\u043c\u0430, \u0432 \u043a-\u0440\u043e\u0439 \u043f\u0440\u0435\u0443\u0432\u0435\u043b\u0438\u0447\u0435\u043d\u043d\u043e \u0442\u0440\u0430\u0433\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0441\u043e\u0447\u0435\u0442\u0430\u0435\u0442\u0441\u044f \u0441 \u0441\u0435\u043d\u0442\u0438\u043c\u0435\u043d\u0442\u0430\u043b\u044c\u043d\u044b\u043c, \u0447\u0443\u0432\u0441\u0442\u0432\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u043c",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.hall",
+  "pk": 1,
+  "fields": {
+    "name": "\u0417\u0430\u043b \u041e\u0431\u044b\u043a\u043d\u043e\u0432\u0435\u043d\u043d\u044b\u0439",
+    "description": "\u041d\u0438\u0447\u0435\u043c \u043d\u0435 \u043f\u0440\u0438\u043c\u0435\u0447\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0439 \u043a\u0438\u043d\u043e\u0437\u0430\u043b, \u0437\u0430\u0442\u043e \u0431\u0438\u043b\u0435\u0442\u044b \u0434\u0435\u0448\u0435\u0432\u043b\u0435!",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.hall",
+  "pk": 2,
+  "fields": {
+    "name": "\u0417\u0430\u043b DOLBY ATMOS",
+    "description": "\u0421\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0434\u0435\u043b\u0430\u0435\u0442 \u0437\u0432\u0443\u043a \u0440\u0435\u0430\u043b\u0438\u0441\u0442\u0438\u0447\u043d\u044b\u043c, \u0431\u043b\u0430\u0433\u043e\u0434\u0430\u0440\u044f \u0442\u043e\u043c\u0443, \u0447\u0442\u043e \u043e\u043d \u0437\u0432\u0443\u0447\u0438\u0442 \u043d\u0435 \u0442\u043e\u043b\u044c\u043a\u043e \u0432 \u0433\u043e\u0440\u0438\u0437\u043e\u043d\u0442\u0430\u043b\u044c\u043d\u043e\u0439 \u043f\u043b\u043e\u0441\u043a\u043e\u0441\u0442\u0438, \u043d\u043e \u0438 \u0441\u0432\u0435\u0440\u0445\u0443. \u0418\u0437-\u0437\u0430 \u044d\u0442\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u044c \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u0442\u044c \u043e\u0431\u044a\u0435\u043c\u043d\u0443\u044e \u0437\u0432\u0443\u043a\u043e\u0432\u0443\u044e \u043a\u0430\u0440\u0442\u0438\u043d\u0443 3D, \u043a\u0430\u043a \u044d\u0442\u043e \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u0438\u0442 \u0438 \u0432 \u043e\u0431\u044b\u0447\u043d\u043e\u0439 \u0436\u0438\u0437\u043d\u0438. \u0417\u0432\u0443\u043a \u0431\u0443\u0434\u0435\u0442 \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u043e\u0432\u0430\u0442\u044c \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0435 \u043d\u0430 \u044d\u043a\u0440\u0430\u043d\u0435, \u0438 \u0437\u0432\u0443\u0447\u0430\u0442\u044c \u0438\u043c\u0435\u043d\u043d\u043e \u043e\u0442\u0442\u0443\u0434\u0430, \u043e\u0442\u043a\u0443\u0434\u0430 \u0434\u043e\u043b\u0436\u0435\u043d. \u0411\u043b\u0430\u0433\u043e\u0434\u0430\u0440\u044f \u044d\u0442\u043e\u043c\u0443 \u0443 \u0432\u0430\u0441 \u0432\u043e\u0437\u043d\u0438\u043a\u043d\u0435\u0442  \u043e\u0449\u0443\u0449\u0435\u043d\u0438\u0435 \u043f\u043e\u043b\u043d\u043e\u0433\u043e \u043f\u043e\u0433\u0440\u0443\u0436\u0435\u043d\u0438\u044f \u0432 \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u044f\u0449\u0435\u0435.",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.hall",
+  "pk": 3,
+  "fields": {
+    "name": "\u0417\u0430\u043b IMAX",
+    "description": "IMAX, \u0410\u0439\u043c\u044d\u043a\u0441 \u2014 \u0448\u0438\u0440\u043e\u043a\u043e\u0444\u043e\u0440\u043c\u0430\u0442\u043d\u0430\u044f \u043a\u0438\u043d\u0435\u043c\u0430\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430, \u043d\u0430 \u043a\u043e\u0442\u043e\u0440\u043e\u0439 \u043e\u0441\u043d\u043e\u0432\u0430\u043d\u044b \u0440\u044f\u0434 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u0439 \u043a\u0438\u043d\u043e\u043f\u043e\u043a\u0430\u0437\u0430 \u0438 \u0443\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u0441\u0435\u0442\u0438 \u043a\u0438\u043d\u043e\u0442\u0435\u0430\u0442\u0440\u043e\u0432 \u043f\u043e \u0432\u0441\u0435\u043c\u0443 \u043c\u0438\u0440\u0443. \u0424\u043e\u0440\u043c\u0430\u0442 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0430\u043d \u043a\u0430\u043d\u0430\u0434\u0441\u043a\u043e\u0439 \u043a\u043e\u0440\u043f\u043e\u0440\u0430\u0446\u0438\u0435\u0439 \u00ab\u041c\u0443\u043b\u044c\u0442\u0438\u0441\u043a\u0440\u0438\u043d\u00bb \u0432 1970 \u0433\u043e\u0434\u0443 \u0438 \u0440\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u043d \u043d\u0430 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043d\u0438\u0435 \u0434\u043b\u044f \u0444\u0438\u043b\u044c\u043c\u043e\u043a\u043e\u043f\u0438\u0439 \u043f\u0435\u0440\u0444\u043e\u0440\u0438\u0440\u043e\u0432\u0430\u043d\u043d\u043e\u0439 \u043a\u0438\u043d\u043e\u043f\u043b\u0451\u043d\u043a\u0438 \u0448\u0438\u0440\u0438\u043d\u043e\u0439 70 \u043c\u043c \u0441 \u043f\u0440\u043e\u0434\u043e\u043b\u044c\u043d\u044b\u043c \u0440\u0430\u0441\u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0435\u043c \u043a\u0430\u0434\u0440\u0430. \u0417\u0430 \u0441\u0447\u0451\u0442 \u0431\u043e\u043b\u044c\u0448\u043e\u0439 \u043f\u043b\u043e\u0449\u0430\u0434\u0438 \u0438\u0437\u043e\u0431\u0440\u0430\u0436\u0435\u043d\u0438\u044f \u043d\u0430 \u043f\u043b\u0451\u043d\u043a\u0435 \u0444\u043e\u0440\u043c\u0430\u0442 \u043e\u0431\u043b\u0430\u0434\u0430\u0435\u0442 \u043d\u0430\u0438\u0431\u043e\u043b\u044c\u0448\u0435\u0439 \u0438\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u043e\u043d\u043d\u043e\u0439 \u0451\u043c\u043a\u043e\u0441\u0442\u044c\u044e \u0438\u0437 \u0432\u0441\u0435\u0445 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u044e\u0449\u0438\u0445, \u0430 \u043a\u0440\u0443\u043f\u043d\u043e\u0435 \u043a\u0430\u0434\u0440\u043e\u0432\u043e\u0435 \u043e\u043a\u043d\u043e \u043a\u0438\u043d\u043e\u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0440\u043e\u0432 \u043f\u043e\u0437\u0432\u043e\u043b\u044f\u0435\u0442 \u043f\u0440\u043e\u043f\u0443\u0441\u043a\u0430\u0442\u044c \u043e\u0433\u0440\u043e\u043c\u043d\u044b\u0439 \u0441\u0432\u0435\u0442\u043e\u0432\u043e\u0439 \u043f\u043e\u0442\u043e\u043a \u043d\u0430 \u044d\u043a\u0440\u0430\u043d\u044b \u0433\u0438\u0433\u0430\u043d\u0442\u0441\u043a\u0438\u0445 \u0440\u0430\u0437\u043c\u0435\u0440\u043e\u0432, \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u044b\u0445 \u0434\u043b\u044f \u0434\u0440\u0443\u0433\u0438\u0445 \u043a\u0438\u043d\u0435\u043c\u0430\u0442\u043e\u0433\u0440\u0430\u0444\u0438\u0447\u0435\u0441\u043a\u0438\u0445 \u0441\u0438\u0441\u0442\u0435\u043c",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.hall",
+  "pk": 4,
+  "fields": {
+    "name": "\u0417\u0430\u043b Beeline",
+    "description": "\u0416\u0438\u0432\u0438 \u043d\u0430 \u0442\u0435\u043c\u043d\u043e\u0439 \u0441\u0442\u043e\u0440\u043e\u043d\u0435!",
+    "is_deleted": true
+  }
+},
+{
+  "model": "webapp.hall",
+  "pk": 5,
+  "fields": {
+    "name": "\u0413\u0440\u0435\u0447\u0435\u0441\u043a\u0438\u0439 \u0437\u0430\u043b",
+    "description": "\u0422\u043e\u0442, \u0432 \u043a\u043e\u0442\u043e\u0440\u043e\u043c \u043c\u044b\u0448\u044c \u0431\u0435\u043b\u0430\u044f",
+    "is_deleted": true
+  }
+},
+{
+  "model": "webapp.seat",
+  "pk": 1,
+  "fields": {
+    "hall": 1,
+    "row": "1",
+    "seat": "1",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.seat",
+  "pk": 2,
+  "fields": {
+    "hall": 1,
+    "row": "1",
+    "seat": "2",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.seat",
+  "pk": 3,
+  "fields": {
+    "hall": 1,
+    "row": "1",
+    "seat": "3",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.seat",
+  "pk": 4,
+  "fields": {
+    "hall": 1,
+    "row": "1",
+    "seat": "4",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.seat",
+  "pk": 5,
+  "fields": {
+    "hall": 2,
+    "row": "1",
+    "seat": "1",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.seat",
+  "pk": 6,
+  "fields": {
+    "hall": 2,
+    "row": "1",
+    "seat": "2",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.seat",
+  "pk": 7,
+  "fields": {
+    "hall": 2,
+    "row": "1",
+    "seat": "3",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.seat",
+  "pk": 8,
+  "fields": {
+    "hall": 3,
+    "row": "1",
+    "seat": "1",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.seat",
+  "pk": 9,
+  "fields": {
+    "hall": 3,
+    "row": "1",
+    "seat": "2",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.seat",
+  "pk": 10,
+  "fields": {
+    "hall": 3,
+    "row": "1",
+    "seat": "3",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.show",
+  "pk": 1,
+  "fields": {
+    "movie": 3,
+    "hall": 2,
+    "start_time": "2019-03-18T06:30:00Z",
+    "end_time": "2019-03-18T08:20:00Z",
+    "price": "450.00",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.show",
+  "pk": 2,
+  "fields": {
+    "movie": 4,
+    "hall": 3,
+    "start_time": "2019-03-05T09:00:00Z",
+    "end_time": "2019-03-05T10:50:00Z",
+    "price": "350.00",
+    "is_deleted": true
+  }
+},
+{
+  "model": "webapp.show",
+  "pk": 3,
+  "fields": {
+    "movie": 5,
+    "hall": 5,
+    "start_time": "2017-12-12T16:22:00Z",
+    "end_time": "2017-12-13T16:22:00Z",
+    "price": "360.00",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.show",
+  "pk": 4,
+  "fields": {
+    "movie": 2,
+    "hall": 1,
+    "start_time": "2019-03-17T05:00:00Z",
+    "end_time": "2019-03-17T06:30:00Z",
+    "price": "450.00",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.show",
+  "pk": 5,
+  "fields": {
+    "movie": 2,
+    "hall": 1,
+    "start_time": "2019-03-18T09:30:00Z",
+    "end_time": "2019-03-18T11:20:00Z",
+    "price": "450.00",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.show",
+  "pk": 6,
+  "fields": {
+    "movie": 2,
+    "hall": 2,
+    "start_time": "2019-03-19T04:30:00Z",
+    "end_time": "2019-03-19T05:20:00Z",
+    "price": "450.00",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.show",
+  "pk": 7,
+  "fields": {
+    "movie": 2,
+    "hall": 2,
+    "start_time": "2019-03-18T04:30:00Z",
+    "end_time": "2019-03-18T05:50:00Z",
+    "price": "450.00",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.show",
+  "pk": 8,
+  "fields": {
+    "movie": 1,
+    "hall": 2,
+    "start_time": "2019-03-08T05:30:00Z",
+    "end_time": "2019-03-08T06:50:00Z",
+    "price": "450.00",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.show",
+  "pk": 9,
+  "fields": {
+    "movie": 2,
+    "hall": 1,
+    "start_time": "2019-03-17T15:30:00Z",
+    "end_time": "2019-03-17T16:20:00Z",
+    "price": "350.00",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 1,
+  "fields": {
+    "code": "015110",
+    "show": 1,
+    "status": "created",
+    "created_at": "2019-03-07T08:45:53.426Z",
+    "updated_at": "2019-03-07T08:45:53.426Z",
+    "is_deleted": false,
+    "seats": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 2,
+  "fields": {
+    "code": "015110",
+    "show": 3,
+    "status": "created",
+    "created_at": "2019-03-07T08:46:24.695Z",
+    "updated_at": "2019-03-07T08:46:24.695Z",
+    "is_deleted": false,
+    "seats": [
+      4,
+      5,
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 3,
+  "fields": {
+    "code": "015110",
+    "show": 1,
+    "status": "created",
+    "created_at": "2019-03-07T11:27:04.425Z",
+    "updated_at": "2019-03-07T11:27:04.425Z",
+    "is_deleted": false,
+    "seats": [
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 4,
+  "fields": {
+    "code": "015110",
+    "show": 4,
+    "status": "created",
+    "created_at": "2019-03-07T11:49:06.204Z",
+    "updated_at": "2019-03-07T11:49:06.204Z",
+    "is_deleted": false,
+    "seats": [
+      4,
+      5,
+      7
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 5,
+  "fields": {
+    "code": "015110",
+    "show": 1,
+    "status": "created",
+    "created_at": "2019-03-07T12:44:55.363Z",
+    "updated_at": "2019-03-07T12:44:55.363Z",
+    "is_deleted": false,
+    "seats": [
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 6,
+  "fields": {
+    "code": "201855",
+    "show": 1,
+    "status": "created",
+    "created_at": "2019-03-07T12:46:15.766Z",
+    "updated_at": "2019-03-07T12:46:15.766Z",
+    "is_deleted": false,
+    "seats": [
+      1,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 7,
+  "fields": {
+    "code": "561276",
+    "show": 6,
+    "status": "created",
+    "created_at": "2019-03-07T12:53:14.445Z",
+    "updated_at": "2019-03-07T12:53:14.445Z",
+    "is_deleted": false,
+    "seats": [
+      1,
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 8,
+  "fields": {
+    "code": "568178",
+    "show": 9,
+    "status": "created",
+    "created_at": "2019-03-07T13:13:22.067Z",
+    "updated_at": "2019-03-07T13:13:22.067Z",
+    "is_deleted": false,
+    "seats": [
+      5,
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 9,
+  "fields": {
+    "code": "568178",
+    "show": 9,
+    "status": "created",
+    "created_at": "2019-03-07T13:13:33.644Z",
+    "updated_at": "2019-03-07T13:13:33.644Z",
+    "is_deleted": false,
+    "seats": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 10,
+  "fields": {
+    "code": "116194",
+    "show": 6,
+    "status": "created",
+    "created_at": "2019-03-07T13:15:10.493Z",
+    "updated_at": "2019-03-07T13:15:10.493Z",
+    "is_deleted": false,
+    "seats": [
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 11,
+  "fields": {
+    "code": "380330",
+    "show": 5,
+    "status": "created",
+    "created_at": "2019-03-07T13:16:35.165Z",
+    "updated_at": "2019-03-07T13:16:35.165Z",
+    "is_deleted": false,
+    "seats": [
+      1,
+      2,
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 12,
+  "fields": {
+    "code": "826817",
+    "show": 5,
+    "status": "created",
+    "created_at": "2019-03-07T13:18:42.778Z",
+    "updated_at": "2019-03-07T13:18:42.778Z",
+    "is_deleted": false,
+    "seats": [
+      1,
+      2,
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 13,
+  "fields": {
+    "code": "826817",
+    "show": 8,
+    "status": "created",
+    "created_at": "2019-03-07T13:18:53.144Z",
+    "updated_at": "2019-03-07T13:18:53.144Z",
+    "is_deleted": false,
+    "seats": [
+      1
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 14,
+  "fields": {
+    "code": "826817",
+    "show": 4,
+    "status": "created",
+    "created_at": "2019-03-07T13:20:48.951Z",
+    "updated_at": "2019-03-07T13:20:48.951Z",
+    "is_deleted": false,
+    "seats": [
+      10
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 15,
+  "fields": {
+    "code": "585449",
+    "show": 8,
+    "status": "created",
+    "created_at": "2019-03-12T04:28:06.105Z",
+    "updated_at": "2019-03-12T04:28:06.105Z",
+    "is_deleted": false,
+    "seats": [
+      8,
+      9,
+      10
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 16,
+  "fields": {
+    "code": "894830",
+    "show": 6,
+    "status": "created",
+    "created_at": "2019-03-12T04:28:54.108Z",
+    "updated_at": "2019-03-12T04:30:15.946Z",
+    "is_deleted": false,
+    "seats": [
+      6,
+      7
+    ]
+  }
+},
+{
+  "model": "webapp.book",
+  "pk": 17,
+  "fields": {
+    "code": "461955",
+    "show": 6,
+    "status": "created",
+    "created_at": "2019-03-12T04:59:28.782Z",
+    "updated_at": "2019-03-12T05:14:06.442Z",
+    "is_deleted": false,
+    "seats": [
+      7
+    ]
+  }
+},
+{
+  "model": "webapp.discount",
+  "pk": 1,
+  "fields": {
+    "name": "\u0421\u043a\u0438\u0434\u043a\u0430 \u0432\u044b\u0445\u043e\u0434\u043d\u043e\u0433\u043e \u0434\u043d\u044f",
+    "discount": "10.00",
+    "start_date": null,
+    "end_date": null,
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.discount",
+  "pk": 2,
+  "fields": {
+    "name": "\u0421\u043a\u0438\u0434\u043a\u0430 \u043d\u0430 8 \u043c\u0430\u0440\u0442\u0430",
+    "discount": "8.00",
+    "start_date": "2019-03-07",
+    "end_date": "2019-03-10",
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.ticket",
+  "pk": 1,
+  "fields": {
+    "show": 1,
+    "seat": 1,
+    "discount": 1,
+    "exchange": false,
+    "is_deleted": false
+  }
+},
+{
+  "model": "webapp.ticket",
+  "pk": 2,
+  "fields": {
+    "show": 1,
+    "seat": 3,
+    "discount": 2,
+    "exchange": false,
+    "is_deleted": false
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": [
+      "admin",
+      "logentry"
+    ],
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": [
+      "auth",
+      "permission"
+    ],
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": [
+      "auth",
+      "group"
+    ],
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "add_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "change_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "delete_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view user",
+    "content_type": [
+      "auth",
+      "user"
+    ],
+    "codename": "view_user"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": [
+      "contenttypes",
+      "contenttype"
+    ],
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view session",
+    "content_type": [
+      "sessions",
+      "session"
+    ],
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add movie",
+    "content_type": [
+      "webapp",
+      "movie"
+    ],
+    "codename": "add_movie"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change movie",
+    "content_type": [
+      "webapp",
+      "movie"
+    ],
+    "codename": "change_movie"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete movie",
+    "content_type": [
+      "webapp",
+      "movie"
+    ],
+    "codename": "delete_movie"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view movie",
+    "content_type": [
+      "webapp",
+      "movie"
+    ],
+    "codename": "view_movie"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add category",
+    "content_type": [
+      "webapp",
+      "category"
+    ],
+    "codename": "add_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change category",
+    "content_type": [
+      "webapp",
+      "category"
+    ],
+    "codename": "change_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete category",
+    "content_type": [
+      "webapp",
+      "category"
+    ],
+    "codename": "delete_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view category",
+    "content_type": [
+      "webapp",
+      "category"
+    ],
+    "codename": "view_category"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add hall",
+    "content_type": [
+      "webapp",
+      "hall"
+    ],
+    "codename": "add_hall"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change hall",
+    "content_type": [
+      "webapp",
+      "hall"
+    ],
+    "codename": "change_hall"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete hall",
+    "content_type": [
+      "webapp",
+      "hall"
+    ],
+    "codename": "delete_hall"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view hall",
+    "content_type": [
+      "webapp",
+      "hall"
+    ],
+    "codename": "view_hall"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add seat",
+    "content_type": [
+      "webapp",
+      "seat"
+    ],
+    "codename": "add_seat"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change seat",
+    "content_type": [
+      "webapp",
+      "seat"
+    ],
+    "codename": "change_seat"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete seat",
+    "content_type": [
+      "webapp",
+      "seat"
+    ],
+    "codename": "delete_seat"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view seat",
+    "content_type": [
+      "webapp",
+      "seat"
+    ],
+    "codename": "view_seat"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add show",
+    "content_type": [
+      "webapp",
+      "show"
+    ],
+    "codename": "add_show"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change show",
+    "content_type": [
+      "webapp",
+      "show"
+    ],
+    "codename": "change_show"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete show",
+    "content_type": [
+      "webapp",
+      "show"
+    ],
+    "codename": "delete_show"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view show",
+    "content_type": [
+      "webapp",
+      "show"
+    ],
+    "codename": "view_show"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add book",
+    "content_type": [
+      "webapp",
+      "book"
+    ],
+    "codename": "add_book"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change book",
+    "content_type": [
+      "webapp",
+      "book"
+    ],
+    "codename": "change_book"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete book",
+    "content_type": [
+      "webapp",
+      "book"
+    ],
+    "codename": "delete_book"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view book",
+    "content_type": [
+      "webapp",
+      "book"
+    ],
+    "codename": "view_book"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add discount",
+    "content_type": [
+      "webapp",
+      "discount"
+    ],
+    "codename": "add_discount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change discount",
+    "content_type": [
+      "webapp",
+      "discount"
+    ],
+    "codename": "change_discount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete discount",
+    "content_type": [
+      "webapp",
+      "discount"
+    ],
+    "codename": "delete_discount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view discount",
+    "content_type": [
+      "webapp",
+      "discount"
+    ],
+    "codename": "view_discount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add ticket",
+    "content_type": [
+      "webapp",
+      "ticket"
+    ],
+    "codename": "add_ticket"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change ticket",
+    "content_type": [
+      "webapp",
+      "ticket"
+    ],
+    "codename": "change_ticket"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete ticket",
+    "content_type": [
+      "webapp",
+      "ticket"
+    ],
+    "codename": "delete_ticket"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view ticket",
+    "content_type": [
+      "webapp",
+      "ticket"
+    ],
+    "codename": "view_ticket"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add Token",
+    "content_type": [
+      "authtoken",
+      "token"
+    ],
+    "codename": "add_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change Token",
+    "content_type": [
+      "authtoken",
+      "token"
+    ],
+    "codename": "change_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete Token",
+    "content_type": [
+      "authtoken",
+      "token"
+    ],
+    "codename": "delete_token"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view Token",
+    "content_type": [
+      "authtoken",
+      "token"
+    ],
+    "codename": "view_token"
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$nxnbEopUZZDZ$LP23vuy+KeDEalW2DBT7P+H3SIJgyN7xIoTTFB5beJQ=",
+    "last_login": "2019-03-13T10:30:03.799Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2019-02-28T13:33:16.524Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
