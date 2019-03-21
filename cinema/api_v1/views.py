@@ -9,12 +9,19 @@ from api_v1.serializers import MovieCreateSerializer, MovieDisplaySerializer, \
     CategorySerializer, HallSerializer, SeatCreateSerializer, SeatDisplaySerializer,\
     ShowCreateSerializer, ShowDisplaySerializer, BookCreateSerializer, BookDisplaySerializer,\
     DiscountSerializer, TicketCreateSerializer, TicketDisplaySerializer
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 # Отключаем авторизацию в ViewSet-ах API
 class BaseViewSet(viewsets.ModelViewSet):
-    authentication_classes = [TokenAuthentication]
-
+    # Метод, который отвечает за проверку разрешений на доступ к данному ViewSet
+    def get_permissions(self):
+        permissions = super().get_permissions()
+        # IsAuthenticated - класс разрешения, требующий аутентификацию
+        # добавляем его объект ( IsAuthenticated() ) к разрешениям только
+        # для "опасных" методов - добавление, редактирование, удаление данных.
+        if self.request.method in ["POST", "DELETE", "PUT", "PATCH"]:
+            permissions.append(IsAuthenticated())
+        return permissions
 
 
 class MovieViewSet(BaseViewSet):
