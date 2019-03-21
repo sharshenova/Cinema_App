@@ -26,6 +26,10 @@ urlpatterns = [
     path('', include(router.urls)),
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('login/', obtain_auth_token, name='api_token_auth'),
-    path('admin/', admin.site.urls),
-    path('login/', obtain_auth_token, name='api_token_auth')
+    path('admin/', admin.site.urls)
 ]
+
+#  obtain_auth_token - встроенное представление в DRF,
+# которое принимает логин и пароль в формате JSON в POST-запросе и возвращает JSON с токеном
+
+# admin.site.urls - встроенное приложение для работы с админкой

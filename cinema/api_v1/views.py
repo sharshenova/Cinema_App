@@ -11,17 +11,34 @@ from api_v1.serializers import MovieCreateSerializer, MovieDisplaySerializer, \
     DiscountSerializer, TicketCreateSerializer, TicketDisplaySerializer
 from rest_framework.permissions import IsAuthenticated
 
-# Отключаем авторизацию в ViewSet-ах API
+
+# Если нам не нужна аутентификация на сайте, подключаем базовый класс NoAuthViewSet,
+# который отключает все проверки аутентификации,
+# и наследуем все классы ViewSet от него, например: class MovieViewSet(NoAuthViewSet)
+# class NoAuthModelViewSet(viewsets.ModelViewSet):
+#     authentication_classes = []
+
+
+# Добавляем требование аутентификации ко всем представлениям в API
+# ________________________________________________________________
+# По умолчанию классы аутентификации берутся из настроек DRF, в которых прописан класс TokenAuthentication.
+# Вместо этого свойства можно добавить свойство permission_classes,
+# которое содержит список классов для проверки разрешений на доступ к ViewSet'у, в т.ч. необходимость аутентификации:
 class BaseViewSet(viewsets.ModelViewSet):
     # Метод, который отвечает за проверку разрешений на доступ к данному ViewSet
     def get_permissions(self):
         permissions = super().get_permissions()
         # IsAuthenticated - класс разрешения, требующий аутентификацию
-        # добавляем его объект ( IsAuthenticated() ) к разрешениям только
-        # для "опасных" методов - добавление, редактирование, удаление данных.
+        # добавляем его объект IsAuthenticated() к разрешениям только
+        # для "опасных" методов - добавление, редактирование, удаление данных
         if self.request.method in ["POST", "DELETE", "PUT", "PATCH"]:
             permissions.append(IsAuthenticated())
         return permissions
+
+# если мы хотим, чтобы аутентификация требовалась для всех действий с ресурсами нашего API, включая просмотр
+# здесь добавляется сам класс - IsAuthenticated, а не объект класса ( IsAuthenticated() )
+# class BaseViewSet(viewsets.ModelViewSet):
+#     permission_classes = (IsAuthenticated, )
 
 
 class MovieViewSet(BaseViewSet):
@@ -38,6 +55,10 @@ class MovieViewSet(BaseViewSet):
         else:
             return MovieCreateSerializer
 
+
+    # переопределяем набор данных (queryset) для создания возможности фильтрации
+    # фильтрация будет сделана из реакта, данные для нее передаются в URL get-запроса после "?"
+    # URL + '?movie_id=' + match_params_id + '&min_start_date=' + current_date + '&max_start_date=' + next_date
     def get_queryset(self):
         queryset = Movie.objects.active()
         # movie_id = self.request.query_params.get('id', None)
@@ -46,6 +67,8 @@ class MovieViewSet(BaseViewSet):
         if min_release_date is not None:
             queryset = queryset.filter(release_date__gte=min_release_date).order_by('-release_date')
         return queryset
+    # другой способ фильтрации - использование filter вместо перелпределения queryset
+
 
     # метод, который выполняет удаление объекта instance.
     # здесь он переопределён для "мягкого" удаления объектов -
