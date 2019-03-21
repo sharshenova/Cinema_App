@@ -11,6 +11,9 @@ import HallDetail from "./containers/HallDetail/HallDetail";
 import HallAdd from "./containers/HallAdd/HallAdd";
 import HallEdit from "./containers/HallEdit/HallEdit";
 import Layout from "./components/Layout/Layout";
+import Login from "./containers/Login/Login";
+import Logout from "./containers/Logout/Logout";
+import AuthRoute from "./components/AuthRoute/AuthRoute";
 
 class App extends Component {
     render() {
@@ -19,21 +22,23 @@ class App extends Component {
                 <BrowserRouter>
                     <Layout>
                         <Switch>
-                            <Route path="/halls/add" component={HallAdd}/>
-                            <Route path="/halls/:id/edit" component={HallEdit}/>
+                            <Route path="/login" component={Login}/>
+                            <Route path="/logout" component={Logout}/>
+                            <AuthRoute path="/halls/add" component={HallAdd}/>
+                            <AuthRoute path="/halls/:id/edit" component={HallEdit}/>
                             <Route path="/halls/:id" component={HallDetail}/>
                             <Route path="/halls" component={HallList}/>
-                            <Route path="/movies/add" component={MovieAdd}/>
-                            <Route path="/movies/:id/edit" component={MovieEdit}/>
+                            <AuthRoute path="/movies/add" component={MovieAdd}/>
+                            <AuthRoute path="/movies/:id/edit" component={MovieEdit}/>
                             <Route path="/movies/:id" component={MovieDetail}/>
                             {/*/!* :id обозначает переменную id *!/*/}
-                            <Route path="/" component={MovieList}/>
+                            <Route path="/" component={MovieList} exact/>
                         </Switch>
                     </Layout>
                 </BrowserRouter>
             </div>
         );
-    }
+    };
 }
 
 export default App;

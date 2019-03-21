@@ -29,6 +29,10 @@ class Menu extends Component {
                     <MenuItem to="/movies/add">Добавить фильм</MenuItem>
                     <MenuItem to="/halls/">Залы</MenuItem>
                     <MenuItem to="/halls/add">Добавить зал</MenuItem>
+                    {/*запрашиваем token из localStorage, если получаем его - показываем "Выйти", если нет - "Войти"*/}
+                    {localStorage.getItem('auth-token')
+                        ? <MenuItem to="/logout">Выйти</MenuItem>
+                        : <MenuItem to="/login">Войти</MenuItem>}
                 </ul>
             </div>
         </Fragment>
@@ -36,4 +40,4 @@ class Menu extends Component {
 }
 
 
-export default Menu
+export default Menu;

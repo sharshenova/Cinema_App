@@ -8,9 +8,7 @@ class MovieEdit extends Component {
     state = {
         // исходные данные фильма, загруженные из API.
         movie: null,
-
-        // сообщение об ошибке
-        alert: null,
+        errors: {}
     };
 
     componentDidMount() {
@@ -32,15 +30,6 @@ class MovieEdit extends Component {
                 console.log(error.response);
             });
     }
-
-    // вывод сообщение об ошибке
-    showErrorAlert = (error) => {
-        this.setState(prevState => {
-            let newState = {...prevState};
-            newState.alert = {type: 'danger', message: `Movie was not added!`};
-            return newState;
-        });
-    };
 
     // сборка данных для запроса
     gatherFormData = (movie) => {
@@ -67,7 +56,10 @@ class MovieEdit extends Component {
 
         // отправка запроса
         return axios.put(MOVIES_URL + this.props.match.params.id + '/', formData, {
-            headers: {'Content-Type': 'multipart/form-data'}
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'Token ' + localStorage.getItem('auth-token')
+            }
         })
             .then(response => {
                 // при успешном создании response.data содержит данные фильма
@@ -78,21 +70,20 @@ class MovieEdit extends Component {
                 this.props.history.replace('/movies/' + movie.id);
             })
             .catch(error => {
-                console.log(error);
-                // error.response - ответ с сервера
-                // при ошибке 400 в ответе с сервера содержатся ошибки валидации
-                // пока что выводим их в консоль
-                console.log(error.response);
-                this.showErrorAlert(error.response);
+                console.log(error, 'error');
+                console.log(error.response, 'error.response');
+                this.setState({
+                    ...this.state,
+                    errors: error.response.data
+                });
             });
     };
 
     render() {
-        const {alert, movie} = this.state;
-        console.log(this.state, 'movie_edit render')
+        const {errors, movie} = this.state;
+        console.log(this.state, 'movie_edit render');
         return <Fragment>
-            {alert ? <div className={"mb-2 alert alert-" + alert.type}>{alert.message}</div> : null}
-            {movie ? <MovieForm onSubmit={this.formSubmitted} movie={movie}/> : null}
+            {movie ? <MovieForm onSubmit={this.formSubmitted} movie={movie} errors={errors}/> : null}
         </Fragment>
     }
 }

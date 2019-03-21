@@ -10,17 +10,41 @@ import axios from 'axios';
 class MovieList extends Component {
     state = {
         movies: [],
+        errors: {}
     };
 
     componentDidMount() {
+        // требуем авторизацию
+        // const headers = {
+        //     Autorization: 'Token' + localStorage.getItem('auth-token')
+        // };
+
+        // axios.get(MOVIES_URL, {headers})
+
         axios.get(MOVIES_URL)
             .then(response => {console.log(response.data); return response.data;})
             .then(movies => this.setState({movies}))
             .catch(error => console.log(error));
     }
 
+    // принимает имя поля (или 'non_field_errors' -  если ошибка связана не с конкретным полем, а с общей логикой формы)
+    // и возвращает список элементов разметки для соответствующего набора сообщений, если они есть
+    showErrors = (name) => {
+        console.log(this.state.errors, 'error_info');
+        if(this.state.errors && this.state.errors[name]) {
+            return this.state.errors[name].map((error, index) => <p className="text-danger" key={index}>{error[name]}</p>);
+        }
+        return null;
+    };
+
     movieDeleted = (movieId) => {
-        axios.delete(MOVIES_URL + movieId + '/').then(response => {
+        axios.delete(MOVIES_URL + movieId + '/', {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'Token ' + localStorage.getItem('auth-token')
+            }
+        })
+        .then(response => {
             console.log(response.data);
             this.setState(prevState => {
                 let newState = {...prevState};
@@ -30,16 +54,21 @@ class MovieList extends Component {
                 newState.movies = movies;
                 return newState;
             })
-        }).catch(error => {
-            console.log(error);
-            console.log(error.response);
+        })
+        .catch(error => {
+            console.log(error, 'error');
+            console.log(error.response, 'error.response');
+            this.setState({
+                ...this.state,
+                errors: error.response.data
+            })
         })
     };
-
 
     render() {
         return <Fragment>
             <p className='mt-3'><NavLink to='/movies/add'>Добавить фильм</NavLink></p>
+            {this.showErrors('non_field_errors')}
             <div className='row'>
                 {this.state.movies.map(movie => {
                     return <div className='col-xs-12 col-sm-6 col-lg-4' key={movie.id}>

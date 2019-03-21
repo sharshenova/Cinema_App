@@ -3,6 +3,7 @@ const MOVIES_URL = '/movies/';
 const CATEGORIES_URL = '/categories/';
 const HALLS_URL = '/halls/';
 const SHOWS_URL = '/shows/';
+const LOGIN_URL = '/login/';
 
 
-export {MOVIES_URL, HALLS_URL, CATEGORIES_URL, SHOWS_URL, BASE_URL}
+export {MOVIES_URL, HALLS_URL, CATEGORIES_URL, SHOWS_URL, BASE_URL, LOGIN_URL}

@@ -6,8 +6,6 @@ import MovieCategories from "../../components/MovieCategories/MovieCategories";
 import axios from 'axios';
 import Shows from "../../components/Shows/Shows";
 
-
-
 // компонент, который выводит одну карточку с фильмом
 // фильм также загружается при выводе компонента на экран (mount),
 // а не при обновлении (didUpdate), т.к. компонент выводится на отдельной странице,
@@ -15,7 +13,8 @@ import Shows from "../../components/Shows/Shows";
 class MovieDetail extends Component {
     state = {
         movie: null,
-        shows: []
+        shows: [],
+        alert: null
     };
 
     componentDidMount() {
@@ -37,7 +36,6 @@ class MovieDetail extends Component {
         next_date = next_date.toISOString().slice(0, 10);
         console.log(next_date, 'next_date');
 
-
         axios.all([
             axios.get(MOVIES_URL + match_params_id + '/'),
             axios.get(SHOWS_URL + '?movie_id=' + match_params_id + '&min_start_date=' + current_date + '&max_start_date=' + next_date)
@@ -52,7 +50,15 @@ class MovieDetail extends Component {
     }
 
     movieDeleted = () => {
-        axios.delete(MOVIES_URL + this.props.match.params.id)
+        if (!localStorage.getItem('auth-token')) {
+            this.props.history.push("/login");
+        }
+        axios.delete(MOVIES_URL + this.props.match.params.id, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'Token ' + localStorage.getItem('auth-token')
+            }
+        })
             .then(response => {
                 console.log(response.data);
                 this.setState(prevState => {
@@ -63,8 +69,9 @@ class MovieDetail extends Component {
                 this.props.history.replace('/movies/');
             })
             .catch(error => {
-                console.log(error);
-                console.log(error.response);
+            console.log(error);
+            let alert = {type: 'danger', message: `Delete error!`};
+            this.setState({alert: alert});
             })
     };
 
@@ -76,43 +83,53 @@ class MovieDetail extends Component {
         // достаём данные из movie
         const {name, poster, description, release_date, finish_date, categories, id} = this.state.movie;
 
-        return <div className='movie-detail-form row'>
-            <div className='col col-xs-12 col-sm-12 col-md-6'>
-                {/* постер, если есть */}
-                {poster ? <div className='text-center mt-3'>
-                    <img className="img-fluid img-thumbnail rounded" src={poster} alt='movie_poster'/>
-                </div> : null}
-            </div>
+        let alert = null;
+        if (this.state.alert) {
+            alert = <div className={"alert alert-" + this.state.alert.type}>{this.state.alert.message}</div>
+        }
 
-            <div className='col col-xs-12 col-sm-12 col-md-6'>
-                {/* название фильма */}
-                <h1 className='mt-3'>{name}</h1>
-
-                {/* категории, если указаны */}
-                {categories.length > 0 ? <MovieCategories categories={categories}/> : null}
-
-                {/* даты проката c: по: (если указано)*/}
-                <p className="text-secondary">В прокате c: {release_date} до: {finish_date ? finish_date : "Неизвестно"}</p>
-
-                {/* описание */}
-                {description ? <p>{description}</p> : null}
-
-                <div className='mb-3'>
-                    {/* редактировать фильм */}
-                    <NavLink to={'/movies/' + id + '/edit'} className="btn btn-primary mr-2">Edit</NavLink>
-
-                    <button type="button" className="btn btn-danger mr-2" onClick={() => this.movieDeleted()}>Delete</button>
-
-                    {/* назад */}
-                    <NavLink to='' className="btn btn-primary">Movies</NavLink>
+        return <div>
+            {alert}
+            <div className='movie-detail-form row'>
+                <div className='col col-xs-12 col-sm-12 col-md-6'>
+                    {/* постер, если есть */}
+                    {poster ? <div className='row'>
+                    <div className="col col-xs-10 col-sm-8 col-md-6 col-lg-4 mx-auto">
+                        <img className="img-fluid rounded" src={poster} alt={"постер"}/>
+                    </div>
+                    </div> : null}
                 </div>
-            </div>
+                <div className='col col-xs-12 col-sm-12 col-md-6'>
+                    {/* название фильма */}
+                    <h1 className='mt-3'>{name}</h1>
 
-            <div>
-                <Shows shows={this.state.shows}/>
+                    {/* категории, если указаны */}
+                    {categories.length > 0 ? <MovieCategories categories={categories}/> : null}
+
+                    {/* даты проката c: по: (если указано)*/}
+                    <p className="text-secondary">В прокате c: {release_date} до: {finish_date ? finish_date : "Неизвестно"}</p>
+
+                    {/* описание */}
+                    {description ? <p>{description}</p> : null}
+
+                    <div className='mb-3'>
+                        {/* редактировать фильм */}
+                        <NavLink to={'/movies/' + id + '/edit'} className="btn btn-primary mr-2">Edit</NavLink>
+
+                        <button type="button" className="btn btn-danger mr-2" onClick={() => this.movieDeleted()}>Delete</button>
+
+                        {/* назад */}
+                        <NavLink to='' className="btn btn-primary">Movies</NavLink>
+                    </div>
+                </div>
+
+                <div>
+                    {this.state.shows && this.state.shows.length > 0 ? <Shows shows={this.state.shows}/>: null}
+                </div>
+
             </div>
-        </div>;
+        </div>
     }
 }
 
-export default MovieDetail;
+export default MovieDetail

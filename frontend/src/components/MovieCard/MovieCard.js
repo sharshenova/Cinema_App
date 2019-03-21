@@ -13,7 +13,7 @@ const MovieCard = props => {
     // создаём объект с данными (текстом и url) для ссылки
     const link = {
         text: 'Read more',
-        url: '/movies/' + id
+        url: '/movies/' + id,
     };
 
     const del = {

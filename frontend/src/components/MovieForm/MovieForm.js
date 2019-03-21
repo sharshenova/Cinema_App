@@ -75,6 +75,16 @@ class MovieForm extends Component {
         console.log(this.state, 'did mount')
     }
 
+    // принимает имя поля (или 'non_field_errors' -  если ошибка связана не с конкретным полем, а с общей логикой формы)
+    // и возвращает список элементов разметки для соответствующего набора сообщений, если они есть
+    showErrors = (name) => {
+        console.log(this.props.errors, 'error_info');
+        if(this.props.errors && this.props.errors[name]) {
+            return this.props.errors[name].map((error, index) => <p className="text-danger" key={index}>{error}</p>);
+        }
+        return null;
+    };
+
     // блокировка отправки формы на время выполнения запроса
     disableSubmit = () => {
         this.setState(prevState => {
@@ -134,7 +144,11 @@ class MovieForm extends Component {
 
     // обработчик изменения дат
     dateChanged = (field, date) => {
-        this.updateMovieState(field, date.toISOString().slice(0, 10));
+        if (date) {
+            this.updateMovieState(field, date.toISOString().slice(0, 10));
+        } else {
+            console.log('error')
+        }
     };
 
     // обработчик изменения select
@@ -169,7 +183,7 @@ class MovieForm extends Component {
     };
 
     render() {
-        console.log(this.state, 'render')
+        console.log(this.state, 'render');
         if (this.state.movie) {
             // распаковка данных фильма, чтобы было удобнее к ним обращаться
             const {name, description, release_date, finish_date} = this.state.movie;
@@ -190,15 +204,18 @@ class MovieForm extends Component {
 
             return <div>
                 <form className='mt-4' onSubmit={this.submitForm}>
+                    {this.showErrors('non_field_errors')}
                     <div className="form-group">
                         <label className="font-weight-bold">Название</label>
                         <input type="text" className="form-control" name="name" value={name}
                                onChange={this.inputChanged}/>
+                        {this.showErrors('name')}
                     </div>
                     <div className="form-group">
                         <label>Описание</label>
                         <input type="text" className="form-control" name="description" value={description}
                                onChange={this.inputChanged}/>
+                        {this.showErrors('description')}
                     </div>
                     <div className="form-group">
                         <label className="font-weight-bold">Дата выхода</label>
@@ -208,6 +225,7 @@ class MovieForm extends Component {
                                         name="release_date"
                                         onChange={(date) => this.dateChanged('release_date', date)}/>
                         </div>
+                        {this.showErrors('release_date')}
                     </div>
                     <div className="form-group">
                         <label>Дата завершения проката</label>
@@ -215,6 +233,7 @@ class MovieForm extends Component {
                             <DatePicker dateFormat="yyyy-MM-dd" selected={finishDateSelected} className="form-control"
                                         name="finish_date" onChange={(date) => this.dateChanged('finish_date', date)}/>
                         </div>
+                        {this.showErrors('finish_date')}
                     </div>
                     <div className="form-group">
                         <label>Постер</label>
@@ -222,11 +241,13 @@ class MovieForm extends Component {
                             <input type="file" name="poster" value={posterFileName} onChange={this.fileChanged}/>
                             {this.state.posterUrl ? <a href={this.state.posterUrl}>Текущий файл</a> : null}
                         </div>
+                        {this.showErrors('poster')}
                     </div>
                     <div className="form-group">
                         <label>Категории</label>
                         <Select options={selectOptions} isMulti={true} name='categories' value={selectValue}
                                 onChange={(values) => this.selectChanged('categories', values)}/>
+                        {this.showErrors('categories')}
                     </div>
                     <button disabled={!submitEnabled} type="submit"
                             className="btn btn-primary">Сохранить
