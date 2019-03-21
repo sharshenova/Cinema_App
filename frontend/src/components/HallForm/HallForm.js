@@ -75,6 +75,16 @@ class HallForm extends Component {
         }
     };
 
+    // принимает имя поля (или 'non_field_errors' -  если ошибка связана не с конкретным полем, а с общей логикой формы)
+    // и возвращает список элементов разметки для соответствующего набора сообщений, если они есть
+    showErrors = (name) => {
+        console.log(this.props.errors, 'error_info');
+        if(this.props.errors && this.props.errors[name]) {
+            return this.props.errors[name].map((error, index) => <p className="text-danger" key={index}>{error}</p>);
+        }
+        return null;
+    };
+
     render() {
         if (this.state.hall) {
             // распаковка данных фильма, чтобы было удобнее к ним обращаться
@@ -85,15 +95,18 @@ class HallForm extends Component {
 
             return <div>
                 <form className='mt-4' onSubmit={this.submitForm}>
+                    {this.showErrors('non_field_errors')}
                     <div className="form-group">
                         <label className="font-weight-bold">Название</label>
                         <input type="text" className="form-control" name="name" value={name}
                                onChange={this.inputChanged}/>
+                        {this.showErrors('name')}
                     </div>
                     <div className="form-group">
                         <label>Описание</label>
                         <input type="text" className="form-control" name="description" value={description}
                                onChange={this.inputChanged}/>
+                        {this.showErrors('description')}
                     </div>
                     <button disabled={!submitEnabled} type="submit"
                             className="btn btn-primary">Сохранить

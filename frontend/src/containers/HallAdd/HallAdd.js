@@ -7,17 +7,9 @@ import HallForm from "../../components/HallForm/HallForm";
 class HallAdd extends Component {
     state = {
         // сообщение об ошибке
-        alert: null,
+        errors: {}
     };
 
-    // вывод сообщения об ошибке
-    showErrorAlert = (error) => {
-        this.setState(prevState => {
-            let newState = {...prevState};
-            newState.alert = {type: 'danger', message: `Hall was not added!`};
-            return newState;
-        });
-    };
 
     // сборка данных для запроса
     gatherFormData = (hall) => {
@@ -44,7 +36,10 @@ class HallAdd extends Component {
 
         // отправка запроса
         return axios.post(HALLS_URL, formData, {
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Token ' + localStorage.getItem('auth-token')
+            }
         })
             .then(response => {
                 // при успешном создании response.data содержит данные зала
@@ -55,20 +50,18 @@ class HallAdd extends Component {
                 this.props.history.replace('/halls/' + hall.id);
             })
             .catch(error => {
-                console.log(error);
-                // error.response - ответ с сервера
-                // при ошибке 400 в ответе с сервера содержатся ошибки валидации
-                // пока что выводим их в консоль
-                console.log(error.response);
-                this.showErrorAlert(error.response);
+                console.log(error, 'error');
+                console.log(error.response, 'error.response');
+                this.setState({
+                    ...this.state,
+                    errors: error.response.data
+                });
             });
     };
 
     render() {
-        const alert = this.state.alert;
         return <Fragment>
-            {alert ? <div className={"mb-2 alert alert-" + alert.type}>{alert.message}</div> : null}
-            <HallForm onSubmit={this.formSubmitted}/>
+            <HallForm errors={this.state.errors} onSubmit={this.formSubmitted}/>
         </Fragment>
     }
 }

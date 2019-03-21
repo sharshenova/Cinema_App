@@ -10,7 +10,8 @@ class HallEdit extends Component {
         hall: null,
 
         // сообщение об ошибке
-        alert: null,
+        errors: {}
+
     };
 
     componentDidMount() {
@@ -66,7 +67,10 @@ class HallEdit extends Component {
 
         // отправка запроса
         return axios.put(HALLS_URL + this.props.match.params.id + '/', formData, {
-            headers: {'Content-Type': 'multipart/form-data'}
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Authorization': 'Token ' + localStorage.getItem('auth-token')
+            }
         })
             .then(response => {
                 // при успешном создании response.data содержит данные фильма
@@ -77,20 +81,19 @@ class HallEdit extends Component {
                 this.props.history.replace('/halls/' + hall.id);
             })
             .catch(error => {
-                console.log(error);
-                // error.response - ответ с сервера
-                // при ошибке 400 в ответе с сервера содержатся ошибки валидации
-                // пока что выводим их в консоль
-                console.log(error.response);
-                this.showErrorAlert(error.response);
+                console.log(error, 'error');
+                console.log(error.response, 'error.response');
+                this.setState({
+                    ...this.state,
+                    errors: error.response.data
+                });
             });
     };
 
     render() {
-        const {alert, hall} = this.state;
+        const {errors, hall} = this.state;
         return <Fragment>
-            {alert ? <div className={"mb-2 alert alert-" + alert.type}>{alert.message}</div> : null}
-            {hall ? <HallForm onSubmit={this.formSubmitted} hall={hall}/> : null}
+            {hall ? <HallForm errors={errors}  onSubmit={this.formSubmitted} hall={hall}/> : null}
         </Fragment>
     }
 }

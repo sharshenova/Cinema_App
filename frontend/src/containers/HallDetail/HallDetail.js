@@ -11,7 +11,8 @@ import Shows from "../../components/Shows/Shows";
 class HallDetail extends Component {
     state = {
         hall: null,
-        shows: []
+        shows: [],
+        alert: null
     };
 
     componentDidMount() {
@@ -50,7 +51,18 @@ class HallDetail extends Component {
     }
 
     hallDeleted = () => {
-        axios.delete(HALLS_URL + this.props.match.params.id)
+        if (!localStorage.getItem('auth-token')) {
+            this.props.history.push("/login");
+        }
+        if (!localStorage.getItem('auth-token')) {
+            this.props.history.push("/login");
+        }
+        axios.delete(HALLS_URL + this.props.match.params.id, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': 'Token ' + localStorage.getItem('auth-token')
+            }
+        })
             .then(response => {
                 console.log(response.data);
                 this.setState(prevState => {
@@ -61,8 +73,9 @@ class HallDetail extends Component {
                 this.props.history.replace('/halls/');
             })
             .catch(error => {
-                console.log(error);
-                console.log(error.response);
+            console.log(error);
+            let alert = {type: 'danger', message: `Delete error!`};
+            this.setState({alert: alert});
             })
     };
 
@@ -74,7 +87,13 @@ class HallDetail extends Component {
         // достаём данные из hall
         const {name, description, id} = this.state.hall;
 
+        let alert = null;
+        if (this.state.alert) {
+            alert = <div className={"alert alert-" + this.state.alert.type}>{this.state.alert.message}</div>
+        }
+
         return <div>
+            {alert}
             {/* название зала */}
             <h1 className='mt-3'>{name}</h1>
 

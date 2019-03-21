@@ -71,7 +71,6 @@ class MovieAdd extends Component {
 
     render() {
         return <Fragment>
-            {/*{alert ? <div className={"mb-2 alert alert-" + alert.type}>{alert.message}</div> : null}*/}
             <MovieForm errors={this.state.errors} onSubmit={this.formSubmitted}/>
         </Fragment>
     }

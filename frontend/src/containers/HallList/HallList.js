@@ -9,6 +9,7 @@ import axios from 'axios';
 class HallList extends Component {
     state = {
         halls: [],
+
     };
 
     componentDidMount() {
@@ -19,7 +20,16 @@ class HallList extends Component {
     }
 
     hallDeleted = (hallId) => {
-        axios.delete(HALLS_URL + hallId + '/').then(response => {
+        if (!localStorage.getItem('auth-token')) {
+            console.log(this.props.history);
+            this.props.history.push("/login");
+        }
+        axios.delete(HALLS_URL + hallId + '/', {
+            headers: {
+                'Authorization': 'Token ' + localStorage.getItem('auth-token')
+            }
+        })
+            .then(response => {
             console.log(response.data);
             this.setState(prevState => {
                 let newState = {...prevState};
