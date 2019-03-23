@@ -1,8 +1,28 @@
 from webapp.models import Movie, Category, Hall, Seat, Show, Book, Discount, Ticket
 from rest_framework import serializers
+# импортируем стандартную модель USER
+# (в django.contrib.auth находятся модели пользователя, группы и разрешения относящиеся к ним)
+from django.contrib.auth.models import User
 
 
+class UserSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
 
+    # validated_data - содержит все данные, пришедшие при запросе (уже проверенные на правильность заполнения)
+    def create(self, validated_data):
+        # выкидываем из validated_data поле пароля и присваиваем его содержимое в переменную password
+        password = validated_data.pop('password')
+        # распаковываем validated_data и передаем все поля, кроме пароля, в user
+        # для распаковки используется ** для словарей, * - для списков
+        user = User.objects.create(**validated_data)
+        # записываем пароль отдельно, чтобы он хранился в зашифрованном виде (hash), используя спец. метод set_password
+        user.set_password(password)
+        user.save()
+        return user
+
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'password', 'email']
 
 
 # Сериализатор для модели категорий, предназначенный для включения в сериализатор фильмов
