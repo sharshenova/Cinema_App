@@ -9,7 +9,8 @@ from api_v1.serializers import MovieCreateSerializer, MovieDisplaySerializer, \
     CategorySerializer, HallSerializer, SeatCreateSerializer, SeatDisplaySerializer,\
     ShowCreateSerializer, ShowDisplaySerializer, BookCreateSerializer, BookDisplaySerializer,\
     DiscountSerializer, TicketCreateSerializer, TicketDisplaySerializer, UserSerializer
-# AllowAny позволяет разрешить доступ в view всем пользователям
+# AllowAny позволяет разрешить доступ в view всем пользователям,
+# IsAuthenticated - аутентифицированным, IsAdminUser - админам
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
 from django.contrib.auth.models import User
 # стандартная view для метода Create
@@ -25,6 +26,8 @@ class UserCreateView(CreateAPIView):
     permission_classes = [AllowAny]
 
 
+# создаем представление для логина, наследуя его от стандартного класса ObtainAuthToken
+# в нем будет возвращаться токен и данные о пользователе
 class LoginView(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data,
@@ -60,13 +63,15 @@ class BaseViewSet(viewsets.ModelViewSet):
         # добавляем его объект IsAuthenticated() к разрешениям только
         # для "опасных" методов - добавление, редактирование, удаление данных
         if self.request.method in ["POST", "DELETE", "PUT", "PATCH"]:
-            permissions.append(IsAuthenticated())
+            permissions.append(IsAuthenticated(), IsAdminUser())
         return permissions
 
-# если мы хотим, чтобы аутентификация требовалась для всех действий с ресурсами нашего API, включая просмотр
-# здесь добавляется сам класс - IsAuthenticated, а не объект класса ( IsAuthenticated() )
+# если мы хотим, чтобы аутентификация требовалась для всех действий с ресурсами нашего API, включая просмотр,
+# то вместо предыдущего варианта пишем:
 # class BaseViewSet(viewsets.ModelViewSet):
 #     permission_classes = (IsAuthenticated, )
+# здесь добавляется сам класс - IsAuthenticated, а не объект класса ( IsAuthenticated() )
+
 
 
 class MovieViewSet(BaseViewSet):

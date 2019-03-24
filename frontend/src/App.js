@@ -14,6 +14,7 @@ import Layout from "./components/Layout/Layout";
 import Login from "./containers/Login/Login";
 import Logout from "./containers/Logout/Logout";
 import AuthRoute from "./components/AuthRoute/AuthRoute";
+import Register from "./containers/Register/Register";
 
 class App extends Component {
     render() {
@@ -24,6 +25,7 @@ class App extends Component {
                         <Switch>
                             <Route path="/login" component={Login}/>
                             <Route path="/logout" component={Logout}/>
+                            <Route path="/register" component={Register}/>
                             <AuthRoute path="/halls/add" component={HallAdd}/>
                             <AuthRoute path="/halls/:id/edit" component={HallEdit}/>
                             <Route path="/halls/:id" component={HallDetail}/>
