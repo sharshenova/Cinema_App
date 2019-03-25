@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {USER_URL} from "../../api-urls";
+import {USERS_URL} from "../../api-urls";
 import {NavLink} from "react-router-dom";
 import axios from 'axios';
 // import Shows from "../../components/Shows/Shows";
@@ -24,7 +24,7 @@ class UserDetail extends Component {
 
         const id = localStorage.getItem('id');
 
-        axios.get(USER_URL + id)
+        axios.get(USERS_URL + id)
             .then(response => {
                 console.log(response.data);
                 return response.data;
@@ -51,17 +51,16 @@ class UserDetail extends Component {
         return <div>
             {/*{alert}*/}
 
-            <h1 className='mt-3'>{username}</h1>
+            <h2 className='mt-3'>{username}</h2>
 
-            {email ? <p>{email}</p> : null}
+            {email ? <p>Email: {email}</p> : null}
 
-            {first_name ? <p>{first_name}</p> : null}
+            {first_name ? <p>Имя: {first_name}</p> : null}
 
-            {last_name ? <p>{last_name}</p> : null}
+            {last_name ? <p>Фамилия: {last_name}</p> : null}
 
             <div className='mb-3'>
-                {/* редактировать */}
-                {/*<NavLink to={'/users/' + id + '/edit'} className="btn btn-primary mr-2">Edit</NavLink>*/}
+                <NavLink to={'/users/' + id + '/edit'} className="btn btn-primary mr-2">Edit</NavLink>
 
                 <NavLink to='/' className="btn btn-primary">На главную</NavLink>
             </div>
