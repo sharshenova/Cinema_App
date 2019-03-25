@@ -21,6 +21,7 @@ class Register extends Component {
             console.log(response);
             // сохраняем полученные в ответе данные в localStorage
             localStorage.setItem('auth-token', response.data.token);
+            localStorage.setItem('id', response.data.id);
             localStorage.setItem('username', response.data.username);
             localStorage.setItem('is_admin', response.data.is_admin);
             localStorage.setItem('is_staff', response.data.is_staff);

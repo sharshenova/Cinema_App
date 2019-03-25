@@ -26,6 +26,14 @@ class UserCreateView(CreateAPIView):
     permission_classes = [AllowAny]
 
 
+class UserDetailView(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+
+    model = User
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
+
+
 # создаем представление для логина, наследуя его от стандартного класса ObtainAuthToken
 # в нем будет возвращаться токен и данные о пользователе
 class LoginView(ObtainAuthToken):
@@ -37,6 +45,7 @@ class LoginView(ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         return Response({
             'token': token.key,
+            'id': user.pk,
             'username': user.username,
             'is_admin': user.is_superuser,
             'is_staff': user.is_staff

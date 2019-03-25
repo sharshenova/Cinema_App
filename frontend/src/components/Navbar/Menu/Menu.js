@@ -14,6 +14,7 @@ class Menu extends Component {
 
     render() {
         const username = localStorage.getItem('username');
+        const userId = localStorage.getItem('id');
         const isAdmin = localStorage.getItem('is_admin');
         return <Fragment>
             <button onClick={this.toggle}
@@ -36,7 +37,7 @@ class Menu extends Component {
 
                 <ul className="navbar-nav ml-auto">
                     {username ? [
-                        <li className="nav-item" key="username"><span className="navbar-text">Привет, {username}!</span></li>,
+                        <MenuItem to={"/users/" + userId} key="username">{username}</MenuItem>,
                         <MenuItem to="/logout" key="logout">Выйти</MenuItem>
                     ] : [
                         <MenuItem to="/login" key="login">Войти</MenuItem>,
