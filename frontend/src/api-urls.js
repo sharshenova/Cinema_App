@@ -5,7 +5,7 @@ const HALLS_URL = '/halls/';
 const SHOWS_URL = '/shows/';
 const LOGIN_URL = '/login/';
 const REGISTER_URL = '/register/';
-const USERS_URL = '/users/'
+const USERS_URL = '/users/';
 
 
 

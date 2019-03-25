@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import axios from "axios";
+import {REGISTER_URL} from "../../api-urls";
 
 
 class UserForm extends Component {
@@ -78,20 +80,20 @@ class UserForm extends Component {
     };
 
 
+
     // отправка формы
     // внутри вызывает onSubmit - переданное действие - со своим фильмом в качестве аргумента.
     submitForm = (event) => {
         if(this.state.submitEnabled) {
             event.preventDefault();
-            // блокировка ???
-            this.disableSubmit();
 
             if (this.passwordsMatch()) {
-            // распаковываем данные всех полей, кроме подтверждения пароля
-            // const {passwordConfirm, ...restData} = this.state.user;
-            // const {password} = this.state.user;
-                this.props.onSubmit(this.state.user);
-                this.enableSubmit();
+                // распаковываем данные всех полей, кроме подтверждения пароля
+                // const {passwordConfirm, ...restData} = this.state.user;
+                // const {password} = this.state.user;
+                this.disableSubmit();
+                this.props.onSubmit(this.state.user)
+                    .then(this.enableSubmit)
             }
         }
     };
@@ -116,17 +118,31 @@ class UserForm extends Component {
         console.log(this.state.errors)
     };
 
-
+    // если пользователь ввел новый пароль, предупреждаем о необходимости его подтверждения
+    passwordChanged = (event) => {
+        this.inputChanged(event);
+        let passwordConfirm = this.state.user.passwordConfirm;
+        console.log(passwordConfirm, 'passwordConfirm');
+        const errors = (passwordConfirm === undefined) ? ['Введите подтверждение пароля'] : [];
+        // записываем ошибки в стейт
+        this.setState({
+            errors: {
+                ...this.state.errors,
+                passwordConfirm: errors
+            }
+        });
+    };
 
     // принимает имя поля (или 'non_field_errors' -  если ошибка связана не с конкретным полем, а с общей логикой формы)
     // и возвращает список элементов разметки для соответствующего набора сообщений, если они есть
     showErrors = (name) => {
-        console.log(this.props.errors, 'error_info');
+        console.log(this.state.errors, 'error_info');
         if(this.state.errors && this.state.errors[name]) {
             return this.state.errors[name].map((error, index) => <p className="text-danger" key={index}>{error}</p>);
         }
         return null;
     };
+
 
     render() {
         if (this.state.user) {
@@ -161,7 +177,7 @@ class UserForm extends Component {
                     <div className="form-group">
                         <label>Новый пароль</label>
                         <input type="text" className="form-control" name="password" value={password}
-                               onChange={this.inputChanged}/>
+                               onChange={this.passwordChanged}/>
                         {this.showErrors('password')}
                     </div>
                     <div className="form-group">

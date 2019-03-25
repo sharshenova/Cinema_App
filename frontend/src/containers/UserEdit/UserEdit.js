@@ -10,7 +10,8 @@ class UserEdit extends Component {
         user: null,
 
         // сообщение об ошибке
-        errors: {}
+        errors: {},
+        alert: null
 
     };
 
@@ -97,10 +98,12 @@ class UserEdit extends Component {
     };
 
     render() {
-        const {errors, user} = this.state;
+        const {errors, user, alert} = this.state;
         return <Fragment>
-            {user ? <UserForm errors={errors}  onSubmit={this.formSubmitted} user={user}/> : null}
+            {user ? <UserForm errors={errors} onSubmit={this.formSubmitted} user={user}/> : null}
+            {alert}
         </Fragment>
+
     }
 }
 
