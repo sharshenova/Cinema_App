@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
-import axios from "axios";
-import {REGISTER_URL} from "../../api-urls";
+
 
 
 
@@ -64,12 +63,14 @@ class UserForm extends Component {
         });
     };
 
+
     // обработчик ввода в поля ввода
     inputChanged = (event) => {
         const value = event.target.value;
         const fieldName = event.target.name;
         this.updateUserState(fieldName, value);
     };
+
 
     // Совпадение паролей требуется проверять и перед отправкой запроса,
     // иначе даже при наличии ошибки "Пароли не совпадают", форма все равно может быть отправлена
@@ -102,7 +103,9 @@ class UserForm extends Component {
     passwordConfirmChange = (event) => {
         this.inputChanged(event);
         const password = this.state.user.password;
+        console.log(password, 'password');
         const passwordConfirm = event.target.value;
+        console.log(passwordConfirm, 'passwordConfirm');
         // если введенные пароли совпадают, то ничего не записываем в ошибки, если нет, то пишем 'Пароли не совпадают'
         const errors = (password === passwordConfirm) ? [] : ['Пароли не совпадают'];
         // записываем ошибки в стейт
@@ -112,8 +115,8 @@ class UserForm extends Component {
                 passwordConfirm: errors
             }
         });
+        console.log(this.state.errors)
     };
-
 
 
 
@@ -121,8 +124,8 @@ class UserForm extends Component {
     // и возвращает список элементов разметки для соответствующего набора сообщений, если они есть
     showErrors = (name) => {
         console.log(this.props.errors, 'error_info');
-        if(this.props.errors && this.props.errors[name]) {
-            return this.props.errors[name].map((error, index) => <p className="text-danger" key={index}>{error}</p>);
+        if(this.state.errors && this.state.errors[name]) {
+            return this.state.errors[name].map((error, index) => <p className="text-danger" key={index}>{error}</p>);
         }
         return null;
     };
@@ -133,6 +136,7 @@ class UserForm extends Component {
             const {username, email, first_name, last_name, password, passwordConfirm} = this.state.user;
             // распаковка переменных из state.
             const {submitEnabled} = this.state;
+            console.log('here')
 
 
             return <div>

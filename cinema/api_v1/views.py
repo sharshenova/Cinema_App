@@ -32,7 +32,6 @@ class UserDetailView(viewsets.ModelViewSet):
     model = User
     serializer_class = UserUpdateSerializer
     permission_classes = [IsAuthenticated]
-    # permission_classes = [AllowAny]
 
 
 
