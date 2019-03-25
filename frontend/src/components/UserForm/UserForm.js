@@ -91,10 +91,27 @@ class UserForm extends Component {
             // распаковываем данные всех полей, кроме подтверждения пароля
             // const {passwordConfirm, ...restData} = this.state.user;
             // const {password} = this.state.user;
-            this.props.onSubmit(this.state.user)
-
+                this.props.onSubmit(this.state.user);
+                this.enableSubmit();
             }
         }
+    };
+
+    // вызывается при изменении поля "Подтверждение пароля"
+    // берем новый введенный пароль и сравниваем с полем "Пароль"
+    passwordConfirmChange = (event) => {
+        this.inputChanged(event);
+        const password = this.state.user.password;
+        const passwordConfirm = event.target.value;
+        // если введенные пароли совпадают, то ничего не записываем в ошибки, если нет, то пишем 'Пароли не совпадают'
+        const errors = (password === passwordConfirm) ? [] : ['Пароли не совпадают'];
+        // записываем ошибки в стейт
+        this.setState({
+            errors: {
+                ...this.state.errors,
+                passwordConfirm: errors
+            }
+        });
     };
 
 
@@ -149,7 +166,8 @@ class UserForm extends Component {
                     <div className="form-group">
                         <label>Пароль</label>
                         <input type="text" className="form-control" name="passwordConfirm" value={passwordConfirm}
-                               onChange={this.inputChanged}/>
+                               // onChange={this.inputChanged}/>
+                                onChange={this.passwordConfirmChange}/>
                         {this.showErrors('passwordConfirm')}
                     </div>
                     <button disabled={!submitEnabled} type="submit"

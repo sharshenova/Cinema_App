@@ -17,7 +17,11 @@ class UserEdit extends Component {
     componentDidMount() {
         // match.params - переменные из пути к этому компоненту
         // match.params.id - значение переменной, обозначенной :id в свойстве path Route-а.
-        axios.get(USERS_URL + this.props.match.params.id)
+        axios.get(USERS_URL + this.props.match.params.id, {
+            headers: {
+                'Authorization': 'Token ' + localStorage.getItem('auth-token')
+            }
+        })
             .then(response => {
                 const user = response.data;
                 console.log(user);

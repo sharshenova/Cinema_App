@@ -24,7 +24,11 @@ class UserDetail extends Component {
 
         const id = localStorage.getItem('id');
 
-        axios.get(USERS_URL + id)
+        axios.get(USERS_URL + id, {
+            headers: {
+                'Authorization': 'Token ' + localStorage.getItem('auth-token')
+            }
+        })
             .then(response => {
                 console.log(response.data);
                 return response.data;

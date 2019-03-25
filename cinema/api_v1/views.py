@@ -31,8 +31,9 @@ class UserDetailView(viewsets.ModelViewSet):
 
     model = User
     serializer_class = UserUpdateSerializer
-    # permission_classes = [IsAuthenticated]
-    permission_classes = [AllowAny]
+    permission_classes = [IsAuthenticated]
+    # permission_classes = [AllowAny]
+
 
 
 # создаем представление для логина, наследуя его от стандартного класса ObtainAuthToken
