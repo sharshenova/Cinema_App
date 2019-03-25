@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import axios from "axios";
+import {REGISTER_URL} from "../../api-urls";
 
 
 
@@ -15,13 +17,15 @@ class UserForm extends Component {
             email: "",
             first_name: "",
             last_name: "",
-            password: ""
+            password: "",
+            passwordConfirm: "",
         };
 
         this.state = {
             submitEnabled: true,
             // изначально user пустой
             user: newUser,
+            errors: {}
         };
 
         // если user передан через props
@@ -67,16 +71,34 @@ class UserForm extends Component {
         this.updateUserState(fieldName, value);
     };
 
+    // Совпадение паролей требуется проверять и перед отправкой запроса,
+    // иначе даже при наличии ошибки "Пароли не совпадают", форма все равно может быть отправлена
+    passwordsMatch = () => {
+        const {password, passwordConfirm} = this.state.user;
+        return password === passwordConfirm
+    };
+
+
     // отправка формы
     // внутри вызывает onSubmit - переданное действие - со своим фильмом в качестве аргумента.
     submitForm = (event) => {
         if(this.state.submitEnabled) {
             event.preventDefault();
+            // блокировка ???
             this.disableSubmit();
+
+            if (this.passwordsMatch()) {
+            // распаковываем данные всех полей, кроме подтверждения пароля
+            // const {passwordConfirm, ...restData} = this.state.user;
+            // const {password} = this.state.user;
             this.props.onSubmit(this.state.user)
-                .then(this.enableSubmit);
+
+            }
         }
     };
+
+
+
 
     // принимает имя поля (или 'non_field_errors' -  если ошибка связана не с конкретным полем, а с общей логикой формы)
     // и возвращает список элементов разметки для соответствующего набора сообщений, если они есть
@@ -91,7 +113,7 @@ class UserForm extends Component {
     render() {
         if (this.state.user) {
             // распаковка данных фильма, чтобы было удобнее к ним обращаться
-            const {username, email, first_name, last_name, password} = this.state.user;
+            const {username, email, first_name, last_name, password, passwordConfirm} = this.state.user;
             // распаковка переменных из state.
             const {submitEnabled} = this.state;
 
@@ -123,6 +145,12 @@ class UserForm extends Component {
                         <input type="text" className="form-control" name="password" value={password}
                                onChange={this.inputChanged}/>
                         {this.showErrors('password')}
+                    </div>
+                    <div className="form-group">
+                        <label>Пароль</label>
+                        <input type="text" className="form-control" name="passwordConfirm" value={passwordConfirm}
+                               onChange={this.inputChanged}/>
+                        {this.showErrors('passwordConfirm')}
                     </div>
                     <button disabled={!submitEnabled} type="submit"
                             className="btn btn-primary">Сохранить

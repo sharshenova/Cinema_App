@@ -8,7 +8,7 @@ from django_filters import rest_framework as filters
 from api_v1.serializers import MovieCreateSerializer, MovieDisplaySerializer, \
     CategorySerializer, HallSerializer, SeatCreateSerializer, SeatDisplaySerializer,\
     ShowCreateSerializer, ShowDisplaySerializer, BookCreateSerializer, BookDisplaySerializer,\
-    DiscountSerializer, TicketCreateSerializer, TicketDisplaySerializer, UserSerializer
+    DiscountSerializer, TicketCreateSerializer, TicketDisplaySerializer, UserSerializer, UserUpdateSerializer
 # AllowAny позволяет разрешить доступ в view всем пользователям,
 # IsAuthenticated - аутентифицированным, IsAdminUser - админам
 from rest_framework.permissions import IsAuthenticated, AllowAny, IsAdminUser
@@ -30,7 +30,8 @@ class UserDetailView(viewsets.ModelViewSet):
     queryset = User.objects.all()
 
     model = User
-    serializer_class = UserSerializer
+    serializer_class = UserUpdateSerializer
+    # permission_classes = [IsAuthenticated]
     permission_classes = [AllowAny]
 
 
