@@ -137,7 +137,7 @@ class UserForm extends Component {
 
 
             return <div>
-                <h2>{username}</h2>
+                <h2 className='mt-3'>{username}</h2>
                 <form className='mt-4' onSubmit={this.submitForm}>
                     {this.showErrors('non_field_errors')}
                     <div className="form-group">
@@ -159,13 +159,13 @@ class UserForm extends Component {
                         {this.showErrors('last_name')}
                     </div>
                     <div className="form-group">
-                        <label>Пароль</label>
+                        <label>Новый пароль</label>
                         <input type="text" className="form-control" name="password" value={password}
                                onChange={this.inputChanged}/>
                         {this.showErrors('password')}
                     </div>
                     <div className="form-group">
-                        <label>Пароль</label>
+                        <label>Подтверждение пароля</label>
                         <input type="text" className="form-control" name="passwordConfirm" value={passwordConfirm}
                                 onChange={this.passwordConfirmChange}/>
                         {this.showErrors('passwordConfirm')}
