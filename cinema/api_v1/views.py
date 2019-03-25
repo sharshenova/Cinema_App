@@ -19,20 +19,20 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 
-
+# класс для создания нового пользователя
 class UserCreateView(CreateAPIView):
     model = User
     serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
-
+# класс для показа личного кабинета юзера (и редактирования информации о нем)
+# подключаем отдельный сериалайзер для редактирования информации (UserUpdateSerializer), без него пароль не меняется
 class UserDetailView(viewsets.ModelViewSet):
     queryset = User.objects.all()
 
     model = User
     serializer_class = UserUpdateSerializer
     permission_classes = [IsAuthenticated]
-
 
 
 # создаем представление для логина, наследуя его от стандартного класса ObtainAuthToken

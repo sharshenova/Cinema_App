@@ -14,7 +14,11 @@ class MovieEdit extends Component {
     componentDidMount() {
         // match.params - переменные из пути к этому компоненту
         // match.params.id - значение переменной, обозначенной :id в свойстве path Route-а.
-        axios.get(MOVIES_URL + this.props.match.params.id)
+        axios.get(MOVIES_URL + this.props.match.params.id, {
+            headers: {
+                'Authorization': 'Token ' + localStorage.getItem('auth-token')
+            }
+        })
             .then(response => {
                 const movie = response.data;
                 console.log(movie);

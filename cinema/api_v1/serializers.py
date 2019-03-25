@@ -35,6 +35,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
         instance.last_name = validated_data.get('last_name')
         instance.email = validated_data.get('email')
 
+        # если пароль заполнен, сохраняем его в зашифрованном виде
         password = validated_data.get('password')
         if password:
             instance.set_password(password)

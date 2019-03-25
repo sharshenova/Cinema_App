@@ -88,6 +88,7 @@ class UserEdit extends Component {
             .catch(error => {
                 console.log(error, 'error');
                 console.log(error.response, 'error.response');
+                this.showErrorAlert(error);
                 this.setState({
                     ...this.state,
                     errors: error.response.data

@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 
 
-
-
 class UserForm extends Component {
     // в props передаются начальные данные юзера
     // в дальнейшем они копируются в state и извне компонента UserForm больше не меняются
@@ -136,7 +134,6 @@ class UserForm extends Component {
             const {username, email, first_name, last_name, password, passwordConfirm} = this.state.user;
             // распаковка переменных из state.
             const {submitEnabled} = this.state;
-            console.log('here')
 
 
             return <div>
@@ -170,7 +167,6 @@ class UserForm extends Component {
                     <div className="form-group">
                         <label>Пароль</label>
                         <input type="text" className="form-control" name="passwordConfirm" value={passwordConfirm}
-                               // onChange={this.inputChanged}/>
                                 onChange={this.passwordConfirmChange}/>
                         {this.showErrors('passwordConfirm')}
                     </div>
