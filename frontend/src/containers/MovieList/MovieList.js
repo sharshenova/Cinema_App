@@ -75,7 +75,6 @@ class MovieList extends Component {
 
         return <Fragment>
             {alert}
-            <p className='mt-3'><NavLink to='/movies/add'>Добавить фильм</NavLink></p>
             <div className='row'>
                 {this.state.movies.map(movie => {
                     return <div className='col-xs-12 col-sm-6 col-lg-4' key={movie.id}>

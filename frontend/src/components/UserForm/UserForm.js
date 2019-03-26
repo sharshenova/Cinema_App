@@ -120,9 +120,11 @@ class UserForm extends Component {
 
     // если пользователь ввел новый пароль, предупреждаем о необходимости его подтверждения
     passwordChanged = (event) => {
+        // вызываем стандатное событие для обработки ввода инфо в поле
         this.inputChanged(event);
         let passwordConfirm = this.state.user.passwordConfirm;
         console.log(passwordConfirm, 'passwordConfirm');
+        // подсказка о необходимости подтвержения пароля
         const errors = (passwordConfirm === undefined) ? ['Введите подтверждение пароля'] : [];
         // записываем ошибки в стейт
         this.setState({
