@@ -151,3 +151,15 @@ REST_FRAMEWORK = {
 BOOKING_CODE_LENGTH = 6
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+# ДЛЯ РЕГИСТРАЦИИ ЧЕРЕЗ EMAIL:
+# вариант с логированием писем в файлы, подходит для разработки
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'mail-dev')
+
+# вариант с отправкой почты через smtp-сервер, что ближе к "боевым" условиям
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# файл содержит настройки EMAIL_HOST, EMAIL_HOST_USERNAME, EMAIL_HOST_PASSWORD, EMAIL_PORT
+# и может содержать другие настройки проекта, особые для вашего локального(!) окружения проекта.
+from .settings_local import *
