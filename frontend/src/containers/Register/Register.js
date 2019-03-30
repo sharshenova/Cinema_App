@@ -34,10 +34,6 @@ class Register extends Component {
                 // если запрос прошел удачно,
                 // теперь вместо автовхода следует перекинуть пользователя на страницу активации
                 this.props.history.replace('/register/activate');
-                // временное, простое (но не безопасное) решение для работы автовхода после регистрации:
-                // передача данных пользователя на другую страницу через localStorage
-                localStorage.setItem('username', this.state.user.username);
-                localStorage.setItem('password', this.state.user.password);
 
             // если при запросе произошла ошибка, записываем ее в массив ошибок в стейт
             }).catch(error => {

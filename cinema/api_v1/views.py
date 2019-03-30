@@ -72,38 +72,25 @@ class UserActivateView(GenericAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        try:
-            # собственно, активация
-            user = self.perform_user_activation(serializer)
-            # в случае успеха возвращаем данные пользователя
-            user_data = UserSerializer(user).data
-            return Response(user_data, status=status.HTTP_200_OK)
-        except RegistrationToken.DoesNotExist:
-            # в случае ошибки возвращаем сообщение об ошибке и статус 404
-            error_data = {"token": ["Token does not exist or already used"]}
-            return Response(error_data, status=status.HTTP_404_NOT_FOUND)
-        except RegistrationToken.Expired:
-            # в случае истечения токена возвращаем другое сообщение об ошибке и статус 400
-            error_data = {"token": ["Token expired"]}
-            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
+        # активация пользователя
+        user = self.perform_user_activation(serializer)
+        # создание токена аутентификации и ответа, как в LoginView.
+        auth_token, _ = Token.objects.get_or_create(user=user)
+        return Response({
+            'token': auth_token.key,
+            'username': user.username,
+            'is_admin': user.is_superuser,
+            'is_staff': user.is_staff
+        })
 
     # за активацию пользователя и удаление токена отвечает этот метод
     def perform_user_activation(self, serializer):
-        token_value = serializer.validated_data.get('token')
-        token = self.get_token(token_value)
+        token = serializer.validated_data.get('token')
         user = token.user
         user.is_active = True
         user.save()
         token.delete()
         return user
-
-
-    # за поиск токена и проверку его срока действия отвечает этот метод
-    def get_token(self, token_value):
-        token = RegistrationToken.objects.get(token=token_value)
-        if token.is_expired():
-            raise RegistrationToken.Expired
-        return token
 
 
 

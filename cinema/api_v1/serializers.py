@@ -3,6 +3,7 @@ from rest_framework import serializers
 # импортируем стандартную модель USER
 # (в django.contrib.auth находятся модели пользователя, группы и разрешения относящиеся к ним)
 from django.contrib.auth.models import User
+from rest_framework.exceptions import ValidationError
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -36,6 +37,21 @@ class UserSerializer(serializers.ModelSerializer):
 # не связываем его с моделью, а используем базовый Serializer с одним полем.
 class RegistrationTokenSerializer(serializers.Serializer):
     token = serializers.UUIDField(write_only=True)
+
+    # валидация поля token.
+    # теперь проверки на существование и срок действия токена
+    # выполняются здесь вместо представления UserActivateView.
+    # метод называется validate_token, потому что сериализаторы DRF для
+    # дополнительной валидации своих полей ищут методы с именами вида
+    # validate_field, где field - имя этого поля в сериализаторе.
+    def validate_token(self, token_value):
+        try:
+            token = RegistrationToken.objects.get(token=token_value)
+            if token.is_expired():
+                raise ValidationError("Token expired")
+            return token
+        except RegistrationToken.DoesNotExist:
+            raise ValidationError("Token does not exist or already used")
 
 
 ######### НУЖЕН ИЛИ НЕТ? ##############################
