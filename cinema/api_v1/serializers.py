@@ -1,4 +1,4 @@
-from webapp.models import Movie, Category, Hall, Seat, Show, Book, Discount, Ticket
+from webapp.models import Movie, Category, Hall, Seat, Show, Book, Discount, Ticket, RegistrationToken
 from rest_framework import serializers
 # импортируем стандартную модель USER
 # (в django.contrib.auth находятся модели пользователя, группы и разрешения относящиеся к ним)
@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+
+    # чтобы email был обязательным
+    email = serializers.EmailField(required=True)
 
     # validated_data - содержит все данные, пришедшие при запросе (уже проверенные на правильность заполнения)
     def create(self, validated_data):
@@ -17,6 +20,8 @@ class UserSerializer(serializers.ModelSerializer):
         user = User.objects.create(**validated_data)
         # записываем пароль отдельно, чтобы он хранился в зашифрованном виде (hash), используя спец. метод set_password
         user.set_password(password)
+        # чтобы новый пользователь был неактивным
+        user.is_active = False
         user.save()
         return user
 
@@ -25,6 +30,15 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'first_name', 'last_name', 'password', 'email']
 
 
+# сериализатор для формы отправки токена,
+# принимает токен и проверяет, что он - uuid.
+# т.к. не нужен для создания/обновления/получения списка и т.д.
+# не связываем его с моделью, а используем базовый Serializer с одним полем.
+class RegistrationTokenSerializer(serializers.Serializer):
+    token = serializers.UUIDField(write_only=True)
+
+
+######### НУЖЕН ИЛИ НЕТ? ##############################
 class UserUpdateSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=False)
 

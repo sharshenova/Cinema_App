@@ -26,6 +26,8 @@ urlpatterns = [
     path('login/', views.LoginView.as_view(), name='api_token_auth'),
     path('admin/', admin.site.urls),
     path('register/', views.UserCreateView.as_view(), name='register'),
+    # новая точка входа, куда можно прислать POST-запрос с токеном для активации нового пользователя
+    path('register/activate', views.UserActivateView.as_view(), name='register_activate')
 ]
 
 # если у нас нет LoginView.as_view(), то url для логина будет выглядеть так:

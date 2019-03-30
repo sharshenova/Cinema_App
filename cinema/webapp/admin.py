@@ -4,7 +4,8 @@ from webapp.models import Movie, Category, Hall, Seat, Show, Book, Discount, Tic
 
 # Register your models here.
 
-# прописываем, какие поля будут выводиться в модели (токен выводится только для чтения и не подлежит изменению)
+# прописываем, какие поля будут выводиться в модели
+# (токен выводится только для чтения и не подлежит изменению, даже из админки)
 class RegistrationTokenAdmin(admin.ModelAdmin):
     list_display = ['pk', 'user', 'created_at']
     readonly_fields = ['token']

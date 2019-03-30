@@ -5,6 +5,7 @@ import string
 from django.conf import settings
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.contrib.auth.models import User
+# для автоматической генерации токена
 import uuid
 
 
@@ -16,6 +17,7 @@ class RegistrationToken(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+# для реального проекта подставлять токен в строку - не безопасное решение
     def __str__(self):
         return "%s" % self.token
 

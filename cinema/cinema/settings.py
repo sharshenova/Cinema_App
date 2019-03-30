@@ -169,6 +169,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # from .settings_local import *
 
 
+EMAIL_DEFAULT_FROM = "admin@cinema.app"
+HOST_URL = "http://localhost:3000"
+
+
 # отправка тестового письма через консоль на mailtrap.io:
 # cd cinema
 # ./manage.py shell
