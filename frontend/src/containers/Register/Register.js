@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {LOGIN_URL, REGISTER_URL} from "../../api-urls";
+import {REGISTER_URL} from "../../api-urls";
 import axios from 'axios';
 
 
@@ -14,30 +14,6 @@ class Register extends Component {
         errors: {}
     };
 
-    // вызываем этот метод, если запрос на регистрацию пользователя прошел удачно
-    // отправляем в запросе данные пользователя (username и password) для того, чтобы залогинить его
-    performLogin = (username, password) => {
-        axios.post(LOGIN_URL, {username, password}).then(response => {
-            console.log(response);
-            // сохраняем полученные в ответе данные в localStorage
-            localStorage.setItem('auth-token', response.data.token);
-            localStorage.setItem('id', response.data.id);
-            localStorage.setItem('username', response.data.username);
-            localStorage.setItem('is_admin', response.data.is_admin);
-            localStorage.setItem('is_staff', response.data.is_staff);
-            // перекидываем зарегестрированного пользователя на главную страницу
-            this.props.history.replace('/');
-        }).catch(error => {
-            console.log(error);
-            console.log(error.response);
-            // в случае ошибки (не удалось получить данные пользователя), посетителя перекидывает на страницу входа
-            // а после введения верного логина-пароля он будет перенаправлен на главную (next: '/')
-            this.props.history.replace({
-                pathname: '/login/',
-                state: {next: '/'}
-            });
-        })
-    };
 
     // Совпадение паролей требуется проверять и перед отправкой запроса,
     // иначе даже при наличии ошибки "Пароли не совпадают", форма все равно может быть отправлена
@@ -53,11 +29,16 @@ class Register extends Component {
         if (this.passwordsMatch()) {
             // распаковываем данные всех полей, кроме подтверждения пароля
             const {passwordConfirm, ...restData} = this.state.user;
-            const {username, password} = this.state.user;
             return axios.post(REGISTER_URL, restData).then(response => {
                 console.log(response);
                 // если запрос прошел удачно,
-                this.performLogin(username, password);
+                // теперь вместо автовхода следует перекинуть пользователя на страницу активации
+                this.props.history.replace('/register/activate');
+                // временное, простое (но не безопасное) решение для работы автовхода после регистрации:
+                // передача данных пользователя на другую страницу через localStorage
+                localStorage.setItem('username', this.state.user.username);
+                localStorage.setItem('password', this.state.user.password);
+
             // если при запросе произошла ошибка, записываем ее в массив ошибок в стейт
             }).catch(error => {
                 console.log(error);
@@ -135,7 +116,7 @@ class Register extends Component {
                     {this.showErrors('passwordConfirm')}
                 </div>
                 <div className="form-row">
-                    <label>E-mail</label>
+                     <label className="font-weight-bold">E-mail</label>
                     <input type="email" className="form-control" name="email" value={email}
                            onChange={this.inputChanged}/>
                     {this.showErrors('email')}

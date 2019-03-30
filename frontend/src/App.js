@@ -17,6 +17,7 @@ import AuthRoute from "./components/AuthRoute/AuthRoute";
 import Register from "./containers/Register/Register";
 import UserDetail from "./containers/UserDetail/UserDetail";
 import UserEdit from "./containers/UserEdit/UserEdit";
+import RegisterActivate from "./containers/Register/RegisterActivate/RegisterActivate";
 
 class App extends Component {
     render() {
@@ -27,7 +28,8 @@ class App extends Component {
                         <Switch>
                             <Route path="/login" component={Login}/>
                             <Route path="/logout" component={Logout}/>
-                            <Route path="/register" component={Register}/>
+                            <Route path="/register" component={Register} exact/>
+                            <Route path="/register/activate" component={RegisterActivate}/>
                             <AuthRoute path="/users/:id/edit" component={UserEdit}/>
                             <AuthRoute path="/users/:id" component={UserDetail}/>
                             <AuthRoute path="/halls/add" component={HallAdd}/>
