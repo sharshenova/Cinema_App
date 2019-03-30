@@ -8,7 +8,6 @@ class RegisterActivate extends Component {
         error: null,
     };
 
-
     componentDidMount() {
         // Чтобы достать токен из строки запроса, нужно её распарсить в объект URLSearchParams.
         const urlParams = new URLSearchParams(this.props.location.search);

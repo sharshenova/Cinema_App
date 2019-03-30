@@ -8,12 +8,24 @@ from rest_framework.exceptions import ValidationError
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    password_confirm = serializers.CharField(write_only=True)
 
     # чтобы email был обязательным
     email = serializers.EmailField(required=True)
 
+    # общая валидация между разными полями может происходить в методе validate
+    # attrs - словарь со всеми данными для модели, уже проверенными по отдельности.
+    # ошибки из этого метода попадают в non_field_errors.
+    def validate(self, attrs):
+        if attrs.get('password') != attrs.get('password_confirm'):
+            raise ValidationError("Passwords do not match")
+        return super().validate(attrs)
+
     # validated_data - содержит все данные, пришедшие при запросе (уже проверенные на правильность заполнения)
     def create(self, validated_data):
+        # удаляем подтверждение пароля из списка атрибутов
+        validated_data.pop('password_confirm')
+        # удаляем пароль из списка атрибутов и запоминаем его
         # выкидываем из validated_data поле пароля и присваиваем его содержимое в переменную password
         password = validated_data.pop('password')
         # распаковываем validated_data и передаем все поля, кроме пароля, в user
@@ -28,7 +40,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'password', 'email']
+        fields = ['id', 'username', 'first_name', 'last_name', 'password', 'password_confirm', 'email']
 
 
 # сериализатор для формы отправки токена,

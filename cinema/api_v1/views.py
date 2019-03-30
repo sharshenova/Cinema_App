@@ -133,7 +133,8 @@ class BaseViewSet(viewsets.ModelViewSet):
         # добавляем его объект IsAuthenticated() к разрешениям только
         # для "опасных" методов - добавление, редактирование, удаление данных
         if self.request.method in ["POST", "DELETE", "PUT", "PATCH"]:
-            permissions.append(IsAuthenticated(), IsAdminUser())
+            permissions.append(IsAuthenticated()),
+            permissions.append(IsAdminUser())
         return permissions
 
 # если мы хотим, чтобы аутентификация требовалась для всех действий с ресурсами нашего API, включая просмотр,
