@@ -57,7 +57,7 @@ class UserCreateView(CreateAPIView):
     # прописанный в settings.py или в settings_local.py) с токеном и вместе с
     # пояснительным текстом отправляем на email только что созданному пользователю.
     def send_registration_email(self, user, token):
-        url = '%s/registration/activate?token=%s' % (settings.HOST_URL, token)
+        url = '%s/register/activate/?token=%s' % (settings.HOST_URL, token)
         email_text = "Your account was successfully created.\nPlease, follow the link to activate:\n\n%s" % url
         user.email_user("Registration at Cinema-App", email_text, settings.EMAIL_DEFAULT_FROM)
 
@@ -80,11 +80,11 @@ class UserActivateView(GenericAPIView):
             return Response(user_data, status=status.HTTP_200_OK)
         except RegistrationToken.DoesNotExist:
             # в случае ошибки возвращаем сообщение об ошибке и статус 404
-            error_data = {"token": "Token does not exist or already used"}
+            error_data = {"token": ["Token does not exist or already used"]}
             return Response(error_data, status=status.HTTP_404_NOT_FOUND)
         except RegistrationToken.Expired:
             # в случае истечения токена возвращаем другое сообщение об ошибке и статус 400
-            error_data = {"token": "Token expired"}
+            error_data = {"token": ["Token expired"]}
             return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
     # за активацию пользователя и удаление токена отвечает этот метод
