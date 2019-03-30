@@ -82,17 +82,28 @@ class UserActivateView(GenericAPIView):
             # в случае ошибки возвращаем сообщение об ошибке и статус 404
             error_data = {"token": "Token does not exist or already used"}
             return Response(error_data, status=status.HTTP_404_NOT_FOUND)
+        except RegistrationToken.Expired:
+            # в случае истечения токена возвращаем другое сообщение об ошибке и статус 400
+            error_data = {"token": "Token expired"}
+            return Response(error_data, status=status.HTTP_400_BAD_REQUEST)
 
-    # за поиск токена, активацию пользователя и удаление токена
-    # отвечает этот метод
+    # за активацию пользователя и удаление токена отвечает этот метод
     def perform_user_activation(self, serializer):
         token_value = serializer.validated_data.get('token')
-        token = RegistrationToken.objects.get(token=token_value)
+        token = self.get_token(token_value)
         user = token.user
         user.is_active = True
         user.save()
         token.delete()
         return user
+
+
+    # за поиск токена и проверку его срока действия отвечает этот метод
+    def get_token(self, token_value):
+        token = RegistrationToken.objects.get(token=token_value)
+        if token.is_expired():
+            raise RegistrationToken.Expired
+        return token
 
 
 
