@@ -21,7 +21,7 @@ class Login extends Component {
             // чтобы он был доступен на других страницах, представленных другими компонентами.
             // Также токен можно хранить в cookie страницы
             localStorage.setItem('auth-token', response.data.token);
-            localStorage.setItem('id', response.data.id);
+            localStorage.setItem('user_id', response.data.id);
             localStorage.setItem('username', response.data.username);
             localStorage.setItem('is_admin', response.data.is_admin);
             localStorage.setItem('is_staff', response.data.is_staff);

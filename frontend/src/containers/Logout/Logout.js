@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 class Logout extends Component {
     componentDidMount() {
         localStorage.removeItem('auth-token');
-        localStorage.removeItem('id');
+        localStorage.removeItem('user_id');
         localStorage.removeItem('username');
         localStorage.removeItem('is_admin');
         localStorage.removeItem('is_staff');
