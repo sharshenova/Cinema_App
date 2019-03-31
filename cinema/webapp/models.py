@@ -18,9 +18,6 @@ class RegistrationToken(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
-    # класс ошибки обознчающей, что срок действия токена истёк
-    class Expired(Exception): pass
-
     # проверка, что токен истёк: находим разницу между двумя датами,
     # переводим её в часы и сравниваем с допустимым возрастом токена в часах,
     # указанным в настройках.
@@ -29,10 +26,10 @@ class RegistrationToken(models.Model):
         delta_hours = delta.total_seconds() / 3600
         return delta_hours > settings.TOKEN_EXPIRATION_HOURS
 
-
 # для реального проекта подставлять токен в строку - не безопасное решение
     def __str__(self):
         return "%s" % self.token
+
 
 
 class SoftDeleteManager(models.Manager):

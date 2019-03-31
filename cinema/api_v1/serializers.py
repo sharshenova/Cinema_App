@@ -1,12 +1,14 @@
-from webapp.models import Movie, Category, Hall, Seat, Show, Book, Discount, Ticket, RegistrationToken
 from rest_framework import serializers
 # импортируем стандартную модель USER
 # (в django.contrib.auth находятся модели пользователя, группы и разрешения относящиеся к ним)
 from django.contrib.auth.models import User
 from rest_framework.exceptions import ValidationError
+from django.contrib.auth import authenticate
+from webapp.models import Movie, Category, Hall, Seat, Show, Book, Discount, Ticket, RegistrationToken
+from rest_framework.authtoken.models import Token
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     password_confirm = serializers.CharField(write_only=True)
 
@@ -30,7 +32,7 @@ class UserSerializer(serializers.ModelSerializer):
         password = validated_data.pop('password')
         # распаковываем validated_data и передаем все поля, кроме пароля, в user
         # для распаковки используется ** для словарей, * - для списков
-        user = User.objects.create(**validated_data)
+        user = super().create(validated_data)
         # записываем пароль отдельно, чтобы он хранился в зашифрованном виде (hash), используя спец. метод set_password
         user.set_password(password)
         # чтобы новый пользователь был неактивным
@@ -40,7 +42,86 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'password', 'password_confirm', 'email']
+        fields = ['id', 'username', 'password', 'password_confirm', 'email']
+
+
+
+######### заменен на UserSerializer ##############################
+# class UserUpdateSerializer(serializers.ModelSerializer):
+#     password = serializers.CharField(write_only=True, required=False)
+#
+#     # validated_data - содержит все данные, пришедшие при запросе (уже проверенные на правильность заполнения)
+#     def update(self, instance, validated_data):
+#
+#         instance.first_name = validated_data.get('first_name')
+#         instance.last_name = validated_data.get('last_name')
+#         instance.email = validated_data.get('email')
+#
+#         # если пароль заполнен, сохраняем его в зашифрованном виде
+#         password = validated_data.get('password')
+#         if password:
+#             instance.set_password(password)
+#         instance.save()
+#         return instance
+#
+#     class Meta:
+#         model = User
+#         fields = ['id', 'username', 'first_name', 'last_name', 'password', 'email']
+
+
+
+class UserSerializer(serializers.ModelSerializer):
+    url = serializers.HyperlinkedIdentityField(view_name='api_v1:user-detail')
+    # имя пользователя нельзя менять.
+    username = serializers.CharField(read_only=True)
+    # пароль нельзя смотреть.
+    # поле пароль здесь нужно для проверки, что пользователь - тот, за кого себя выдаёт,
+    # при редактировании остальных данных.
+    password = serializers.CharField(write_only=True)
+    # новый пароль и его подтверждение - только для записи, необязательные
+    # на случай, если пользователь не хочет менять пароль.
+    new_password = serializers.CharField(write_only=True, required=False, allow_blank=True)
+    new_password_confirm = serializers.CharField(write_only=True, required=False, allow_blank=True)
+    email = serializers.EmailField(required=True, allow_blank=False)
+
+    # метод для валидации поля "Пароль"
+    # value - это пароль
+    def validate_password(self, value):
+        user = self.context['request'].user
+        if not authenticate(username=user.username, password=value):
+            raise ValidationError('Invalid password for your account')
+        return value
+
+    def validate(self, attrs):
+        if attrs.get('new_password') != attrs.get('new_password_confirm'):
+            raise ValidationError("Passwords do not match")
+        return super().validate(attrs)
+
+    # user - это instance
+    def update(self, instance, validated_data):
+        # удаляем старый пароль из списка атрибутов
+        validated_data.pop('password')
+        # удаляем новый пароль из списка атрибутов и запоминаем его
+        new_password = validated_data.pop('new_password')
+        # удаляем подтверждение пароля из списка атрибутов
+        validated_data.pop('new_password_confirm')
+
+        # обновляем пользователя всеми оставшимися данными
+        instance = super().update(instance, validated_data)
+
+        # меняем пароль при необходимости
+        if new_password:
+            instance.set_password(new_password)
+        instance.save()
+        return instance
+
+    class Meta:
+        model = User
+        fields = ['url', 'id', 'username', 'first_name', 'last_name', 'email',
+                  'password', 'new_password', 'new_password_confirm']
+
+
+
 
 
 # сериализатор для формы отправки токена,
@@ -66,27 +147,18 @@ class RegistrationTokenSerializer(serializers.Serializer):
             raise ValidationError("Token does not exist or already used")
 
 
-######### НУЖЕН ИЛИ НЕТ? ##############################
-class UserUpdateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, required=False)
 
-    # validated_data - содержит все данные, пришедшие при запросе (уже проверенные на правильность заполнения)
-    def update(self, instance, validated_data):
+class AuthTokenSerializer(serializers.Serializer):
+    token = serializers.CharField(write_only=True)
 
-        instance.first_name = validated_data.get('first_name')
-        instance.last_name = validated_data.get('last_name')
-        instance.email = validated_data.get('email')
+    def validate_token(self, token):
+        try:
+            return Token.objects.get(key=token)
+        except Token.DoesNotExist:
+            raise ValidationError("Invalid credentials")
 
-        # если пароль заполнен, сохраняем его в зашифрованном виде
-        password = validated_data.get('password')
-        if password:
-            instance.set_password(password)
-        instance.save()
-        return instance
 
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'first_name', 'last_name', 'password', 'email']
+
 
 
 # Сериализатор для модели категорий, предназначенный для включения в сериализатор фильмов
@@ -130,7 +202,6 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = ('url', 'id', 'name', 'description')
-
 
 
 # Сериализатор фильмов для создания/обновления
@@ -203,9 +274,6 @@ class ShowDisplaySerializer(ShowCreateSerializer):
 
 
 
-
-
-
 class BookCreateSerializer(serializers.ModelSerializer):
 
     url = serializers.HyperlinkedIdentityField(view_name='api_v1:book-detail')
@@ -226,8 +294,6 @@ class BookDisplaySerializer(BookCreateSerializer):
     class Meta:
         model = Book
         fields = ('url', 'id', 'show', 'seats', 'status', 'created_at', 'updated_at', 'code')
-
-
 
 
 
