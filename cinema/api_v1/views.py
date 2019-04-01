@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
+
+from cinema import settings
 from webapp.models import Movie, Category, Hall, Seat, Show, Book, Discount, Ticket, RegistrationToken
 from rest_framework import viewsets, status
 from django_filters import rest_framework as filters
@@ -19,6 +21,7 @@ from rest_framework.generics import CreateAPIView, GenericAPIView
 from rest_framework.authtoken.views import ObtainAuthToken, APIView
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
+
 
 
 
@@ -326,7 +329,7 @@ class UserActivateView(GenericAPIView):
 
 
 
-class UserViewSet(BaseViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
@@ -342,6 +345,7 @@ class UserViewSet(BaseViewSet):
         # если метод запроса связан с редактированием или удалением
         # и объект - это не текущий пользователь (т.е. пользователь пытается
         # редактировать чужую страницу) то запрещаем доступ.
+        print(obj, request.user, '===')
         if request.method in ['PUT', 'PATCH', 'DELETE'] and obj != request.user:
             self.permission_denied(request, 'Can not edit other users data!')
 
