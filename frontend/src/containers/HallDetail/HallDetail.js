@@ -1,19 +1,15 @@
 import React, {Component} from 'react'
-import {HALLS_URL, SHOWS_URL} from "../../api-urls";
 import {NavLink} from "react-router-dom";
-import axios from 'axios';
 import Shows from "../../components/Shows/Shows";
+import {loadHall} from "../../store/actions/hall-detail";
+import {connect} from "react-redux";
+
 
 // компонент, который выводит одну карточку с залом
 // зал также загружается при выводе компонента на экран (mount),
 // а не при обновлении (didUpdate), т.к. компонент выводится на отдельной странице,
 // и при переключении страниц исчезает с экрана, а потом снова маунтится.
 class HallDetail extends Component {
-    state = {
-        hall: null,
-        shows: [],
-        alert: null
-    };
 
     componentDidMount() {
 
@@ -35,61 +31,56 @@ class HallDetail extends Component {
         next_date = next_date.toISOString().slice(0, 10);
         console.log(next_date, 'next_date');
 
+        let link = '?hall_id=' + match_params_id + '&min_start_date=' + current_date + '&max_start_date=' + next_date;
+        console.log(link, 'link');
 
-        axios.all([
-            axios.get(HALLS_URL + match_params_id + '/'),
-            axios.get(SHOWS_URL + '?movie_id=' + match_params_id + '&min_start_date=' + current_date + '&max_start_date=' + next_date)
-        ])
-        .then(axios.spread((hallRequest, showsRequest) => {
-            this.setState({
-                hall: hallRequest.data,
-                shows: showsRequest.data
-            });
-            console.log(this.state)
-        }));
+        this.props.loadHall(match_params_id, link);
     }
 
-    hallDeleted = () => {
-        if (!localStorage.getItem('auth-token')) {
-            this.props.history.push("/login");
-        }
-        axios.delete(HALLS_URL + this.props.match.params.id, {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Token ' + localStorage.getItem('auth-token')
-            }
-        })
-            .then(response => {
-                console.log(response.data);
-                this.setState(prevState => {
-                    let newState = {...prevState};
-                    newState.hall = null;
-                    return newState;
-                });
-                this.props.history.replace('/halls/');
-            })
-            .catch(error => {
-            console.log(error);
-            let alert = {type: 'danger', message: `Delete error!`};
-            this.setState({alert: alert});
-            })
-    };
+
+    // TODO: Вынести удаление в Redux
+    // hallDeleted = () => {
+    //     if (!localStorage.getItem('auth-token')) {
+    //         this.props.history.push("/login");
+    //     }
+    //     axios.delete(HALLS_URL + this.props.match.params.id, {
+    //         headers: {
+    //             'Content-Type': 'application/x-www-form-urlencoded',
+    //             'Authorization': 'Token ' + localStorage.getItem('auth-token')
+    //         }
+    //     })
+    //         .then(response => {
+    //             console.log(response.data);
+    //             this.setState(prevState => {
+    //                 let newState = {...prevState};
+    //                 newState.hall = null;
+    //                 return newState;
+    //             });
+    //             this.props.history.replace('/halls/');
+    //         })
+    //         .catch(error => {
+    //         console.log(error);
+    //         let alert = {type: 'danger', message: `Delete error!`};
+    //         this.setState({alert: alert});
+    //         })
+    // };
+
 
     render() {
-        // если hall в state нет, ничего не рисуем.
-        if (!this.state.hall) return null;
+        // если hall в props нет, ничего не рисуем.
+        if (!this.props.hall) return null;
         console.log('выполняется Render первый раз');
 
         // достаём данные из hall
-        const {name, description, id} = this.state.hall;
+        const {name, description, id} = this.props.hall;
 
-        let alert = null;
-        if (this.state.alert) {
-            alert = <div className={"alert alert-" + this.state.alert.type}>{this.state.alert.message}</div>
-        }
+        // let alert = null;
+        // if (this.state.alert) {
+        //     alert = <div className={"alert alert-" + this.state.alert.type}>{this.state.alert.message}</div>
+        // }
 
         return <div>
-            {alert}
+            {/*{ alert}*/}
             {/* название зала */}
             <h1 className='mt-3'>{name}</h1>
 
@@ -100,16 +91,26 @@ class HallDetail extends Component {
                 {/* редактировать */}
                 <NavLink to={'/halls/' + id + '/edit'} className="btn btn-primary mr-2">Edit</NavLink>
 
-                <button type="button" className="btn btn-danger mr-2" onClick={() => this.hallDeleted()}>Delete</button>
+                {/*<button type="button" className="btn btn-danger mr-2" onClick={() => this.hallDeleted()}>Delete</button>*/}
 
                 {/* назад */}
                 <NavLink to='/halls/' className="btn btn-primary">Halls</NavLink>
             </div>
             <div>
-                <Shows shows={this.state.shows}/>
+                <Shows shows={this.props.shows}/>
             </div>
         </div>;
     }
 }
 
-export default HallDetail;
+// ключ hallDetail приходит из root.js
+const mapStateToProps = (state) => state.hallDetail;
+
+// loadHall: - передается из props, используется в componentDidMount
+// loadHall() - это вызов action из actions/hall-detail
+const mapDispatchToProps = (dispatch) => ({
+    loadHall: (hall_id, shows_link) => dispatch(loadHall(hall_id, shows_link))
+});
+
+// здесь HallDetail - название экспортируемого компонента
+export default connect(mapStateToProps, mapDispatchToProps)(HallDetail);

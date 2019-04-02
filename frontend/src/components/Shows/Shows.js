@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import Show from './Show/Show';
 
 
-
 class Shows extends Component {
     state = {
         shows: {
@@ -55,23 +54,25 @@ class Shows extends Component {
 
         // проходим по всем сеансам, полученным из props, и добавляем эти сеансы в объект stateShows,
         // в соответствующий список сеансов (на сегодня, на завтра или послезавтра)
+
         propsShows.forEach(show => {
 
-            let startTime = show.start_time;
-            console.log(startTime, 'startTime');
-            let startDay = startTime.split('T')[0];
-            console.log(startDay, 'startDay');
+        let startTime = show.start_time;
+        console.log(startTime, 'startTime');
+        let startDay = startTime.split('T')[0];
+        console.log(startDay, 'startDay');
 
-            if (startDay === actualDates.today) {
-                stateShows.today.push(show);
-                console.log(startDay);
-                console.log(today);
-            } else if (startDay === actualDates.tomorrow) {
-                stateShows.tomorrow.push(show);
-            } else if (startDay === actualDates.after_tomorrow) {
-                stateShows.after_tomorrow.push(show);
-            }
+        if (startDay === actualDates.today) {
+            stateShows.today.push(show);
+            console.log(startDay);
+            console.log(today);
+        } else if (startDay === actualDates.tomorrow) {
+            stateShows.tomorrow.push(show);
+        } else if (startDay === actualDates.after_tomorrow) {
+            stateShows.after_tomorrow.push(show);
+        }
         });
+
 
         console.log(this.state.shows.today, 'this.state.shows.today');
 

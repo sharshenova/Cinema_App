@@ -148,8 +148,7 @@ class HallViewSet(BaseViewSet):
     def get_queryset(self):
         queryset = Hall.objects.active()
         hall_id = self.request.query_params.get('id', None)
-        # задаем минимальную дату начала проката (чтобы затем вывести даты позже этой)
-        # если минимальная дата поступила из запроса, то выводим показы, у которых дата больше (start_time__gte)
+
         if hall_id is not None:
             queryset = queryset.filter(hall_id=id).active().order_by('-id')
         return queryset
@@ -200,15 +199,22 @@ class ShowViewSet(BaseViewSet):
     def get_queryset(self):
         queryset = Show.objects.active()
         movie_id = self.request.query_params.get('movie_id', None)
+        hall_id = self.request.query_params.get('hall_id', None)
         # задаем минимальную дату начала проката (чтобы затем вывести даты позже этой)
         min_start_date = self.request.query_params.get('min_start_date', None)
         max_start_date = self.request.query_params.get('max_start_date', None)
         # если минимальная дата поступила из запроса, то выводим показы, у которых дата больше (start_time__gte)
-        if movie_id is not None or min_start_date is not None or max_start_date is not None:
-            queryset = queryset.filter(movie__id=movie_id, start_time__gte=min_start_date,
-                                       start_time__lte=max_start_date).order_by('start_time')
-        return queryset
 
+        if movie_id:
+            queryset = queryset.filter(movie__id=movie_id)
+        if hall_id:
+            queryset = queryset.filter(hall__id=hall_id)
+        if min_start_date:
+            queryset = queryset.filter(start_time__gte=min_start_date)
+        if max_start_date:
+            queryset = queryset.filter(start_time__lte=max_start_date)
+
+        return queryset
 
 
 class BookViewSet(BaseViewSet):
