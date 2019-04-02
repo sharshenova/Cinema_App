@@ -23,6 +23,7 @@ class UserForm extends Component {
         event.preventDefault();
         this.setState({...this.state, submitEnabled: false});
         const currentUserId = localStorage.getItem('user_id');
+        console.log(currentUserId, 'currentUserId UserForm');
         axios.patch(USERS_URL + currentUserId + '/', this.state.user, {
             headers: {'Authorization': 'Token ' + localStorage.getItem('auth-token')}
         }).then(response => {

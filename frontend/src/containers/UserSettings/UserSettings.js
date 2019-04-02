@@ -48,6 +48,7 @@ class UserSettings extends Component {
         // не забываем конвертировать user_id из localStorage в int для сравнения
         // (по умолчанию всё из localStorage считывается, как строка).
         const currentUserId = parseInt(localStorage.getItem('user_id'));
+        console.log(currentUserId, 'currentUserId');
         const {username, first_name, last_name, email} = this.state.user;
         const alert = this.state.alert;
         return <Fragment>

@@ -17,18 +17,20 @@ import {connect} from "react-redux";
 // state - дополнительные данные для передачи на страницу.
 
 const AuthRoute = (props) => {
+    if(props.app.loading) {
+        return <p>Loading, please wait.</p>
+    }
     if(props.auth.user_id) {
         return <Route {...props} />
-    } else {
-        return <Redirect to={{
-            pathname: "/login",
-            state: {next: props.location.pathname}
-        }}/>
     }
+    return <Redirect to={{
+        pathname: "/login",
+        state: {next: props.location}
+    }}/>
 };
 
 // вытаскиваем данные об аутентификации из state
-const mapStateToProps = state => ({auth: state.auth});
+const mapStateToProps = state => ({auth: state.auth, app: state.app});
 // никаких дополнительных действий здесь не нужно
 const mapDispatchToProps = dispatch => ({});
 

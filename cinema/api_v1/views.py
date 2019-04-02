@@ -347,5 +347,3 @@ class UserViewSet(viewsets.ModelViewSet):
         print(obj, request.user, '===')
         if request.method in ['PUT', 'PATCH', 'DELETE'] and obj != request.user:
             self.permission_denied(request, 'Can not edit other users data!')
-
-

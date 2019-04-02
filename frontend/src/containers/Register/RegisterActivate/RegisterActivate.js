@@ -19,6 +19,7 @@ class RegisterActivate extends Component {
                 // теперь при успешном запросе API сразу присылает в UI
                 // все необходимые данные, включая токен авторизации.
                 localStorage.setItem('auth-token', response.data.token);
+                localStorage.setItem('user_id', response.data.user_id);
                 localStorage.setItem('username', response.data.username);
                 localStorage.setItem('is_admin', response.data.is_admin);
                 localStorage.setItem('is_staff', response.data.is_staff);

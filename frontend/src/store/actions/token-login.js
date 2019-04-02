@@ -22,6 +22,7 @@ export const tokenLogin = () => {
     return dispatch => {
         dispatch(tokenLoginRequest);
         const token = localStorage.getItem('auth-token');
+        console.log(token, 'token в токен-логин');
         if(!token) {
             localStorage.removeItem('auth-token');
             dispatch(tokenLoginError({'token': "Token does not exist."}));
