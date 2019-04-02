@@ -40,7 +40,7 @@ class Menu extends Component {
                 <ul className="navbar-nav ml-auto">
                     {user_id ? [
                         <li className="nav-item" key="username"><span className="navbar-text">
-                            Привет, <NavLink to={"/users/" + user_id}>{username}</NavLink>!
+                            <NavLink className='navlink mr-2' to={"/users/" + user_id}>{username}</NavLink>
                         </span></li>,
                         <MenuItem to="/logout" key="logout">Выйти</MenuItem>
                     ] : [
