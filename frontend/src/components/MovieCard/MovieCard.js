@@ -16,13 +16,8 @@ const MovieCard = props => {
         url: '/movies/' + id,
     };
 
-    const del = {
-        text: "Delete",
-        onDelete: onDelete
-    };
-
     // возвращаем (рисуем) карточку с данными из movie и ссылкой.
-    return <Card header={name} image={poster} link={link} del={del} className='h-100'/>;
+    return <Card header={name} image={poster} link={link} className='h-100'/>;
 };
 
 

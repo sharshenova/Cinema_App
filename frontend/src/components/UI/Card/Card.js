@@ -18,9 +18,6 @@ const Card = props => {
             {props.link ? <NavLink to={props.link.url} className="btn btn-primary mr-2">
                 {props.link.text}
             </NavLink> : null}
-            {props.del ? <button onClick={props.del.onDelete} className="btn btn-danger">
-                {props.del.text}
-            </button> : null}
         </div> : null}
     </div>
 };

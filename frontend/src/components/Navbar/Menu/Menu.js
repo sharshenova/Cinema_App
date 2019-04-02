@@ -34,7 +34,7 @@ class Menu extends Component {
                     <MenuItem to="/">Фильмы</MenuItem>
                     {is_admin ? <MenuItem to="/movies/add">Добавить фильм</MenuItem> : null}
                     <MenuItem to="/halls/">Залы</MenuItem>
-                    {is_admin ? <MenuItem to="/movies/add">Добавить фильм</MenuItem> : null}
+                    {is_admin ? <MenuItem to="/halls/add">Добавить зал</MenuItem> : null}
                 </ul>
 
                 <ul className="navbar-nav ml-auto">

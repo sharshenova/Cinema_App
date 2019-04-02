@@ -16,13 +16,8 @@ const HallCard = props => {
         url: '/halls/' + id
     };
 
-    const del = {
-        text: "Delete",
-        onDelete: onDelete
-    };
-
     // возвращаем (рисуем) карточку с данными из movie и ссылкой.
-    return <Card header={name} text={description} link={link} del={del} className='h-100'/>;
+    return <Card header={name} text={description} link={link} className='h-100'/>;
 };
 
 
