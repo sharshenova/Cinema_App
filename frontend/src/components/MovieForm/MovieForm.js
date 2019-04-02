@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import axios from "axios";
 import {CATEGORIES_URL} from "../../api-urls";
+import FormInput from "../UI/FormInput/FormInput";
 
 // из библиотеки react-datepicker
 // стили для дэйтпикера подключены в index.js! без них он не работает!
@@ -74,16 +75,6 @@ class MovieForm extends Component {
             });
         console.log(this.state, 'did mount')
     }
-
-    // принимает имя поля (или 'non_field_errors' -  если ошибка связана не с конкретным полем, а с общей логикой формы)
-    // и возвращает список элементов разметки для соответствующего набора сообщений, если они есть
-    showErrors = (name) => {
-        console.log(this.props.errors, 'error_info');
-        if(this.props.errors && this.props.errors[name]) {
-            return this.props.errors[name].map((error, index) => <p className="text-danger" key={index}>{error}</p>);
-        }
-        return null;
-    };
 
     // блокировка отправки формы на время выполнения запроса
     disableSubmit = () => {
@@ -182,6 +173,17 @@ class MovieForm extends Component {
         }
     };
 
+
+    // принимает имя поля (или 'non_field_errors' -  если ошибка связана не с конкретным полем, а с общей логикой формы)
+    // и возвращает список элементов разметки для соответствующего набора сообщений, если они есть
+    showErrors = (name) => {
+        console.log(this.props.errors, 'error_info');
+        if(this.props.errors && this.props.errors[name]) {
+            return this.props.errors[name].map((error, index) => <p className="text-danger" key={index}>{error}</p>);
+        }
+        return null;
+    };
+
     render() {
         console.log(this.state, 'render');
         if (this.state.movie) {
@@ -202,15 +204,15 @@ class MovieForm extends Component {
             // (значения должны иметь тот же формат из двух полей, что и опции )
             const selectValue = this.getCategoryValue();
 
+            // ошибки, переданные через props
+            const errors = this.props.errors;
+
             return <div>
                 <form className='mt-4' onSubmit={this.submitForm}>
                     {this.showErrors('non_field_errors')}
-                    <div className="form-group">
-                        <label className="font-weight-bold">Название</label>
-                        <input type="text" className="form-control" name="name" value={name}
-                               onChange={this.inputChanged}/>
-                        {this.showErrors('name')}
-                    </div>
+                    <FormInput onChange={this.inputChanged} value={name} name="name" label={"Название"} errors={errors['name']}/>
+
+                    {/*так же сделать для всех form-group-ов*/}
                     <div className="form-group">
                         <label>Описание</label>
                         <input type="text" className="form-control" name="description" value={description}
