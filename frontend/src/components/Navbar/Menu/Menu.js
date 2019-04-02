@@ -1,6 +1,9 @@
 import React, {Component, Fragment} from 'react'
 import MenuItem from "./MenuItem/MenuItem";
 import {NavLink} from "react-router-dom";
+// меню тоже зависит от состояния аутентификации,
+// которое нужно достать из state.
+import {connect} from "react-redux";
 
 
 class Menu extends Component {
@@ -14,9 +17,7 @@ class Menu extends Component {
     };
 
     render() {
-        const username = localStorage.getItem('username');
-        const userId = localStorage.getItem('user_id');
-        const isAdmin = localStorage.getItem('is_admin');
+        const {username, is_admin, user_id} = this.props.auth;
         return <Fragment>
             <button onClick={this.toggle}
                     className="navbar-toggler"
@@ -31,15 +32,15 @@ class Menu extends Component {
                 <ul className="navbar-nav mr-auto">
                     {/*пользователь может добавить фильм или зал, если у него есть статус админа*/}
                     <MenuItem to="/">Фильмы</MenuItem>
-                    {isAdmin === "true" ? <MenuItem to="/movies/add">Добавить фильм</MenuItem> : null}
+                    {is_admin ? <MenuItem to="/movies/add">Добавить фильм</MenuItem> : null}
                     <MenuItem to="/halls/">Залы</MenuItem>
-                    {isAdmin === "true" ? <MenuItem to="/halls/add">Добавить зал</MenuItem> : null}
+                    {is_admin ? <MenuItem to="/movies/add">Добавить фильм</MenuItem> : null}
                 </ul>
 
                 <ul className="navbar-nav ml-auto">
-                    {username ? [
+                    {user_id ? [
                         <li className="nav-item" key="username"><span className="navbar-text">
-                            Привет, <NavLink to={"/users/" + userId}>{username}</NavLink>!
+                            Привет, <NavLink to={"/users/" + user_id}>{username}</NavLink>!
                         </span></li>,
                         <MenuItem to="/logout" key="logout">Выйти</MenuItem>
                     ] : [
@@ -52,5 +53,10 @@ class Menu extends Component {
     }
 }
 
+// вытаскиваем данные об аутентификации из state
+const mapStateToProps = state => ({auth: state.auth});
+// никаких дополнительных действий здесь не нужно
+const mapDispatchToProps = dispatch => ({});
 
-export default Menu;
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+

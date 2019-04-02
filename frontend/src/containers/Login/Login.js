@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
-import {LOGIN_URL} from "../../api-urls";
-import axios from 'axios';
+import {login, LOGIN_SUCCESS} from '../../store/actions/login'
+import {connect} from "react-redux";
 
 
 class Login extends Component {
@@ -9,45 +9,32 @@ class Login extends Component {
             username: "",
             password: ""
         },
-        errors: {}
+    };
+
+    redirect = () => {
+        const {location, history} = this.props;
+        if (location.state) {
+            history.replace(location.state.next);
+        } else {
+            history.goBack();
+        }
     };
 
     formSubmitted = (event) => {
         event.preventDefault();
         // отправляем запрос с данными: логин и пароль
-        return axios.post(LOGIN_URL, this.state.credentials).then(response => {
-            console.log(response);
-            // сохраняем полученный токен в localStorage (первый агрумент - название нашего токена, второй - значение),
-            // чтобы он был доступен на других страницах, представленных другими компонентами.
-            // Также токен можно хранить в cookie страницы
-            localStorage.setItem('auth-token', response.data.token);
-            localStorage.setItem('user_id', response.data.id);
-            localStorage.setItem('username', response.data.username);
-            localStorage.setItem('is_admin', response.data.is_admin);
-            localStorage.setItem('is_staff', response.data.is_staff);
-
-            // если location содержит информацию о следующей странице, переходим на нее
-            // если нет, идем назад (на ту страницу, откуда пользователь открыл форму логина)
-
-            // this.props.location.state.next - путь, по которому пользователь хотел перейти (мы записали его в state
-            // до того, как перенаправили неавторизованного пользователя на страницу авторизации)
-            if (this.props.location.state) {
-                this.props.history.replace(this.props.location.state.next);
-            } else {
-                this.props.history.goBack();
-            }
-        // Если отправить запрос с данными несуществующего или неактивного пользователя, вернется ответ со статусом 400,
-        // запрос с таким статусом при обработке попадает в блок catch, в объект error.
-            // Во время обработки достаем его и считываем из него данные через error.response.data.
-        }).catch(error => {
-            console.log(error, 'error');
-            console.log(error.response, 'error.response');
-            this.setState({
-                ...this.state,
-                errors: error.response.data
-            })
+        const {username, password} = this.state.credentials;
+        // один из вариантов редиректа - вернуть результат запроса
+        // из action-creator'а login(). Результатом будет action, обёрнутый в Promise,
+        // поэтому у него можно вызвать метод then, в котором проверить тип action'а,
+        // и если вход успешен (тип action'а - LOGIN_SUCCESS),
+        // то перенаправить пользователя на другую страницу.
+        // смотрите также комментарий к login() в actions/login.js.
+        this.props.login(username, password).then((result) => {
+            if(result.type === LOGIN_SUCCESS) this.redirect();
         });
     };
+
 
     inputChanged = (event) => {
         this.setState({
@@ -62,9 +49,9 @@ class Login extends Component {
     // принимает имя поля (или 'non_field_errors' -  если ошибка связана не с конкретным полем, а с общей логикой формы)
     // и возвращает список элементов разметки для соответствующего набора сообщений, если они есть
     showErrors = (name) => {
-        console.log(this.state.errors, 'error_info');
-        if(this.state.errors && this.state.errors[name]) {
-            return this.state.errors[name].map((error, index) => <p className="text-danger" key={index}>{error}</p>);
+        console.log(this.props.errors, 'error_info');
+        if(this.props.errors && this.props.errors[name]) {
+            return this.props.errors[name].map((error, index) => <p className="text-danger" key={index}>{error}</p>);
         }
         return null;
     };
@@ -88,11 +75,18 @@ class Login extends Component {
                            onChange={this.inputChanged}/>
                     {this.showErrors('password')}
                 </div>
-                <button type="submit" className="btn btn-primary mt-2">Войти</button>
+                <button disabled={this.props.loading} type="submit" className="btn btn-primary mt-2">Войти</button>
             </form>
         </Fragment>
     }
 }
 
 
-export default Login;
+const mapStateToProps = state => state.login;
+
+const mapDispatchToProps = dispatch => ({
+    login: (username, password) => dispatch(login(username, password))
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

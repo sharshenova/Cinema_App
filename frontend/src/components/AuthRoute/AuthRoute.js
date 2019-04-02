@@ -1,9 +1,10 @@
 import React from 'react'
 import {Redirect, Route} from 'react-router'
-
+// для передачи данных из state в AuthRoute его нужно завернуть в коннектор.
+import {connect} from "react-redux";
 
 // AuthRoute - свой класс, который мы написали, чтобы проверять аутентифицирован ли пользователь, и используем вместо Route
-// если токен приходит из localStorage по нашему запросу, значит пользователь авторизован -->
+// если токен приходит из стейта по нашему запросу, значит пользователь авторизован -->
 // осуществляем переход на запрашиваемую страницу, передавая нужные параметры во встроенный компонент Route
 
 // если токен не приходит - отправляем пользователя на страницу "/login", при этом через state передаем путь,
@@ -16,7 +17,7 @@ import {Redirect, Route} from 'react-router'
 // state - дополнительные данные для передачи на страницу.
 
 const AuthRoute = (props) => {
-    if(localStorage.getItem('auth-token')) {
+    if(props.auth.user_id) {
         return <Route {...props} />
     } else {
         return <Redirect to={{
@@ -26,4 +27,9 @@ const AuthRoute = (props) => {
     }
 };
 
-export default AuthRoute;
+// вытаскиваем данные об аутентификации из state
+const mapStateToProps = state => ({auth: state.auth});
+// никаких дополнительных действий здесь не нужно
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthRoute);
