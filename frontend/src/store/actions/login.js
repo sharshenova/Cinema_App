@@ -27,6 +27,8 @@ export const login = (username, password) => {
         // чтобы можно было дальше их чейнить).
         return axios.post(LOGIN_URL, {username, password}).then(response => {
             console.log(response);
+            // добавляется auth-token в localStorage при входе
+            localStorage.setItem('auth-token', response.data.token);
             // отсюда вернётся действие из loginSuccess()
             return dispatch(loginSuccess(response.data));
         }).catch(error => {
