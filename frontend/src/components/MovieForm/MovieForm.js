@@ -211,14 +211,9 @@ class MovieForm extends Component {
                 <form className='mt-4' onSubmit={this.submitForm}>
                     {this.showErrors('non_field_errors')}
                     <FormInput onChange={this.inputChanged} value={name} name="name" label={"Название"} errors={errors['name']}/>
+                    <FormInput onChange={this.inputChanged} value={description} name="description" label={"Описание"} errors={errors['name']}/>
+                    {/*так же можно сделать для всех form-group-ов*/}
 
-                    {/*так же сделать для всех form-group-ов*/}
-                    <div className="form-group">
-                        <label>Описание</label>
-                        <input type="text" className="form-control" name="description" value={description}
-                               onChange={this.inputChanged}/>
-                        {this.showErrors('description')}
-                    </div>
                     <div className="form-group">
                         <label className="font-weight-bold">Дата выхода</label>
                         <div>

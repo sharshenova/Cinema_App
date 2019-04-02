@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-
+import React, {Component} from 'react';
+import FormInput from "../UI/FormInput/FormInput";
 
 
 class HallForm extends Component {
@@ -92,22 +92,15 @@ class HallForm extends Component {
             // распаковка переменных из state.
             const {submitEnabled} = this.state;
 
+            // ошибки, переданные через props
+            const errors = this.props.errors;
 
             return <div>
                 <form className='mt-4' onSubmit={this.submitForm}>
                     {this.showErrors('non_field_errors')}
-                    <div className="form-group">
-                        <label className="font-weight-bold">Название</label>
-                        <input type="text" className="form-control" name="name" value={name}
-                               onChange={this.inputChanged}/>
-                        {this.showErrors('name')}
-                    </div>
-                    <div className="form-group">
-                        <label>Описание</label>
-                        <input type="text" className="form-control" name="description" value={description}
-                               onChange={this.inputChanged}/>
-                        {this.showErrors('description')}
-                    </div>
+                    <FormInput onChange={this.inputChanged} value={name} name="name" label={"Название"} errors={errors['name']}/>
+                    <FormInput onChange={this.inputChanged} value={description} name="description" label={"Описание"} errors={errors['name']}/>
+
                     <button disabled={!submitEnabled} type="submit"
                             className="btn btn-primary">Сохранить
                     </button>

@@ -1,102 +1,50 @@
 import React, {Component, Fragment} from 'react'
-import axios from "axios";
-import {HALLS_URL} from "../../api-urls";
 import HallForm from "../../components/HallForm/HallForm";
+import {loadHall, HALL_EDIT_SUCCESS, saveHall} from "../../store/actions/hall-edit";
+import {connect} from "react-redux";
 
 
 class HallEdit extends Component {
-    state = {
-        // исходные данные фильма, загруженные из API.
-        hall: null,
-
-        // сообщение об ошибке
-        errors: {}
-
-    };
 
     componentDidMount() {
-        // match.params - переменные из пути к этому компоненту
-        // match.params.id - значение переменной, обозначенной :id в свойстве path Route-а.
-        axios.get(HALLS_URL + this.props.match.params.id)
-            .then(response => {
-                const hall = response.data;
-                console.log(hall);
-                this.setState(prevState => {
-                    const newState = {...prevState};
-                    newState.hall = hall;
-                    return newState;
-                });
-            })
-            .catch(error => {
-                console.log(error);
-                console.log(error.response);
-            });
+        // вызываем loadHall из actions/hall-edit.js
+        this.props.loadHall(this.props.match.params.id);
     }
-
-    // вывод сообщение об ошибке
-    showErrorAlert = (error) => {
-        this.setState(prevState => {
-            let newState = {...prevState};
-            newState.alert = {type: 'danger', message: `Hall was not added!`};
-            return newState;
-        });
-    };
-
-    // сборка данных для запроса
-    gatherFormData = (hall) => {
-        let formData = new FormData();
-        Object.keys(hall).forEach(key => {
-            const value = hall[key];
-            if (value) {
-                if(Array.isArray(value)) {
-                    // для полей с несколькими значениями (категорий)
-                    // нужно добавить каждое значение отдельно
-                    value.forEach(item => formData.append(key, item));
-                } else {
-                    formData.append(key, value);
-                }
-            }
-        });
-        return formData;
-    };
 
     // обработчик отправки формы
     formSubmitted = (hall) => {
-        // сборка данных для запроса
-        const formData = this.gatherFormData(hall);
-
-        // отправка запроса с токеном
-        return axios.put(HALLS_URL + this.props.match.params.id + '/', formData, {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Token ' + localStorage.getItem('auth-token')
+        // распаковываем auth из proms
+        const {auth} = this.props;
+        return this.props.saveHall(hall, auth.token).then(result => {
+            // если результат запроса удачный - переходим на страницу отредактированного зала
+            if(result.type === HALL_EDIT_SUCCESS) {
+                this.props.history.push('/halls/' + result.hall.id);
             }
         })
-            .then(response => {
-                // при успешном создании response.data содержит данные фильма
-                const hall = response.data;
-                console.log(hall);
-                // если всё успешно, переходим на просмотр страницы фильма с id,
-                // указанным в ответе
-                this.props.history.replace('/halls/' + hall.id);
-            })
-            .catch(error => {
-                console.log(error, 'error');
-                console.log(error.response, 'error.response');
-                this.setState({
-                    ...this.state,
-                    errors: error.response.data
-                });
-            });
     };
 
     render() {
-        const {errors, hall} = this.state;
+        const {hall, errors} = this.props.hallEdit;
         return <Fragment>
-            {hall ? <HallForm errors={errors}  onSubmit={this.formSubmitted} hall={hall}/> : null}
+            {/* алёрт здесь больше не выводится, вместо него вывод ошибок внутри формы */}
+            {hall ? <HallForm onSubmit={this.formSubmitted} hall={hall} errors={errors}/> : null}
         </Fragment>
     }
 }
 
 
-export default HallEdit;
+const mapStateToProps = state => {
+    return {
+        // hallEdit - идет в root
+        hallEdit: state.hallEdit,
+        auth: state.auth  // auth нужен, чтобы получить из него токен для запроса
+    }
+};
+const mapDispatchProps = dispatch => {
+    return {
+        loadHall: (id) => dispatch(loadHall(id)),  // прокидываем id в экшен-крейтор loadHall.
+        saveHall: (hall, token) => dispatch(saveHall(hall, token))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchProps)(HallEdit);

@@ -1,7 +1,5 @@
 import React, {Fragment, Component} from 'react'
-import {MOVIES_URL} from "../../api-urls";
 import MovieCard from "../../components/MovieCard/MovieCard";
-import axios from 'axios';
 import {loadMovies} from "../../store/actions/movie-list";
 import {connect} from 'react-redux';
 
