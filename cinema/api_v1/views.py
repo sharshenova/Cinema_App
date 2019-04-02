@@ -36,7 +36,7 @@ class LoginView(ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         return Response({
             'token': token.key,
-            'id': user.id,
+            'user_id': user.id,
             'username': user.username,
             'is_admin': user.is_superuser,
             'is_staff': user.is_staff
@@ -65,8 +65,6 @@ class TokenLoginView(APIView):
             'is_admin': user.is_superuser,
             'is_staff': user.is_staff
         })
-
-
 
 
 
@@ -301,6 +299,7 @@ class UserActivateView(GenericAPIView):
         auth_token, _ = Token.objects.get_or_create(user=user)
         return Response({
             'token': auth_token.key,
+            'user_id': user.id,
             'username': user.username,
             'is_admin': user.is_superuser,
             'is_staff': user.is_staff
