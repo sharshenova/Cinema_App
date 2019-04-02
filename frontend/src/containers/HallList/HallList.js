@@ -1,7 +1,6 @@
 import React, {Fragment, Component} from 'react'
 import {HALLS_URL} from "../../api-urls";
 import HallCard from "../../components/HallCard/HallCard";
-import {NavLink} from "react-router-dom";
 import axios from 'axios';
 
 // компонент для показа списка залов

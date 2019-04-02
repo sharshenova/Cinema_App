@@ -1,7 +1,6 @@
 import React, {Fragment, Component} from 'react'
 import {MOVIES_URL} from "../../api-urls";
 import MovieCard from "../../components/MovieCard/MovieCard";
-import {NavLink} from "react-router-dom";
 import axios from 'axios';
 
 
@@ -14,12 +13,6 @@ class MovieList extends Component {
     };
 
     componentDidMount() {
-        // требуем авторизацию
-        // const headers = {
-        //     Autorization: 'Token' + localStorage.getItem('auth-token')
-        // };
-
-        // axios.get(MOVIES_URL, {headers})
 
         axios.get(MOVIES_URL)
             .then(response => {console.log(response.data); return response.data;})

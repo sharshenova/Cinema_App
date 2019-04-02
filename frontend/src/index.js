@@ -16,12 +16,11 @@ import rootReducer from './store/reducers/root'
 import {Provider} from 'react-redux'
 import thunkMiddleware from 'redux-thunk';
 
-// TODO: убрать, как только все запросы "переедут" в acitions.js
+// TODO: убрать, как только все запросы "переедут" в actions.js
 import axios from 'axios';
 import {BASE_URL} from "./api-urls";
 // задаем дефолтный baseURL, чтобы при axios-запросах его не прописывать
 axios.defaults.baseURL = BASE_URL;
-
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware));
 
