@@ -8,6 +8,7 @@ from webapp.models import Movie, Category, Hall, Seat, Show, Book, Discount, Tic
 from rest_framework.authtoken.models import Token
 
 
+
 class UserRegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     password_confirm = serializers.CharField(write_only=True)
