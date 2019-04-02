@@ -2,22 +2,19 @@ import React, {Fragment, Component} from 'react'
 import {MOVIES_URL} from "../../api-urls";
 import MovieCard from "../../components/MovieCard/MovieCard";
 import axios from 'axios';
-
+import {loadMovies} from "../../store/actions/movie-list";
+import {connect} from 'react-redux';
 
 // компонент для показа списка фильмов клиенту
 // фильмы запрашиваются из API в момент показа компонента на странце (mount)
 class MovieList extends Component {
     state = {
-        movies: [],
         alert: null
     };
 
     componentDidMount() {
-
-        axios.get(MOVIES_URL)
-            .then(response => {console.log(response.data); return response.data;})
-            .then(movies => this.setState({movies}))
-            .catch(error => console.log(error));
+        //
+        this.props.loadMovies();
     }
 
     // принимает имя поля (или 'non_field_errors' -  если ошибка связана не с конкретным полем, а с общей логикой формы)
@@ -69,7 +66,7 @@ class MovieList extends Component {
         return <Fragment>
             {alert}
             <div className='row'>
-                {this.state.movies.map(movie => {
+                {this.props.movies.map(movie => {
                     return <div className='col-xs-12 col-sm-6 col-lg-4' key={movie.id}>
                         <MovieCard movie={movie} onDelete={() => this.movieDeleted(movie.id)}/>
                     </div>
@@ -79,5 +76,12 @@ class MovieList extends Component {
     }
 }
 
+// ключ movieList приходит из root.js
+const mapStateToProps = (state) => state.movieList;
 
-export default MovieList;
+// loadMovies - это action из actions/movie-list
+const mapDispatchToProps = (dispatch) => ({
+    loadMovies: () => dispatch(loadMovies())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
