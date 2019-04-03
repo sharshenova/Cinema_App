@@ -116,6 +116,7 @@ class MovieDetail extends Component {
                         {/* редактировать фильм */}
                         <NavLink to={'/movies/' + id + '/edit'} className="btn btn-primary mr-2">Edit</NavLink>
 
+
                         <button type="button" className="btn btn-danger mr-2" onClick={() => this.movieDeleted()}>Delete</button>
 
                         {/* назад */}

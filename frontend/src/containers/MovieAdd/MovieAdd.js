@@ -9,14 +9,6 @@ class MovieAdd extends Component {
         errors: {}
     };
 
-    // // вывод сообщение об ошибке
-    // showErrorAlert = (error) => {
-    //     this.setState(prevState => {
-    //         let newState = {...prevState};
-    //         newState.alert = {type: 'danger', message: `Movie was not added!`};
-    //         return newState;
-    //     });
-    // };
 
     // сборка данных для запроса
     gatherFormData = (movie) => {

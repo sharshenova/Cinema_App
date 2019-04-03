@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {NavLink} from "react-router-dom";
 import Shows from "../../components/Shows/Shows";
-import {loadHall} from "../../store/actions/hall-detail";
+import {loadHallAndShows} from "../../store/actions/hall-detail";
 import {connect} from "react-redux";
+import {deleteHall, HALL_DELETE_SUCCESS} from "../../store/actions/hall-delete";
 
 
 // компонент, который выводит одну карточку с залом
@@ -10,6 +11,7 @@ import {connect} from "react-redux";
 // а не при обновлении (didUpdate), т.к. компонент выводится на отдельной странице,
 // и при переключении страниц исчезает с экрана, а потом снова маунтится.
 class HallDetail extends Component {
+
 
     componentDidMount() {
 
@@ -34,82 +36,74 @@ class HallDetail extends Component {
         let link = '?hall_id=' + match_params_id + '&min_start_date=' + current_date + '&max_start_date=' + next_date;
         console.log(link, 'link');
 
-        this.props.loadHall(match_params_id, link);
+        this.props.loadHallAndShows(match_params_id, link);
     }
 
 
     // TODO: Вынести удаление в Redux
-    // hallDeleted = () => {
-    //     if (!localStorage.getItem('auth-token')) {
-    //         this.props.history.push("/login");
-    //     }
-    //     axios.delete(HALLS_URL + this.props.match.params.id, {
-    //         headers: {
-    //             'Content-Type': 'application/x-www-form-urlencoded',
-    //             'Authorization': 'Token ' + localStorage.getItem('auth-token')
-    //         }
-    //     })
-    //         .then(response => {
-    //             console.log(response.data);
-    //             this.setState(prevState => {
-    //                 let newState = {...prevState};
-    //                 newState.hall = null;
-    //                 return newState;
-    //             });
-    //             this.props.history.replace('/halls/');
-    //         })
-    //         .catch(error => {
-    //         console.log(error);
-    //         let alert = {type: 'danger', message: `Delete error!`};
-    //         this.setState({alert: alert});
-    //         })
-    // };
+    hallDeleted = (hall_id) => {
+        // распаковываем auth из proms
+        const {auth} = this.props;
+        console.log(this.props.deleteHall, 'auth!');
+        return this.props.deleteHall(hall_id, auth.token).then(result => {
+            // если результат запроса удачный - переходим на страницу списка залов
+            if(result.type === HALL_DELETE_SUCCESS) {
+                this.props.history.push('/halls/');
+            }
+        })
+    };
 
 
     render() {
+
         // если hall в props нет, ничего не рисуем.
-        if (!this.props.hall) return null;
+        console.log(this.props, 'props hd');
+        if (!this.props.hallDetail.hall) return null;
         console.log('выполняется Render первый раз');
 
         // достаём данные из hall
-        const {name, description, id} = this.props.hall;
-
-        // let alert = null;
-        // if (this.state.alert) {
-        //     alert = <div className={"alert alert-" + this.state.alert.type}>{this.state.alert.message}</div>
-        // }
+        const {name, description, id} = this.props.hallDetail.hall;
+        const {token} = this.props.auth;
+        const shows = this.props.hallDetail.shows;
+        console.log(shows, 'shows');
 
         return <div>
-            {/*{ alert}*/}
             {/* название зала */}
             <h1 className='mt-3'>{name}</h1>
 
             {/* описание */}
             {description ? <p>{description}</p> : null}
 
-            <div className='mb-3'>
-                {/* редактировать */}
-                <NavLink to={'/halls/' + id + '/edit'} className="btn btn-primary mr-2">Edit</NavLink>
-
-                {/*<button type="button" className="btn btn-danger mr-2" onClick={() => this.hallDeleted()}>Delete</button>*/}
-
-                {/* назад */}
-                <NavLink to='/halls/' className="btn btn-primary">Halls</NavLink>
+            {token ? [
+            <div className='row'>
+                <NavLink to={'/halls/' + id + '/edit'} className="btn btn-primary mr-3">Редактировать</NavLink>
+                <button type="button" className="btn btn-danger" onClick={() => this.hallDeleted(id)}>Удалить</button>
             </div>
-            <div>
-                <Shows shows={this.props.shows}/>
+            ] : null}
+
+            {shows ? [<div>
+                <Shows shows={shows}/>
             </div>
+            ] : null}
+
         </div>;
     }
 }
 
 // ключ hallDetail приходит из root.js
-const mapStateToProps = (state) => state.hallDetail;
+const mapStateToProps = state => {
+    return {
+        // hallDetail - идет в root
+        hallDetail: state.hallDetail,
+        auth: state.auth,  // auth нужен, чтобы получить из него токен для запроса,
+    }
+};
 
 // loadHall: - передается из props, используется в componentDidMount
 // loadHall() - это вызов action из actions/hall-detail
 const mapDispatchToProps = (dispatch) => ({
-    loadHall: (hall_id, shows_link) => dispatch(loadHall(hall_id, shows_link))
+    loadHallAndShows: (hall_id, shows_link) => dispatch(loadHallAndShows(hall_id, shows_link)),
+    deleteHall: (hall_id, token) => dispatch(deleteHall(hall_id, token))
 });
 
 // здесь HallDetail - название экспортируемого компонента

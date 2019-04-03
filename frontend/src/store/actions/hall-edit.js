@@ -7,10 +7,6 @@ export const HALL_EDIT_ERROR = "HALL_EDIT_ERROR";
 
 export const HALL_LOAD_SUCCESS = "HALL_LOAD_SUCCESS";
 
-// этот экшн можно переиспользовать в HallDetail -
-// импортировать его прямо туда и добавить обработку этого экшена
-// в редьюсер для HallDetail. Также рекомендуется перенести этот экшен
-// в экшены для HallDetail, т.к. там он более уместен по смыслу.
 export const loadHall = (id) => {
     return dispatch => {
         axios.get(HALLS_URL + id).then(response => {
@@ -58,7 +54,7 @@ export const saveHall = (hall, authToken) => {
         // не забываем возвращать результаты,
         // чтобы в HallEdit после успешной загрузки сделать редирект
         return axios.put(url, formData, options).then(response => {
-            console.log(response);
+            console.log(response, 'HALL_EDIT_SUCCESS!!!!!!!!!');
             // и здесь
             return dispatch({type: HALL_EDIT_SUCCESS, hall: response.data});
         }).catch(error => {

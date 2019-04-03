@@ -17,6 +17,7 @@ class Shows extends Component {
     };
 
     componentDidMount() {
+        console.log(this.props, 'props_shows');
         // принимаем данные о сеансах из props (stateShows)
         const propsShows = this.props.shows;
         console.log(propsShows, 'propsShows');
@@ -55,6 +56,7 @@ class Shows extends Component {
         // проходим по всем сеансам, полученным из props, и добавляем эти сеансы в объект stateShows,
         // в соответствующий список сеансов (на сегодня, на завтра или послезавтра)
 
+        console.log(propsShows, 'propsShows');
         propsShows.forEach(show => {
 
         let startTime = show.start_time;
