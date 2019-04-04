@@ -1,3 +1,4 @@
+
 import {combineReducers} from 'redux';
 import loginReducer from "./login";
 import registerReducer from "./register";
@@ -7,14 +8,12 @@ import movieListReducer from "./movie-list";
 import movieEditReducer from "./movie-edit";
 import movieDetailReducer from "./movie-detail";
 import movieDeleteReducer from "./movie-delete";
-
+import movieAddReducer from "./movie-add";
 import hallListReducer from "./hall-list";
 import hallEditReducer from "./hall-edit";
 import hallDetailReducer from "./hall-detail";
 import hallDeleteReducer from "./hall-delete";
 import hallAddReducer from "./hall-add";
-
-
 
 
 
@@ -27,7 +26,7 @@ const rootReducer = combineReducers({
     movieEdit: movieEditReducer,
     movieDetail: movieDetailReducer,
     movieDelete: movieDeleteReducer,
-
+    movieAdd: movieAddReducer,
     hallList: hallListReducer,
     hallEdit: hallEditReducer,
     hallDetail: hallDetailReducer,
