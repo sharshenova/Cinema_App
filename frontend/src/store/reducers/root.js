@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import loginReducer from "./login";
+import registerReducer from "./register";
 import authReducer from "./auth";
 import tokenLoginReducer from "./app";
 import movieListReducer from "./movie-list";
@@ -10,8 +11,10 @@ import hallDetailReducer from "./hall-detail";
 import hallDeleteReducer from "./hall-delete";
 
 
+
 const rootReducer = combineReducers({
     login: loginReducer,
+    register: registerReducer,
     auth: authReducer,
     app: tokenLoginReducer,
     movieList: movieListReducer,
@@ -19,7 +22,7 @@ const rootReducer = combineReducers({
     movieEdit: movieEditReducer,
     hallEdit: hallEditReducer,
     hallDetail: hallDetailReducer,
-    hallDelete: hallDeleteReducer
+    hallDelete: hallDeleteReducer,
 });
 
 export default rootReducer;

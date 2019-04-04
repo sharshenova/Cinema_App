@@ -29,8 +29,10 @@ export const login = (username, password) => {
             console.log(response);
             // добавляется auth-token в localStorage при входе
             localStorage.setItem('auth-token', response.data.token);
-            localStorage.setItem('user_id', response.data.user_id);
-            console.log(response.data.user_id,'user_id при входе');
+
+            // localStorage.setItem('user_id', response.data.user_id);
+            // console.log(response.data.user_id,'user_id при входе');
+
             // отсюда вернётся действие из loginSuccess()
             return dispatch(loginSuccess(response.data));
         }).catch(error => {
