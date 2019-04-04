@@ -98,8 +98,10 @@ class HallForm extends Component {
             return <div>
                 <form className='mt-4' onSubmit={this.submitForm}>
                     {this.showErrors('non_field_errors')}
-                    <FormInput onChange={this.inputChanged} value={name} name="name" label={"Название"} errors={errors['name']}/>
-                    <FormInput onChange={this.inputChanged} value={description} name="description" label={"Описание"} errors={errors['name']}/>
+                    <FormInput onChange={this.inputChanged} value={name} name="name" label={"Название"}
+                               errors={errors['name']}/>
+                    <FormInput onChange={this.inputChanged} value={description} name="description" label={"Описание"}
+                               errors={errors['description']}/>
 
                     <button disabled={!submitEnabled} type="submit"
                             className="btn btn-primary">Сохранить

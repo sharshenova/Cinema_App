@@ -1,23 +1,9 @@
 import axios from "axios";
 import {HALLS_URL} from "../../api-urls";
 
-export const HALL_EDIT_REQUEST = "HALL_EDIT_REQUEST";
-export const HALL_EDIT_SUCCESS = "HALL_EDIT_SUCCESS";
-export const HALL_EDIT_ERROR = "HALL_EDIT_ERROR";
-
-export const HALL_LOAD_SUCCESS = "HALL_LOAD_SUCCESS";
-
-export const loadHall = (id) => {
-    return dispatch => {
-        axios.get(HALLS_URL + id).then(response => {
-            console.log(response.data);
-            return dispatch({type: HALL_LOAD_SUCCESS, hall: response.data});
-        }).catch(error => {
-            console.log(error);
-            console.log(error.response);
-        });
-    }
-};
+export const HALL_ADD_REQUEST = "HALL_ADD_REQUEST";
+export const HALL_ADD_SUCCESS = "HALL_ADD_SUCCESS";
+export const HALL_ADD_ERROR = "HALL_ADD_ERROR";
 
 
 // этот метод не является экшеном,
@@ -38,10 +24,9 @@ const gatherFormData = (hall) => {
 };
 
 
-
-export const saveHall = (hall, authToken) => {
+export const addHall = (hall, authToken) => {
     return dispatch => {
-        const url = HALLS_URL + hall.id + '/';
+        const url = HALLS_URL;
         const formData = gatherFormData(hall);
         const options = {
             headers: {
@@ -49,20 +34,19 @@ export const saveHall = (hall, authToken) => {
                 'Authorization': 'Token ' + authToken
             }
         };
-
-        dispatch({type: HALL_EDIT_REQUEST});
+        console.log(options.headers.Authorization, 'options.headers.Authorization');
+        dispatch({type: HALL_ADD_REQUEST});
         // не забываем возвращать результаты,
         // чтобы в HallEdit после успешной загрузки сделать редирект
-        return axios.put(url, formData, options).then(response => {
-            console.log(response, 'HALL_EDIT_SUCCESS!!!!!!!!!');
+        return axios.post(url, formData, options).then(response => {
+            console.log(response, 'HALL_ADD_SUCCESS!');
             // и здесь
-            return dispatch({type: HALL_EDIT_SUCCESS, hall: response.data});
+            return dispatch({type: HALL_ADD_SUCCESS, hall: response.data});
         }).catch(error => {
             console.log(error);
             console.log(error.response);
             // и здесь
-            return dispatch({type: HALL_EDIT_ERROR, errors: error.response.data});
+            return dispatch({type: HALL_ADD_ERROR, errors: error.response.data});
         });
     }
 };
-

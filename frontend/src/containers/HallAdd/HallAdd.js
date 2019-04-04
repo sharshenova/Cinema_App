@@ -1,69 +1,48 @@
 import React, {Component, Fragment} from 'react';
-import {HALLS_URL} from "../../api-urls";
-import axios from 'axios';
 import HallForm from "../../components/HallForm/HallForm";
+import {HALL_ADD_SUCCESS, addHall} from "../../store/actions/hall-add";
+import connect from "react-redux/es/connect/connect";
 
 
 class HallAdd extends Component {
-    state = {
-        // сообщение об ошибке
-        errors: {}
-    };
 
-    // сборка данных для запроса
-    gatherFormData = (hall) => {
-        let formData = new FormData();
-        Object.keys(hall).forEach(key => {
-            const value = hall[key];
-            if (value) {
-                if(Array.isArray(value)) {
-                    // для полей с несколькими значениями (категорий)
-                    // нужно добавить каждое значение отдельно
-                    value.forEach(item => formData.append(key, item));
-                } else {
-                    formData.append(key, value);
-                }
-            }
-        });
-        return formData;
-    };
 
     // обработчик отправки формы
     formSubmitted = (hall) => {
-        // сборка данных для запроса
-        const formData = this.gatherFormData(hall);
 
-        // отправка запроса
-        return axios.post(HALLS_URL, formData, {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Token ' + localStorage.getItem('auth-token')
-            }
-        })
-            .then(response => {
-                // при успешном создании response.data содержит данные зала
-                const hall = response.data;
-                console.log(hall);
-                // если всё успешно, переходим на просмотр страницы фильма с id,
-                // указанным в ответе
-                this.props.history.replace('/halls/' + hall.id);
-            })
-            .catch(error => {
-                console.log(error, 'error');
-                console.log(error.response, 'error.response');
-                this.setState({
-                    ...this.state,
-                    errors: error.response.data
-                });
-            });
+    // отправка запроса
+    // распаковываем auth из proms
+    const {auth} = this.props;
+    console.log(auth.token, 'auth.token HallAdd');
+    return this.props.addHall(hall, auth.token).then(result => {
+        // если результат запроса удачный - переходим на страницу добавленного зала
+        if(result.type === HALL_ADD_SUCCESS) {
+            console.log(result.hall.id, 'result.hall.id');
+            this.props.history.push('/halls/' + result.hall.id);
+        }
+    })
     };
 
     render() {
+        const {errors} = this.props.hallAdd;
         return <Fragment>
-            <HallForm errors={this.state.errors} onSubmit={this.formSubmitted}/>
+            <HallForm errors={errors} onSubmit={this.formSubmitted}/>
         </Fragment>
     }
 }
 
 
-export default HallAdd;
+const mapStateToProps = state => {
+    return {
+        // hallAdd - идет в root
+        hallAdd: state.hallAdd,
+        auth: state.auth  // auth нужен, чтобы получить из него токен для запроса
+    }
+};
+const mapDispatchProps = dispatch => {
+    return {
+        addHall: (hall, token) => dispatch(addHall(hall, token))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchProps)(HallAdd);

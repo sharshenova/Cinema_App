@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 class HallEdit extends Component {
 
     componentDidMount() {
-        console.log('11111')
+        console.log('делается componentDidMount');
         // вызываем loadHall из actions/hall-edit.js
         this.props.loadHall(this.props.match.params.id);
     }
@@ -19,7 +19,7 @@ class HallEdit extends Component {
         return this.props.saveHall(hall, auth.token).then(result => {
             // если результат запроса удачный - переходим на страницу отредактированного зала
             if(result.type === HALL_EDIT_SUCCESS) {
-                console.log(result.hall.id, 'rrrrrrrrrrrrrrrrrrrrrrr');
+                console.log(result.hall.id, 'result.hall.id');
                 this.props.history.push('/halls/' + result.hall.id);
 
             }
