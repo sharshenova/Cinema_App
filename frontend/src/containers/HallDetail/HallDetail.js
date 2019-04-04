@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import './HallDetail.css';
 import {NavLink} from "react-router-dom";
 import Shows from "../../components/Shows/Shows";
 import {loadHallAndShows} from "../../store/actions/hall-detail";
@@ -63,7 +64,7 @@ class HallDetail extends Component {
 
         // достаём данные из hall
         const {name, description, id} = this.props.hallDetail.hall;
-        const {token} = this.props.auth;
+        const {token, is_admin} = this.props.auth;
         const shows = this.props.hallDetail.shows;
         console.log(shows, 'shows');
 
@@ -74,8 +75,8 @@ class HallDetail extends Component {
             {/* описание */}
             {description ? <p>{description}</p> : null}
 
-            {token ? [
-            <div className='row'>
+            {token && is_admin === true ? [
+            <div className='row Buttons'>
                 <NavLink to={'/halls/' + id + '/edit'} className="btn btn-primary mr-3">Редактировать</NavLink>
                 <button type="button" className="btn btn-danger" onClick={() => this.hallDeleted(id)}>Удалить</button>
             </div>

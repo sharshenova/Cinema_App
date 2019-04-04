@@ -1,4 +1,5 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import './MovieDetail.css';
 import {NavLink} from "react-router-dom";
 import MovieCategories from "../../components/MovieCategories/MovieCategories";
 import Shows from "../../components/Shows/Shows";
@@ -67,15 +68,15 @@ class MovieDetail extends Component {
         return <div>
 
             <div className='movie-detail-form row'>
-                <div className='col col-xs-12 col-sm-12 col-md-6'>
+                <div className='col col-xs-12 col-sm-12 col-md-4'>
                     {/* постер, если есть */}
                     {poster ? <div className='row'>
-                    <div className="col col-xs-10 col-sm-8 col-md-6 col-lg-4 mx-auto">
-                        <img className="img-fluid rounded" src={poster} alt={"постер"}/>
+                    <div className="">
+                        <img className="rounded Poster" src={poster} alt={"постер"}/>
                     </div>
                     </div> : null}
                 </div>
-                <div className='col col-xs-12 col-sm-12 col-md-6'>
+                <div className='col col-xs-12 col-sm-12 col-md-8'>
                     {/* название фильма */}
                     <h1 className='mt-3'>{name}</h1>
 
@@ -89,12 +90,13 @@ class MovieDetail extends Component {
                     {description ? <p>{description}</p> : null}
 
                     {token && is_admin === true ? [
-                        <div className='row'>
+                        <div className='row Buttons'>
                             <NavLink to={'/movies/' + id + '/edit'} className="btn btn-primary mr-2">Редактировать</NavLink>
                             <button type="button" className="btn btn-danger mr-2"
                                     onClick={() => this.movieDeleted(id)}>Удалить</button>
                         </div>
                     ]: null}
+
                 </div>
             </div>
 

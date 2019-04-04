@@ -1,6 +1,5 @@
 import axios from "axios";
 import {MOVIES_URL} from "../../api-urls";
-
 export const MOVIE_DELETE_REQUEST = "MOVIE_DELETE_REQUEST";
 export const MOVIE_DELETE_SUCCESS = "MOVIE_DELETE_SUCCESS";
 export const MOVIE_DELETE_ERROR = "MOVIE_DELETE_ERROR";
