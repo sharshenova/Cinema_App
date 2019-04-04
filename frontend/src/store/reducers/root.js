@@ -6,12 +6,14 @@ import tokenLoginReducer from "./app";
 import movieListReducer from "./movie-list";
 import movieEditReducer from "./movie-edit";
 import movieDetailReducer from "./movie-detail";
+import movieDeleteReducer from "./movie-delete";
 
 import hallListReducer from "./hall-list";
 import hallEditReducer from "./hall-edit";
 import hallDetailReducer from "./hall-detail";
 import hallDeleteReducer from "./hall-delete";
 import hallAddReducer from "./hall-add";
+
 
 
 
@@ -24,6 +26,7 @@ const rootReducer = combineReducers({
     movieList: movieListReducer,
     movieEdit: movieEditReducer,
     movieDetail: movieDetailReducer,
+    movieDelete: movieDeleteReducer,
 
     hallList: hallListReducer,
     hallEdit: hallEditReducer,
