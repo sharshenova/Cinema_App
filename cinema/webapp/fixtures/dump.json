@@ -3,13 +3,14 @@
   "model": "webapp.movie",
   "pk": 1,
   "fields": {
-    "name": "Matrix",
+    "name": "Matrixxx",
     "description": "\u0416\u0438\u0437\u043d\u044c \u0422\u043e\u043c\u0430\u0441\u0430 \u0410\u043d\u0434\u0435\u0440\u0441\u043e\u043d\u0430 \u0440\u0430\u0437\u0434\u0435\u043b\u0435\u043d\u0430 \u043d\u0430 \u0434\u0432\u0435 \u0447\u0430\u0441\u0442\u0438: \u0434\u043d\u0451\u043c \u043e\u043d \u2014 \u0441\u0430\u043c\u044b\u0439 \u043e\u0431\u044b\u0447\u043d\u044b\u0439 \u043e\u0444\u0438\u0441\u043d\u044b\u0439 \u0440\u0430\u0431\u043e\u0442\u043d\u0438\u043a, \u043f\u043e\u043b\u0443\u0447\u0430\u044e\u0449\u0438\u0439 \u043d\u0430\u0433\u043e\u043d\u044f\u0438 \u043e\u0442 \u043d\u0430\u0447\u0430\u043b\u044c\u0441\u0442\u0432\u0430, \u0430 \u043d\u043e\u0447\u044c\u044e \u043f\u0440\u0435\u0432\u0440\u0430\u0449\u0430\u0435\u0442\u0441\u044f \u0432 \u0445\u0430\u043a\u0435\u0440\u0430 \u043f\u043e \u0438\u043c\u0435\u043d\u0438 \u041d\u0435\u043e, \u0438 \u043d\u0435\u0442 \u043c\u0435\u0441\u0442\u0430 \u0432 \u0441\u0435\u0442\u0438, \u043a\u0443\u0434\u0430 \u043e\u043d \u043d\u0435 \u0441\u043c\u043e\u0433 \u0431\u044b \u0434\u043e\u0442\u044f\u043d\u0443\u0442\u044c\u0441\u044f. \u041d\u043e \u043e\u0434\u043d\u0430\u0436\u0434\u044b \u0432\u0441\u0451 \u043c\u0435\u043d\u044f\u0435\u0442\u0441\u044f \u2014 \u0433\u0435\u0440\u043e\u0439, \u0441\u0430\u043c \u0442\u043e\u0433\u043e \u043d\u0435 \u0436\u0435\u043b\u0430\u044f, \u0443\u0437\u043d\u0430\u0451\u0442 \u0441\u0442\u0440\u0430\u0448\u043d\u0443\u044e \u043f\u0440\u0430\u0432\u0434\u0443: \u0432\u0441\u0451, \u0447\u0442\u043e \u0435\u0433\u043e \u043e\u043a\u0440\u0443\u0436\u0430\u0435\u0442 \u2014 \u043d\u0435 \u0431\u043e\u043b\u0435\u0435, \u0447\u0435\u043c \u0438\u043b\u043b\u044e\u0437\u0438\u044f, \u041c\u0430\u0442\u0440\u0438\u0446\u0430, \u0430 \u043b\u044e\u0434\u0438 \u2014 \u0432\u0441\u0435\u0433\u043e \u043b\u0438\u0448\u044c \u0438\u0441\u0442\u043e\u0447\u043d\u0438\u043a \u043f\u0438\u0442\u0430\u043d\u0438\u044f \u0434\u043b\u044f \u0438\u0441\u043a\u0443\u0441\u0441\u0442\u0432\u0435\u043d\u043d\u043e\u0433\u043e \u0438\u043d\u0442\u0435\u043b\u043b\u0435\u043a\u0442\u0430, \u043f\u043e\u0440\u0430\u0431\u043e\u0442\u0438\u0432\u0448\u0435\u0433\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u0447\u0435\u0441\u0442\u0432\u043e. \u0418 \u0442\u043e\u043b\u044c\u043a\u043e \u041d\u0435\u043e \u043f\u043e\u0434 \u0441\u0438\u043b\u0443 \u0438\u0437\u043c\u0435\u043d\u0438\u0442\u044c \u0440\u0430\u0441\u0441\u0442\u0430\u043d\u043e\u0432\u043a\u0443 \u0441\u0438\u043b \u0432 \u044d\u0442\u043e\u043c \u0447\u0443\u0436\u043e\u043c \u0438 \u0441\u0442\u0440\u0430\u0448\u043d\u043e\u043c \u043c\u0438\u0440\u0435.",
     "poster": "posters/matrix_gU8AGXM.jpg",
-    "release_date": "2019-02-28",
-    "finish_date": "2019-02-28",
+    "release_date": "2019-01-31",
+    "finish_date": "2019-03-01",
     "is_deleted": false,
     "categories": [
+      1,
       2,
       5
     ]
@@ -51,10 +52,10 @@
   "pk": 4,
   "fields": {
     "name": "\u042e\u043c\u043e\u0440\u0438\u0441\u0442",
-    "description": "\u0423 \u044d\u0441\u0442\u0440\u0430\u0434\u043d\u043e\u0433\u043e \u044e\u043c\u043e\u0440\u0438\u0441\u0442\u0430 \u0411\u043e\u0440\u0438\u0441\u0430 \u0410\u0440\u043a\u0430\u0434\u044c\u0435\u0432\u0430 \u0432 \u0436\u0438\u0437\u043d\u0438 \u0432\u0441\u0435 \u0445\u043e\u0440\u043e\u0448\u043e: \u0441\u0447\u0430\u0441\u0442\u043b\u0438\u0432\u0430\u044f \u0441\u0435\u043c\u044c\u044f, \u043e\u0431\u043e\u0436\u0430\u043d\u0438\u0435 \u043c\u0438\u043b\u043b\u0438\u043e\u043d\u043e\u0432, \u043e\u0447\u0435\u0440\u0435\u0434\u044c \u043f\u043e\u043a\u043b\u043e\u043d\u043d\u0438\u0446 \u0438 \u0431\u043b\u0430\u0433\u043e\u0441\u043a\u043b\u043e\u043d\u043d\u043e\u0441\u0442\u044c \u0432\u043b\u0430\u0441\u0442\u0435\u0439. \u041d\u043e \u043a\u043e\u043c\u0438\u043a\u0443 \u043d\u0435 \u0434\u0430\u0435\u0442 \u043f\u043e\u043a\u043e\u044f \u043d\u0435\u0441\u0432\u043e\u0431\u043e\u0434\u0430 \u0438 \u0432\u043d\u0435\u0448\u043d\u044f\u044f, \u0438 \u0432\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u044f\u044f: \u0447\u0435\u043c \u0433\u0440\u043e\u043c\u0447\u0435 \u0435\u0433\u043e \u0443\u0441\u043f\u0435\u0445 \u043d\u0430 \u0441\u0446\u0435\u043d\u0435, \u0442\u0435\u043c \u0441\u0438\u043b\u044c\u043d\u0435\u0435 \u0432 \u043d\u0435\u043c \u043d\u0430\u0437\u0440\u0435\u0432\u0430\u0435\u0442 \u043f\u0440\u043e\u0442\u0435\u0441\u0442. \u0418 \u0432\u043e\u0442 \u0443\u0436\u0435 \u0441\u0430\u043c\u044b\u0439 \u0441\u043c\u0435\u0448\u043d\u043e\u0439 \u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u0441\u044f \u0441\u043b\u0438\u0448\u043a\u043e\u043c \u043e\u043f\u0430\u0441\u043d\u044b\u043c.",
+    "description": "\u0423 \u044d\u0441\u0442\u0440\u0430\u0434\u043d\u043e\u0433\u043e \u044e\u043c\u043e\u0440\u0438\u0441\u0442\u0430 \u0411\u043e\u0440\u0438\u0441\u0430 \u0432 \u0436\u0438\u0437\u043d\u0438 \u0432\u0441\u0435 \u0445\u043e\u0440\u043e\u0448\u043e: \u0441\u0447\u0430\u0441\u0442\u043b\u0438\u0432\u0430\u044f \u0441\u0435\u043c\u044c\u044f, \u043e\u0431\u043e\u0436\u0430\u043d\u0438\u0435 \u043c\u0438\u043b\u043b\u0438\u043e\u043d\u043e\u0432, \u043e\u0447\u0435\u0440\u0435\u0434\u044c \u043f\u043e\u043a\u043b\u043e\u043d\u043d\u0438\u0446 \u0438 \u0431\u043b\u0430\u0433\u043e\u0441\u043a\u043b\u043e\u043d\u043d\u043e\u0441\u0442\u044c \u0432\u043b\u0430\u0441\u0442\u0435\u0439. \u041d\u043e \u043a\u043e\u043c\u0438\u043a\u0443 \u043d\u0435 \u0434\u0430\u0435\u0442 \u043f\u043e\u043a\u043e\u044f \u043d\u0435\u0441\u0432\u043e\u0431\u043e\u0434\u0430 \u0438 \u0432\u043d\u0435\u0448\u043d\u044f\u044f, \u0438 \u0432\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u044f\u044f: \u0447\u0435\u043c \u0433\u0440\u043e\u043c\u0447\u0435 \u0435\u0433\u043e \u0443\u0441\u043f\u0435\u0445 \u043d\u0430 \u0441\u0446\u0435\u043d\u0435, \u0442\u0435\u043c \u0441\u0438\u043b\u044c\u043d\u0435\u0435 \u0432 \u043d\u0435\u043c \u043d\u0430\u0437\u0440\u0435\u0432\u0430\u0435\u0442 \u043f\u0440\u043e\u0442\u0435\u0441\u0442. \u0418 \u0432\u043e\u0442 \u0443\u0436\u0435 \u0441\u0430\u043c\u044b\u0439 \u0441\u043c\u0435\u0448\u043d\u043e\u0439 \u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u0441\u044f \u0441\u043b\u0438\u0448\u043a\u043e\u043c \u043e\u043f\u0430\u0441\u043d\u044b\u043c.",
     "poster": "posters/humorist_nTgFZK2.jpg",
     "release_date": "2019-03-02",
-    "finish_date": "2019-04-25",
+    "finish_date": "2019-04-26",
     "is_deleted": false,
     "categories": [
       1,
@@ -87,7 +88,7 @@
     "poster": "posters/alita_tLEOryw.jpg",
     "release_date": "2019-02-10",
     "finish_date": "2019-03-20",
-    "is_deleted": true,
+    "is_deleted": false,
     "categories": [
       1,
       5,
@@ -158,6 +159,23 @@
       2,
       3,
       6
+    ]
+  }
+},
+{
+  "model": "webapp.movie",
+  "pk": 11,
+  "fields": {
+    "name": "\u0417\u0430\u0433\u0430\u0434\u043e\u0447\u043d\u0430\u044f \u0438\u0441\u0442\u043e\u0440\u0438\u044f \u0411\u0435\u043d\u0434\u0436\u0430\u043c\u0438\u043d\u0430 \u0411\u0430\u0442\u0442\u043e\u043d\u0430",
+    "description": "\u0424\u0438\u043b\u044c\u043c \u043e \u043c\u0443\u0436\u0447\u0438\u043d\u0435, \u043a\u043e\u0442\u043e\u0440\u044b\u0439 \u0440\u043e\u0434\u0438\u043b\u0441\u044f \u0432 \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0435 80-\u0442\u0438 \u043b\u0435\u0442, \u0430 \u0437\u0430\u0442\u0435\u043c\u2026 \u043d\u0430\u0447\u0430\u043b \u043c\u043e\u043b\u043e\u0434\u0435\u0442\u044c. \u042d\u0442\u043e\u0442 \u0447\u0435\u043b\u043e\u0432\u0435\u043a, \u043a\u0430\u043a \u0438 \u043a\u0430\u0436\u0434\u044b\u0439 \u0438\u0437 \u043d\u0430\u0441, \u043d\u0435 \u043c\u043e\u0433 \u043e\u0441\u0442\u0430\u043d\u043e\u0432\u0438\u0442\u044c \u0432\u0440\u0435\u043c\u044f. \u0415\u0433\u043e \u043f\u0443\u0442\u044c \u0432 \u0425\u0425I \u0432\u0435\u043a, \u0431\u0435\u0440\u0443\u0449\u0438\u0439 \u0441\u0432\u043e\u0435 \u043d\u0430\u0447\u0430\u043b\u043e \u0432 \u041d\u043e\u0432\u043e\u043c \u041e\u0440\u043b\u0435\u0430\u043d\u0435 \u0432 1918-\u043c \u0433\u043e\u0434\u0443 \u0432 \u0441\u0430\u043c\u043e\u043c \u043a\u043e\u043d\u0446\u0435 \u041f\u0435\u0440\u0432\u043e\u0439 \u041c\u0438\u0440\u043e\u0432\u043e\u0439 \u0432\u043e\u0439\u043d\u044b, \u0431\u0443\u0434\u0435\u0442 \u0441\u0442\u043e\u043b\u044c \u043d\u0435\u043e\u0431\u044b\u0447\u0435\u043d, \u0447\u0442\u043e \u0432\u0440\u044f\u0434 \u043b\u0438 \u043c\u043e\u0433 \u0438\u043c\u0435\u0442\u044c \u043c\u0435\u0441\u0442\u043e \u0432 \u0436\u0438\u0437\u043d\u0438 \u043a\u043e\u0433\u043e-\u043b\u0438\u0431\u043e \u0434\u0440\u0443\u0433\u043e\u0433\u043e. \u0424\u0438\u043b\u044c\u043c \u043f\u043e\u0432\u0435\u0441\u0442\u0432\u0443\u0435\u0442 \u043e \u0441\u0443\u0434\u044c\u0431\u0435 \u0443\u043d\u0438\u043a\u0430\u043b\u044c\u043d\u043e\u0433\u043e \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u0430, \u043e \u043b\u044e\u0434\u044f\u0445 \u0438 \u0441\u043e\u0431\u044b\u0442\u0438\u044f\u0445, \u0447\u0442\u043e \u0436\u0434\u0443\u0442 \u0435\u0433\u043e \u0432\u043f\u0435\u0440\u0435\u0434\u0438, \u043e \u043b\u044e\u0431\u0432\u0438, \u043a\u043e\u0442\u043e\u0440\u0443\u044e \u043e\u043d \u043e\u0431\u0440\u0435\u0442\u0435\u0442 \u0438 \u043f\u043e\u0442\u0435\u0440\u044f\u0435\u0442, \u043e \u0440\u0430\u0434\u043e\u0441\u0442\u044f\u0445 \u0436\u0438\u0437\u043d\u0438 \u0438 \u0433\u0440\u0443\u0441\u0442\u0438 \u043f\u043e\u0442\u0435\u0440\u044c \u0438 \u043e \u0442\u043e\u043c, \u0447\u0442\u043e \u043e\u0441\u0442\u0430\u0435\u0442\u0441\u044f \u0441 \u043d\u0430\u043c\u0438 \u0432\u043d\u0435 \u0432\u0440\u0435\u043c\u0435\u043d\u0438.",
+    "poster": "posters/bbutton_RN3i16B.jpg",
+    "release_date": "2019-04-25",
+    "finish_date": "2019-05-29",
+    "is_deleted": false,
+    "categories": [
+      1,
+      5,
+      7
     ]
   }
 },
@@ -237,7 +255,7 @@
   "model": "webapp.hall",
   "pk": 2,
   "fields": {
-    "name": "\u0417\u0430\u043b DOLBY ATMOS",
+    "name": "\u0417\u0430\u043b DOLBY ATMOS1",
     "description": "\u0421\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430, \u043a\u043e\u0442\u043e\u0440\u0430\u044f \u0434\u0435\u043b\u0430\u0435\u0442 \u0437\u0432\u0443\u043a \u0440\u0435\u0430\u043b\u0438\u0441\u0442\u0438\u0447\u043d\u044b\u043c, \u0431\u043b\u0430\u0433\u043e\u0434\u0430\u0440\u044f \u0442\u043e\u043c\u0443, \u0447\u0442\u043e \u043e\u043d \u0437\u0432\u0443\u0447\u0438\u0442 \u043d\u0435 \u0442\u043e\u043b\u044c\u043a\u043e \u0432 \u0433\u043e\u0440\u0438\u0437\u043e\u043d\u0442\u0430\u043b\u044c\u043d\u043e\u0439 \u043f\u043b\u043e\u0441\u043a\u043e\u0441\u0442\u0438, \u043d\u043e \u0438 \u0441\u0432\u0435\u0440\u0445\u0443. \u0418\u0437-\u0437\u0430 \u044d\u0442\u043e\u0433\u043e \u043f\u043e\u044f\u0432\u043b\u044f\u0435\u0442\u0441\u044f \u0432\u043e\u0437\u043c\u043e\u0436\u043d\u043e\u0441\u0442\u044c \u0441\u043e\u0437\u0434\u0430\u0432\u0430\u0442\u044c \u043e\u0431\u044a\u0435\u043c\u043d\u0443\u044e \u0437\u0432\u0443\u043a\u043e\u0432\u0443\u044e \u043a\u0430\u0440\u0442\u0438\u043d\u0443 3D, \u043a\u0430\u043a \u044d\u0442\u043e \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u0438\u0442 \u0438 \u0432 \u043e\u0431\u044b\u0447\u043d\u043e\u0439 \u0436\u0438\u0437\u043d\u0438. \u0417\u0432\u0443\u043a \u0431\u0443\u0434\u0435\u0442 \u043f\u043e\u043b\u043d\u043e\u0441\u0442\u044c\u044e \u0441\u043e\u043e\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u043e\u0432\u0430\u0442\u044c \u043a\u0430\u0440\u0442\u0438\u043d\u043a\u0435 \u043d\u0430 \u044d\u043a\u0440\u0430\u043d\u0435, \u0438 \u0437\u0432\u0443\u0447\u0430\u0442\u044c \u0438\u043c\u0435\u043d\u043d\u043e \u043e\u0442\u0442\u0443\u0434\u0430, \u043e\u0442\u043a\u0443\u0434\u0430 \u0434\u043e\u043b\u0436\u0435\u043d. \u0411\u043b\u0430\u0433\u043e\u0434\u0430\u0440\u044f \u044d\u0442\u043e\u043c\u0443 \u0443 \u0432\u0430\u0441 \u0432\u043e\u0437\u043d\u0438\u043a\u043d\u0435\u0442  \u043e\u0449\u0443\u0449\u0435\u043d\u0438\u0435 \u043f\u043e\u043b\u043d\u043e\u0433\u043e \u043f\u043e\u0433\u0440\u0443\u0436\u0435\u043d\u0438\u044f \u0432 \u043f\u0440\u043e\u0438\u0441\u0445\u043e\u0434\u044f\u0449\u0435\u0435.",
     "is_deleted": false
   }
@@ -266,6 +284,24 @@
   "fields": {
     "name": "\u0413\u0440\u0435\u0447\u0435\u0441\u043a\u0438\u0439 \u0437\u0430\u043b",
     "description": "\u0422\u043e\u0442, \u0432 \u043a\u043e\u0442\u043e\u0440\u043e\u043c \u043c\u044b\u0448\u044c \u0431\u0435\u043b\u0430\u044f",
+    "is_deleted": true
+  }
+},
+{
+  "model": "webapp.hall",
+  "pk": 8,
+  "fields": {
+    "name": "\u0417\u0430\u043b \u041e\u0436\u0438\u0434\u0430\u043d\u0438\u044f",
+    "description": "\u0412 \u043d\u0435\u043c \u043c\u043e\u0436\u043d\u043e \u043f\u043e\u0441\u0438\u0434\u0435\u0442\u044c \u0411\u0415\u0421\u041f\u041b\u0410\u0422\u041d\u041e!",
+    "is_deleted": true
+  }
+},
+{
+  "model": "webapp.hall",
+  "pk": 9,
+  "fields": {
+    "name": "\u0417\u0430\u043b \u041e\u0436\u0438\u0434\u0430\u043d\u0438\u044f",
+    "description": "\u0412 \u043d\u0435\u043c \u043c\u043e\u0436\u043d\u043e \u043f\u043e\u0441\u0438\u0434\u0435\u0442\u044c \u0411\u0415\u0421\u041f\u041b\u0410\u0422\u041d\u041e!!!",
     "is_deleted": true
   }
 },
@@ -375,8 +411,8 @@
   "fields": {
     "movie": 3,
     "hall": 2,
-    "start_time": "2019-03-18T06:30:00Z",
-    "end_time": "2019-03-18T08:20:00Z",
+    "start_time": "2019-04-03T06:30:00Z",
+    "end_time": "2019-04-03T08:20:00Z",
     "price": "450.00",
     "is_deleted": false
   }
@@ -398,9 +434,9 @@
   "pk": 3,
   "fields": {
     "movie": 5,
-    "hall": 5,
-    "start_time": "2017-12-12T16:22:00Z",
-    "end_time": "2017-12-13T16:22:00Z",
+    "hall": 2,
+    "start_time": "2019-04-03T16:22:00Z",
+    "end_time": "2019-04-03T16:22:00Z",
     "price": "360.00",
     "is_deleted": false
   }
@@ -423,8 +459,8 @@
   "fields": {
     "movie": 2,
     "hall": 1,
-    "start_time": "2019-03-18T09:30:00Z",
-    "end_time": "2019-03-18T11:20:00Z",
+    "start_time": "2019-04-03T09:30:00Z",
+    "end_time": "2019-04-03T11:20:00Z",
     "price": "450.00",
     "is_deleted": false
   }
@@ -435,8 +471,8 @@
   "fields": {
     "movie": 2,
     "hall": 2,
-    "start_time": "2019-03-19T04:30:00Z",
-    "end_time": "2019-03-19T05:20:00Z",
+    "start_time": "2019-04-04T04:30:00Z",
+    "end_time": "2019-04-04T05:20:00Z",
     "price": "450.00",
     "is_deleted": false
   }
@@ -447,8 +483,8 @@
   "fields": {
     "movie": 2,
     "hall": 2,
-    "start_time": "2019-03-18T04:30:00Z",
-    "end_time": "2019-03-18T05:50:00Z",
+    "start_time": "2019-04-03T04:30:00Z",
+    "end_time": "2019-04-03T05:50:00Z",
     "price": "450.00",
     "is_deleted": false
   }
@@ -459,8 +495,8 @@
   "fields": {
     "movie": 1,
     "hall": 2,
-    "start_time": "2019-03-08T05:30:00Z",
-    "end_time": "2019-03-08T06:50:00Z",
+    "start_time": "2019-04-02T05:30:00Z",
+    "end_time": "2019-04-02T06:50:00Z",
     "price": "450.00",
     "is_deleted": false
   }
@@ -1528,6 +1564,54 @@
   }
 },
 {
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add registration token",
+    "content_type": [
+      "webapp",
+      "registrationtoken"
+    ],
+    "codename": "add_registrationtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change registration token",
+    "content_type": [
+      "webapp",
+      "registrationtoken"
+    ],
+    "codename": "change_registrationtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete registration token",
+    "content_type": [
+      "webapp",
+      "registrationtoken"
+    ],
+    "codename": "delete_registrationtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view registration token",
+    "content_type": [
+      "webapp",
+      "registrationtoken"
+    ],
+    "codename": "view_registrationtoken"
+  }
+},
+{
   "model": "auth.user",
   "pk": 1,
   "fields": {
@@ -1537,12 +1621,243 @@
     "username": "admin",
     "first_name": "",
     "last_name": "",
-    "email": "",
+    "email": "admin@cinems.app",
     "is_staff": true,
     "is_active": true,
     "date_joined": "2019-02-28T13:33:16.524Z",
     "groups": [],
     "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$pHyC3Kx6w7TS$RoQgoStU4U++Rk3Fl1TNSh+Z5q6zm8TnRa3ne18PFMg=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "\u041c\u043e\u0434\u0435\u0440\u0430\u0442\u043e\u0440",
+    "first_name": "",
+    "last_name": "",
+    "email": "moderator@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-03-24T07:09:49.686Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$8dmaN2IjPlSQ$bKXq6f+r29lCvPbVq8l7CYhre5LqzmkyTVU7ihuS78A=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "zloy_admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "zloy@admin.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-03-24T10:11:04Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$faJwNhIRi3jI$rSyb0NJzIsuE0IhZWeGfYAGNg7Sw6mIJocg3Wo0q7jc=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "VasyaPupkin",
+    "first_name": "\u0412\u0430\u0441\u044f\u043d",
+    "last_name": "\u041f\u0443\u043f\u043a\u0438\u043d",
+    "email": "vasyapup@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-03-25T07:21:33.621Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$QaJhzZtj231O$02cvKQdpoz/01tRvfkw7HUR6PRl8v+mfKY9m3GrcXEU=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Ivan",
+    "first_name": "",
+    "last_name": "",
+    "email": "ivan@bolvan.kg",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2019-03-30T09:39:10.885Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 7,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$Zi9ibyQq73Qx$jlg7IR0XSsVgU+kQ0wmYPoJo6QUlg45w/rdhQ/uogC4=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Max",
+    "first_name": "",
+    "last_name": "",
+    "email": "max@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-03-31T17:14:51Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 8,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$kuVBlnzHMOX7$A9Qum9Jh7Kl+Zp0W2TR4LR8oUjBG/Ls8IqL/eUll68o=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Dan",
+    "first_name": "",
+    "last_name": "",
+    "email": "dan@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-04-01T09:42:16.753Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 10,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$MCv9lwaN23cH$mEhprWDOLSjiE3CLVDqB9AH7oHmcdyxOlfQUikLLfJ0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Vadim1",
+    "first_name": "\u0412\u0430\u0434\u0438\u043c",
+    "last_name": "\u0416\u043c\u0443\u0440\u0438\u043a\u043e\u0432",
+    "email": "bb@mail.ru",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-04-01T10:48:42.211Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 11,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$ElYopdieu94G$ku5uc+ZNPZPPsBX1t+9x4dvPNaCMJvABxPL6Q1h2MBs=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Masha",
+    "first_name": "",
+    "last_name": "",
+    "email": "adaeva.maria@gmail.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-04-04T04:56:34.470Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 12,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$qN6gvtaOajQF$XWPOGyXxFYYegR0l26gpRJsmRQopP92Cs31DMjOQ++k=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Harry",
+    "first_name": "",
+    "last_name": "",
+    "email": "harry@potter.uk",
+    "is_staff": false,
+    "is_active": false,
+    "date_joined": "2019-04-04T05:11:19.808Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 13,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$bPAQ3AQGol1h$5ZfDjnmfU+jj/3mMbKfgS3h5J7vb/uDid437QYPe/lA=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "John",
+    "first_name": "",
+    "last_name": "",
+    "email": "john@snow.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-04-04T05:13:56.552Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 14,
+  "fields": {
+    "password": "pbkdf2_sha256$120000$YLqJsCajbdAI$Pnvove1Ft9l5+xf2fc25S1iuCR7pDYQbVVXaVLjxwDs=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "Aria",
+    "first_name": "\u0410\u0440\u044c\u044f",
+    "last_name": "\u0421\u0442\u0430\u0440\u043a",
+    "email": "aria@stark.com",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2019-04-04T05:16:11.529Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "webapp.registrationtoken",
+  "pk": 1,
+  "fields": {
+    "token": "df7b87b1-12cc-4bc7-9914-b105a8fb4efc",
+    "created_at": "2019-03-30T09:39:11.060Z",
+    "user": [
+      "Ivan"
+    ]
+  }
+},
+{
+  "model": "webapp.registrationtoken",
+  "pk": 2,
+  "fields": {
+    "token": "e4a4ae66-c368-4286-8273-28ca63e578e4",
+    "created_at": "2019-03-31T17:14:51.444Z",
+    "user": [
+      "Max"
+    ]
+  }
+},
+{
+  "model": "webapp.registrationtoken",
+  "pk": 6,
+  "fields": {
+    "token": "0526a33c-28d7-4cba-8c66-39a2adf227e7",
+    "created_at": "2019-04-04T05:11:19.970Z",
+    "user": [
+      "Harry"
+    ]
   }
 }
 ]
