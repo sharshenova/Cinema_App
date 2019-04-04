@@ -1,21 +1,16 @@
 import React, {Component} from 'react'
-import {MOVIES_URL} from "../../api-urls";
-import {SHOWS_URL} from "../../api-urls";
 import {NavLink} from "react-router-dom";
 import MovieCategories from "../../components/MovieCategories/MovieCategories";
-import axios from 'axios';
 import Shows from "../../components/Shows/Shows";
+import {loadMovieAndShows} from "../../store/actions/movie-detail";
+import {connect} from "react-redux";
+
 
 // компонент, который выводит одну карточку с фильмом
 // фильм также загружается при выводе компонента на экран (mount),
 // а не при обновлении (didUpdate), т.к. компонент выводится на отдельной странице,
 // и при переключении страниц исчезает с экрана, а потом снова маунтится.
 class MovieDetail extends Component {
-    state = {
-        movie: null,
-        shows: [],
-        alert: null
-    };
 
     componentDidMount() {
         // match - атрибут, передаваемый роутером, содержащий путь к этому компоненту
@@ -36,60 +31,53 @@ class MovieDetail extends Component {
         next_date = next_date.toISOString().slice(0, 10);
         console.log(next_date, 'next_date');
 
-        axios.all([
-            axios.get(MOVIES_URL + match_params_id + '/'),
-            axios.get(SHOWS_URL + '?movie_id=' + match_params_id + '&min_start_date=' + current_date + '&max_start_date=' + next_date)
-        ])
-        .then(axios.spread((movieRequest, showsRequest) => {
-            this.setState({
-                movie: movieRequest.data,
-                shows: showsRequest.data
-            });
-            console.log(this.state)
-        }));
+        let link = '?movie_id=' + match_params_id + '&min_start_date=' + current_date + '&max_start_date=' + next_date;
+        console.log(link, 'link');
+
+        this.props.loadMovieAndShows(match_params_id, link);
     }
 
-    movieDeleted = () => {
-        if (!localStorage.getItem('auth-token')) {
-            this.props.history.push("/login");
-        }
-        axios.delete(MOVIES_URL + this.props.match.params.id, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': 'Token ' + localStorage.getItem('auth-token')
-            }
-        })
-        .then(response => {
-            console.log(response.data);
-            this.setState(prevState => {
-                let newState = {...prevState};
-                newState.movie = null;
-                return newState;
-            });
-            this.props.history.replace('/');
-        })
-        .catch(error => {
-        console.log(error);
-        let alert = {type: 'danger', message: `Delete error!`};
-        this.setState({alert: alert});
-        })
-    };
+    // movieDeleted = () => {
+    //     if (!localStorage.getItem('auth-token')) {
+    //         this.props.history.push("/login");
+    //     }
+    //     axios.delete(MOVIES_URL + this.props.match.params.id, {
+    //         headers: {
+    //             'Content-Type': 'multipart/form-data',
+    //             'Authorization': 'Token ' + localStorage.getItem('auth-token')
+    //         }
+    //     })
+    //     .then(response => {
+    //         console.log(response.data);
+    //         this.setState(prevState => {
+    //             let newState = {...prevState};
+    //             newState.movie = null;
+    //             return newState;
+    //         });
+    //         this.props.history.replace('/');
+    //     })
+    //     .catch(error => {
+    //     console.log(error);
+    //     let alert = {type: 'danger', message: `Delete error!`};
+    //     this.setState({alert: alert});
+    //     })
+    // };
 
     render() {
-        // если movie в state нет, ничего не рисуем.
-        if (!this.state.movie) return null;
-        console.log('выполняется Render');
+        // если movie в props нет, ничего не рисуем.
+        if (!this.props.movieDetail.movie) return null;
+        console.log(this.props, 'this.props');
 
         // достаём данные из movie
-        const {name, poster, description, release_date, finish_date, categories, id} = this.state.movie;
+        const {name, poster, description, release_date, finish_date, categories, id} = this.props.movieDetail.movie;
 
-        let alert = null;
-        if (this.state.alert) {
-            alert = <div className={"alert alert-" + this.state.alert.type}>{this.state.alert.message}</div>
-        }
+        const {token, is_admin} = this.props.auth;
+        console.log(this.props.auth, 'AUTH!');
+        const shows = this.props.movieDetail.shows;
+        console.log(shows, 'shows');
 
         return <div>
-            {alert}
+
             <div className='movie-detail-form row'>
                 <div className='col col-xs-12 col-sm-12 col-md-6'>
                     {/* постер, если есть */}
@@ -112,25 +100,39 @@ class MovieDetail extends Component {
                     {/* описание */}
                     {description ? <p>{description}</p> : null}
 
-                    <div className='mb-3'>
-                        {/* редактировать фильм */}
-                        <NavLink to={'/movies/' + id + '/edit'} className="btn btn-primary mr-2">Edit</NavLink>
-
-
-                        <button type="button" className="btn btn-danger mr-2" onClick={() => this.movieDeleted()}>Delete</button>
-
-                        {/* назад */}
-                        <NavLink to='' className="btn btn-primary">Movies</NavLink>
-                    </div>
+                    {token && is_admin === true ? [
+                        <div className='mb-3 row'>
+                            <NavLink to={'/movies/' + id + '/edit'} className="btn btn-primary mr-2">Редактировать</NavLink>
+                            {/*<button type="button" className="btn btn-danger mr-2" onClick={() => this.movieDeleted()}>Delete</button>*/}
+                        </div>
+                    ]: null}
                 </div>
-
-                <div>
-                    {this.state.shows && this.state.shows.length > 0 ? <Shows shows={this.state.shows}/>: null}
-                </div>
-
             </div>
+
+            {shows ? [<div>
+                <Shows shows={shows}/>
+            </div>
+            ] : null}
+
         </div>
     }
 }
 
-export default MovieDetail
+// ключ movieDetail приходит из root.js
+const mapStateToProps = state => {
+    return {
+        // movieDetail - идет в root
+        movieDetail: state.movieDetail,
+        auth: state.auth,  // auth нужен, чтобы получить из него токен для запроса
+    }
+};
+
+// loadMovie: - передается из props, используется в componentDidMount
+// loadMovie() - это вызов action из actions/movie-detail
+const mapDispatchToProps = (dispatch) => ({
+    loadMovieAndShows: (movie_id, shows_link) => dispatch(loadMovieAndShows(movie_id, shows_link))
+});
+
+// здесь MovieDetail - название экспортируемого компонента
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetail);
+
